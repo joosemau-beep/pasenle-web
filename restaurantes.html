@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<script>
+  document.documentElement.classList.add('js');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('recorre');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F1E3">
+<title>Pásenle para restaurantes · Llena tus horas tranquilas</title>
+<meta name="description" content="Recibe reservas de gente de Guadalajara y llena tus horas tranquilas con el descuento que tú eliges. Sin contrato: pagas por cada persona que llega.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Pásenle para restaurantes · Llena tus horas tranquilas">
+<meta property="og:description" content="Recibe reservas de gente de Guadalajara y llena tus horas tranquilas con el descuento que tú eliges. Sin contrato: pagas por cada persona que llega.">
+<!-- og:url y og:image con la dirección absoluta (WhatsApp no lee rutas relativas) -->
+<meta property="og:url" content="https://pasenle.com/restaurantes.html">
+<link rel="canonical" href="https://pasenle.com/restaurantes.html">
+<meta property="og:image" content="https://pasenle.com/img/compartir-restaurantes.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="icon" href="img/icono-180.png">
+<link rel="preload" href="fuentes/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Figtree-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/sitio.css">
+<link rel="stylesheet" href="css/restaurantes.css">
+</head>
+<body class="papel resto">
+
+<!-- iconos de línea, una sola vez -->
+<svg class="r-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 2 .8 2.4.6 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-cambia" viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 0 1 13-4.6L19.5 8.5M19.5 4v4.5H15M19.5 13a7.5 7.5 0 0 1-13 4.6L4.5 15.5M4.5 20v-4.5H9"/></symbol>
+  <symbol id="i-copa" viewBox="0 0 24 24"><path d="M7 3.5h10l-1.2 6.2a3.9 3.9 0 0 1-7.6 0L7 3.5zM12 13.7V20M8.5 20.5h7"/></symbol>
+  <symbol id="i-carta" viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M9 8h6M9 11.5h6M9 15h3.5"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path d="m12 3.8 2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.6-5 2.6.9-5.6-4-3.9 5.6-.8z"/></symbol>
+  <symbol id="i-chispa" viewBox="0 0 24 24"><path d="M12 3.5c.6 4.2 2.3 5.9 6.5 6.5-4.2.6-5.9 2.3-6.5 6.5-.6-4.2-2.3-5.9-6.5-6.5 4.2-.6 5.9-2.3 6.5-6.5zM18.5 15.5c.3 1.9 1 2.6 2.9 2.9-1.9.3-2.6 1-2.9 2.9-.3-1.9-1-2.6-2.9-2.9 1.9-.3 2.6-1 2.9-2.9z"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3.2 19 6v5.2c0 4.4-3 7.8-7 9.6-4-1.8-7-5.2-7-9.6V6z"/><path d="m9 12 2.2 2.2L15.3 10"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10 9v6M14 9v6"/></symbol>
+  <symbol id="i-cierra" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4M10 13l4 4M14 13l-4 4"/></symbol>
+  <symbol id="tab-hoy" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="tab-horas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="tab-num" viewBox="0 0 24 24"><path d="M6 19v-6M12 19V6M18 19v-9"/></symbol>
+  <symbol id="tab-local" viewBox="0 0 24 24"><path d="M4 9.5 5.5 5h13L20 9.5M4 9.5h16M4 9.5c0 1.7 1.3 2.5 2.7 2.5s2.6-.8 2.6-2.5c0 1.7 1.3 2.5 2.7 2.5s2.7-.8 2.7-2.5c0 1.7 1.2 2.5 2.6 2.5S20 11.2 20 9.5M5.5 12v7.5h13V12"/></symbol>
+  <symbol id="s-senal" viewBox="0 0 17 11"><g fill="currentColor" stroke="none"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4.6" y="5" width="3" height="6" rx=".8"/><rect x="9.2" y="2.6" width="3" height="8.4" rx=".8"/><rect x="13.8" y="0" width="3" height="11" rx=".8"/></g></symbol>
+  <symbol id="s-wifi" viewBox="0 0 15.5 11"><path fill="currentColor" stroke="none" d="M7.75 2.3c2.1 0 4.02.8 5.46 2.13a.4.4 0 0 0 .56-.01l1.04-1.05a.4.4 0 0 0 0-.57A10.1 10.1 0 0 0 7.75 0 10.1 10.1 0 0 0 .69 2.8a.4.4 0 0 0 0 .57l1.04 1.05a.4.4 0 0 0 .56.01A7.9 7.9 0 0 1 7.75 2.3Zm0 3.45c1.13 0 2.17.42 2.97 1.12a.4.4 0 0 0 .55-.01l1.05-1.05a.4.4 0 0 0-.01-.58 6.6 6.6 0 0 0-9.12 0 .4.4 0 0 0-.01.58l1.05 1.05a.4.4 0 0 0 .55.01 4.5 4.5 0 0 1 2.97-1.12Zm2.03 2.63a.4.4 0 0 0-.02-.58 3.06 3.06 0 0 0-4.02 0 .4.4 0 0 0-.02.58l1.73 1.74a.4.4 0 0 0 .57 0Z"/></symbol>
+  <symbol id="s-pila" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.3" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor" stroke="none"/><path d="M23 4v4c.8-.3 1.3-1.1 1.3-2S23.8 4.3 23 4Z" fill="currentColor" fill-opacity=".45" stroke="none"/></symbol>
+  <symbol id="s-palomita" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="e-atras" viewBox="0 0 24 24"><path d="M19 12H5.5M11 6l-6 6 6 6"/></symbol>
+</svg>
+
+<header class="r-barra">
+  <div class="r-barra__in">
+    <a class="r-logo" href="index.html" aria-label="Pásenle para restaurantes, ir al inicio">
+      <img src="img/icono-180.png" width="30" height="30" alt="">
+      <span><b data-nombre>Pásenle</b><small>Para restaurantes</small></span>
+    </a>
+    <nav class="r-barra__ligas" aria-label="Principal">
+      <a class="r-barra__texto" href="index.html">Para comensales</a>
+      <a class="r-capsula" data-wa href="https://wa.me/523317636108?text=Hola%2C%20tengo%20un%20restaurante%20y%20quiero%20entrar%20al%20piloto%20de%20M%C3%B3chate." target="_blank" rel="noopener">Quiero entrar<span class="r-oculto"> al piloto por WhatsApp</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ─────────── PORTADA · el dueño se ve en la app como lo ve la gente ─────────── -->
+<section class="r-portada" aria-labelledby="t-portada">
+  <div class="r-portada__luz" aria-hidden="true"></div>
+  <div class="r-portada__persiana" aria-hidden="true"></div>
+  <div class="r-portada__marco">
+    <div class="r-portada__texto">
+      <p class="r-ojo r-portada__ojo">Piloto en <span data-ciudad>Guadalajara</span></p>
+      <h1 class="r-portada__titulo" id="t-portada"><span class="l"><span class="d">Llena</span> <span class="d">tus horas</span></span> <span class="l">tranquilas.</span></h1>
+      <p class="r-portada__baja">Recibe reservas por la app. En tus horas tranquilas, el descuento que tú eliges te trae gente nueva. Apartan gratis y te pagan en tu caja.</p>
+      <div class="r-portada__accion">
+        <a class="r-boton" data-wa data-cta href="https://wa.me/523317636108?text=Hola%2C%20tengo%20un%20restaurante%20y%20quiero%20entrar%20al%20piloto%20de%20M%C3%B3chate." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero entrar al piloto</a>
+        <p class="r-portada__micro">Sin contrato y sin mínimo. Desde $0 al mes: pagas por cada persona que llega con reserva.</p>
+      </div>
+    </div>
+
+    <div class="r-portada__escena">
+      <p class="r-rotulo-tel" aria-hidden="true">Así te ve la gente en la app</p>
+      <div class="tel-r" role="img" aria-label="Así te ve la gente en la app: tu restaurante con su carta. Martes a las 5:00 pm, 45% menos en la comida: el aguachile verde baja de $245 a $135 y las tostadas de atún de $190 a $105. La michelada, a precio normal. Datos de ejemplo.">
+        <div class="pantalla-r" aria-hidden="true">
+          <!-- E · tu restaurante como lo ve el comensal (ficha.dart). Carta de la semilla: 245, 190, 520 y la michelada de 120.
+               Con 40%: 147 · 114 · 312. Con 45%: 135 · 105 · 286. Pasa de las 4 a las 5 una sola vez. -->
+          <div class="rt rt-e" id="pantalla-heroe" data-anima>
+            <div class="rt-sis"><span>2:45</span><span class="rt-sis__ic"><svg class="s1"><use href="#s-senal"/></svg><svg class="s2"><use href="#s-wifi"/></svg><svg class="s3"><use href="#s-pila"/></svg></span></div>
+            <div class="e-foto">
+              <img src="img/platos/salmar_1.webp" width="800" height="600" alt="" decoding="async">
+              <span class="e-redondo e-redondo--izq"><svg><use href="#e-atras"/></svg></span>
+              <span class="e-redondo e-redondo--der"><svg viewBox="0 0 24 24"><path d="M12 19.5s-7-4.3-7-9.7A3.9 3.9 0 0 1 12 7.3a3.9 3.9 0 0 1 7 2.5c0 5.4-7 9.7-7 9.7z"/></svg></span>
+              <div class="e-nom">
+                <p class="e-puntos"><i class="si"></i><i></i><i></i></p>
+                <b>Tu restaurante</b>
+                <small>Mariscos · $$ · Tu colonia</small>
+              </div>
+              <span class="ejemplo e-ejemplo">Ejemplo</span>
+            </div>
+            <div class="e-cuerpo">
+              <p class="rt-et">Horas de hoy</p>
+              <div class="e-horas">
+                <span class="e-hora"><b>3:00</b><span class="sello t-petroleo">-25<span class="pct">%</span></span></span>
+                <span class="e-hora e-hora--4"><b>4:00</b><span class="sello t-mango">-40<span class="pct">%</span></span></span>
+                <span class="e-hora e-hora--5"><b>5:00</b><span class="sello t-guajillo">-45<span class="pct">%</span></span></span>
+                <span class="e-hora"><b>6:00</b><span class="sello t-mango">-35<span class="pct">%</span></span></span>
+                <span class="e-hora"><b>7:00</b><span class="sello t-petroleo">-20<span class="pct">%</span></span></span>
+              </div>
+              <p class="rt-et">Cuántos son</p>
+              <div class="rt-caja e-cuantos"><span>Mesa para 2</span><span class="e-cont"><i>−</i><b>2</b><i>+</i></span></div>
+              <p class="rt-et e-et-carta">La carta a las <span class="rod"><span>4</span><span>5</span></span> pm</p>
+              <p class="e-plato"><span>Aguachile verde</span><s>$245</s><b class="rod"><span>$147</span><span>$135</span></b></p>
+              <p class="e-plato"><span>Tostadas de atún</span><s>$190</s><b class="rod"><span>$114</span><span>$105</span></b></p>
+              <p class="e-plato"><span>Pescado zarandeado (2 pers.)</span><s>$520</s><b class="rod"><span>$312</span><span>$286</span></b></p>
+              <p class="e-plato e-plato--normal"><span>Michelada de la casa</span><small>precio normal</small><b>$120</b></p>
+              <p class="e-nota">El descuento es en la comida; las bebidas van a precio normal.</p>
+            </div>
+            <div class="e-pie"><span class="e-apartar">Apartar mesa · <span class="rod"><span>4:00</span><span>5:00</span></span> pm</span></div>
+            <i class="rt-home"></i>
+          </div>
+        </div>
+        <img class="tel-r__marco" src="img/portada/iphone-18-pro-700.webp" srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w, img/portada/iphone-18-pro-1350.webp 1350w" sizes="(min-width: 960px) 380px, 280px" width="1350" height="2760" alt="" fetchpriority="high">
+      </div>
+
+      <div class="r-vidrio r-vidrio--portada">
+        <p class="r-vidrio__cabeza"><span>Ejemplo · Martes</span></p>
+        <p class="r-vidrio__fila"><b>A las 5:00 pm</b><span class="sello t-guajillo">-45<span class="pct">%</span></span><span class="r-vidrio__que">en la comida</span></p>
+        <p class="r-vidrio__fila"><b>A las 8:00 pm</b><span class="r-vidrio__que">tu precio de siempre</span></p>
+        <p class="r-vidrio__pie">Tú decides a qué hora aparece cada precio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 1 · la renta no baja (bloque hondo) ─────────── -->
+<section class="r-renta" data-fondo="oscuro" aria-labelledby="t-renta">
+  <div class="r-renta__bloque">
+    <div class="r-renta__texto entra">
+      <p class="r-ojo">Un martes cualquiera</p>
+      <h2 class="r-h2" id="t-renta">La renta no baja a&nbsp;las cinco.</h2>
+      <p class="r-p">A las cinco de la tarde pagas la misma renta, luz, gas y nómina que a las nueve de la noche. Lo que cambia son las mesas vacías. Y esa hora ya no regresa.</p>
+    </div>
+    <!-- el martes de la semilla, de 1 a 11 pm: la misma curva que el panel de "Tus horas" -->
+    <figure class="grafica" data-ve>
+      <figcaption class="grafica__titulo">Qué tan lleno está el local, por hora</figcaption>
+      <ol class="grafica__barras">
+        <li style="--v:42;--i:0"><span class="r-oculto">1 pm: </span><i></i><em>42%</em></li>
+        <li class="baja" style="--v:34;--i:1"><span class="r-oculto">2 pm: </span><i></i><em>34%</em></li>
+        <li class="baja" style="--v:26;--i:2"><span class="r-oculto">3 pm: </span><i></i><em>26%</em></li>
+        <li class="baja" style="--v:22;--i:3"><span class="r-oculto">4 pm: </span><i></i><em>22%</em></li>
+        <li class="baja cinco" style="--v:28;--i:4"><span class="r-oculto">5 pm: </span><i></i><em>28%</em></li>
+        <li style="--v:46;--i:5"><span class="r-oculto">6 pm: </span><i></i><em>46%</em></li>
+        <li style="--v:66;--i:6"><span class="r-oculto">7 pm: </span><i></i><em>66%</em></li>
+        <li style="--v:82;--i:7"><span class="r-oculto">8 pm: </span><i></i><em>82%</em></li>
+        <li style="--v:70;--i:8"><span class="r-oculto">9 pm: </span><i></i><em>70%</em></li>
+        <li style="--v:46;--i:9"><span class="r-oculto">10 pm: </span><i></i><em>46%</em></li>
+        <li class="baja" style="--v:26;--i:10"><span class="r-oculto">11 pm: </span><i></i><em>26%</em></li>
+      </ol>
+      <p class="grafica__horas" aria-hidden="true"><span>1 pm</span><span>3</span><span>5</span><span>7</span><span>9</span><span>11 pm</span></p>
+      <p class="grafica__leyenda"><i aria-hidden="true"></i>Horas casi vacías</p>
+      <p class="grafica__pie">Ejemplo ilustrativo, no son datos medidos.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ─────────── 2 a 6 · el mismo martes, en tu panel ───────────
+     En celular cada escena trae su teléfono. En escritorio (con JS) un solo teléfono se queda quieto a la derecha
+     y su pantalla cambia con la escena: restaurantes.js copia ahí cada pantalla. Sin JS, cada escena con su teléfono. -->
+<section class="panel" aria-labelledby="t-panel">
+  <div class="panel__in">
+    <div class="panel__escenas">
+      <h2 class="panel__intro" id="t-panel">El mismo martes, <span>con tu panel en el celular.</span></h2>
+
+      <!-- 2 · Tus horas -->
+      <article class="escena-r" data-pantalla="#pantalla-horas" aria-labelledby="t-horas">
+        <div class="escena-r__texto entra">
+          <p class="hito"><span class="hito__hora">11:30 am</span>Antes de abrir</p>
+          <h3 class="r-h2" id="t-horas">Tú pones la hora y el descuento.</h3>
+          <p class="r-p">Hora por hora decides cuántas mesas sueltas en la app y si esa hora lleva descuento. Junto a cada hora ves qué tan lleno sueles estar y un descuento sugerido: en tus horas tranquilas, el descuento es lo que te trae gente nueva. Las mesas que no sueltas siguen para quien llega sin reservar.</p>
+        </div>
+        <div class="escena-r__tel">
+          <div class="tel-r" role="img" aria-label="Pantalla de ejemplo, Tus horas. El martes, a las 2:00 pm tocas Bajar y queda con 40% menos en 4 mesas. Quedan 6 horas con precio bajo; la más fuerte, 5:00 pm con 45% menos. A las 8:00 pm, sin bajar.">
+            <div class="pantalla-r" aria-hidden="true">
+              <!-- A · Tus horas (horas.dart). Martes de la semilla: ocupación 34 26 22 28 46 66 82 y reglas 25/4, 40/6, 45/6, 35/5, 20/3.
+                   A las 2 (34%, "Casi vacío") el sugerido es 40%: se toca "Bajar" y queda 40% con 4 mesas. -->
+              <div class="rt rt-a" id="pantalla-horas" data-anima>
+                <div class="rt-sis"><span>11:30</span><span class="rt-sis__ic"><svg class="s1"><use href="#s-senal"/></svg><svg class="s2"><use href="#s-wifi"/></svg><svg class="s3"><use href="#s-pila"/></svg></span></div>
+                <div class="rt-toldo"><img class="rt-toldo__lona" src="img/portada/toldo-lona.webp" alt="" decoding="async"><img class="rt-toldo__faldon" src="img/portada/toldo-faldon.webp" alt="" decoding="async">
+                  <p class="rt-toldo__t"><b>Tus horas</b><small>Cuándo bajas el precio y cuántas mesas sueltas</small></p><span class="ejemplo">Ejemplo</span></div>
+                <div class="rt-cuerpo">
+                  <p class="a-dias"><span class="cerrado">L</span><span class="si">M</span><span>M</span><span>J</span><span>V</span><span class="sin">S</span><span>D</span></p>
+                  <div class="rt-caja a-res">
+                    <p><b>Martes</b><small><span class="rod"><span>5</span><span>6</span></span> horas con precio bajo. La más fuerte, 5:00 pm con 45% menos.</small></p>
+                    <span class="a-abierto">Abierto</span>
+                  </div>
+                  <p class="a-imprevisto"><svg><use href="#i-cierra"/></svg>Cerrar un día por imprevisto</p>
+                  <div class="rt-caja a-mapa">
+                    <p class="rt-et">Así te ven en el mapa</p>
+                    <div class="a-mapa__calle"><span class="a-pin"><span class="sello t-guajillo">-45<span class="pct">%</span></span><b>Tu restaurante</b></span></div>
+                  </div>
+                  <div class="rt-caja a-fila a-fila--2">
+                    <div class="a-fila__top"><b class="a-h">2:00 pm</b><div class="a-oc"><i style="--o:34%"></i><p><b>Casi vacío</b> a esta hora, normalmente<span class="solo-final"> <span class="a-sueltas">· sueltas 4 mesas</span></span></p></div>
+                      <span class="a-cambia"><span class="a-bajar">Bajar</span><span class="sello t-mango">-40<span class="pct">%</span></span></span></div>
+                    <div class="a-mas"><div><div class="a-pasos"><p><small>Descuento</small><span><i>−</i><b>40%</b><i>+</i></span></p><p><small>Mesas</small><span><i>−</i><b>4</b><i>+</i></span></p></div></div></div>
+                  </div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">3:00 pm</b><div class="a-oc"><i style="--o:26%"></i><p><b>Casi vacío</b> a esta hora, normalmente <span class="a-sueltas">· sueltas 4 mesas</span></p></div><span class="sello t-petroleo">-25<span class="pct">%</span></span></div></div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">4:00 pm</b><div class="a-oc"><i style="--o:22%"></i><p><b>Casi vacío</b> a esta hora, normalmente <span class="a-sueltas">· sueltas 6 mesas</span></p></div><span class="sello t-mango">-40<span class="pct">%</span></span></div></div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">5:00 pm</b><div class="a-oc"><i style="--o:28%"></i><p><b>Casi vacío</b> a esta hora, normalmente <span class="a-sueltas">· sueltas 6 mesas</span></p></div><span class="sello t-guajillo">-45<span class="pct">%</span></span></div></div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">6:00 pm</b><div class="a-oc"><i style="--o:46%"></i><p><b>A medias</b> a esta hora, normalmente <span class="a-sueltas">· sueltas 5 mesas</span></p></div><span class="sello t-mango">-35<span class="pct">%</span></span></div></div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">7:00 pm</b><div class="a-oc"><i class="lleno" style="--o:66%"></i><p><b>Lleno</b> a esta hora, normalmente <span class="a-sueltas">· sueltas 3 mesas</span></p></div><span class="sello t-petroleo">-20<span class="pct">%</span></span></div></div>
+                  <div class="rt-caja a-fila"><div class="a-fila__top"><b class="a-h">8:00 pm</b><div class="a-oc"><i class="lleno" style="--o:82%"></i><p><b>Lleno</b> a esta hora, normalmente</p></div><span class="a-bajar a-bajar--sin">Sin bajar</span></div></div>
+                </div>
+                <nav class="rt-tabs"><span><svg><use href="#tab-hoy"/></svg>Hoy</span><span class="si"><svg><use href="#tab-horas"/></svg>Horas</span><span><svg><use href="#tab-num"/></svg>Números</span><span><svg><use href="#tab-local"/></svg>Tu local</span></nav>
+                <i class="rt-home"></i>
+              </div>
+            </div>
+            <img class="tel-r__marco" src="img/portada/iphone-18-pro-700.webp" srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w" sizes="280px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <ul class="r-lista entra">
+          <li><svg aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Hora por hora.</b> De 0 a 50% de descuento, en las mesas que tú digas. Con 0, te apartan a tu precio normal.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-cambia"/></svg><p><b>Lo cambias cuando quieras.</b> Lo que ya estaba apartado conserva su descuento.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-copa"/></svg><p><b>Las bebidas, a tu elección.</b> Te recomendamos dejarlas a precio normal: son tu margen.</p></li>
+        </ul>
+      </article>
+
+      <!-- 3 · tu carta (sin teléfono en celular; en escritorio el teléfono fijo enseña la pantalla de la portada) -->
+      <article class="escena-r escena-r--sin-tel" data-pantalla="#pantalla-heroe" aria-labelledby="t-carta">
+        <div class="escena-r__texto entra">
+          <p class="hito"><span class="hito__hora">2:45 pm</span>Alguien te encuentra en el mapa</p>
+          <h3 class="r-h2" id="t-carta">No es cupón. Es tu carta.</h3>
+          <p class="r-p">La gente ve tu carta real, con el precio de siempre tachado y el de esa hora al lado. Nada de paquetes sorpresa ni 2x1. En tus horas llenas apareces a precio normal.</p>
+        </div>
+        <!-- el mismo platillo en tres momentos: la carta impresa, la app a las 5 y la app a las 8 -->
+        <div class="carta entra" role="group" aria-label="Ejemplo: el aguachile verde en tu carta y en la app">
+          <p class="carta__cabeza"><b>Aguachile verde</b><span class="ejemplo">Ejemplo</span></p>
+          <dl>
+            <div><dt>En tu carta impresa</dt><dd><b>$245</b></dd></div>
+            <div class="carta__baja"><dt>En la app, martes a las 5:00 pm</dt><dd><s>$245</s><b>$135</b><span class="sello t-guajillo">-45<span class="pct">%</span></span></dd></div>
+            <div><dt>En la app, martes a las 8:00 pm</dt><dd><b>$245</b><small>precio normal</small></dd></div>
+          </dl>
+        </div>
+        <ul class="r-lista entra">
+          <li><svg aria-hidden="true"><use href="#i-carta"/></svg><p><b>El precio tachado es el de tu carta impresa.</b> El mismo que pagaría cualquiera en tu mesa.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-estrella"/></svg><p><b>Solo te califica quien sí fue.</b> Antes de volver a apartar, cada persona califica su visita. Después la invitamos a dejarte una reseña en Google, sin premio a cambio.</p></li>
+        </ul>
+      </article>
+
+      <!-- 4 · Hoy -->
+      <article class="escena-r" data-pantalla="#pantalla-hoy" aria-labelledby="t-hoy">
+        <div class="escena-r__texto entra">
+          <p class="hito"><span class="hito__hora">4:58 pm</span>Van llegando</p>
+          <h3 class="r-h2" id="t-hoy">Sabes qué mesas llegan hoy.</h3>
+          <p class="r-p">Cada mesa trae su hora, cuántas personas son y el descuento que apartó. No ves nombres ni celulares. Cuando llegan tocas “Llegaron”, y en la cuenta aplicas el descuento que dice la mesa. Nada más.</p>
+        </div>
+        <div class="escena-r__tel">
+          <div class="tel-r" role="img" aria-label="Pantalla de ejemplo, Hoy. Martes: 5 mesas apartadas, 15 personas, 3 vienen contigo por primera vez. La mesa de las 5:00 pm, 2 personas, va llegando con 45% menos en la comida; tocas Llegaron y queda como Sentados.">
+            <div class="pantalla-r" aria-hidden="true">
+              <!-- B · Hoy (hoy.dart). Con datos reales cada mesa dice "Comensal": la app no pide nombre. 2+4+2+5+2 = 15 personas. -->
+              <div class="rt rt-b" id="pantalla-hoy" data-anima>
+                <div class="rt-sis"><span>4:58</span><span class="rt-sis__ic"><svg class="s1"><use href="#s-senal"/></svg><svg class="s2"><use href="#s-wifi"/></svg><svg class="s3"><use href="#s-pila"/></svg></span></div>
+                <div class="rt-toldo"><img class="rt-toldo__lona" src="img/portada/toldo-lona.webp" alt="" decoding="async"><img class="rt-toldo__faldon" src="img/portada/toldo-faldon.webp" alt="" decoding="async">
+                  <p class="rt-toldo__t"><b>Hoy</b><small>Martes · Tu restaurante</small></p><span class="ejemplo">Ejemplo</span></div>
+                <div class="rt-cuerpo">
+                  <div class="rt-caja b-cont"><p><b>5</b>mesas<br>apartadas</p><p><b>15</b>personas<br>en total</p><p class="nuevo"><b>3</b>primera vez<br>contigo</p></div>
+                  <p class="b-sub"><b>Quién llega</b><span>Cambiar horas</span></p>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>3:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas · ya se sentaron</small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-petroleo">-25<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>4:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>4 personas · ya se sentaron</small></p><p class="b-der"><span class="sello t-mango">-40<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa b-mesa--ya"><p class="b-reloj"><b>5:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas · <span class="rod"><span>llegando ahora</span><span>ya se sentaron</span></span></small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-guajillo">-45<span class="pct">%</span></span><small>en la comida</small><span class="b-cambia"><span class="b-llegaron">Llegaron</span><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>5:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>5 personas</small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-guajillo">-45<span class="pct">%</span></span><small>en la comida</small><span class="b-llegaron">Llegaron</span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>6:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas</small></p><p class="b-der"><span class="sello t-mango">-35<span class="pct">%</span></span><small>en la comida</small><span class="b-llegaron">Llegaron</span></p></div>
+                </div>
+                <nav class="rt-tabs"><span class="si"><svg><use href="#tab-hoy"/></svg>Hoy</span><span><svg><use href="#tab-horas"/></svg>Horas</span><span><svg><use href="#tab-num"/></svg>Números</span><span><svg><use href="#tab-local"/></svg>Tu local</span></nav>
+                <i class="rt-home"></i>
+              </div>
+            </div>
+            <img class="tel-r__marco" src="img/portada/iphone-18-pro-700.webp" srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w" sizes="280px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <!-- la comanda: el pedazo de la pantalla que el dueño ya conoce -->
+        <div class="comanda entra" role="group" aria-label="Ejemplo de mesa apartada">
+          <div class="comanda__papel">
+            <p class="comanda__cabeza"><span>Mesa apartada</span><span>Ejemplo</span></p>
+            <p class="comanda__hora">5:00 <small>PM</small></p>
+            <p class="comanda__quien">Comensal · 2 personas</p>
+            <p class="comanda__fila"><span class="comanda__primera">Primera vez aquí</span><span class="sello t-guajillo">-45<span class="pct">%</span></span></p>
+            <p class="comanda__nota">Descuento en la comida</p>
+          </div>
+        </div>
+        <ul class="r-lista entra">
+          <li><svg aria-hidden="true"><use href="#i-chispa"/></svg><p><b>“Primera vez aquí”.</b> Te avisamos cuando alguien viene contigo por primera vez por la app.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-cambia"/></svg><p><b>Corriges cuántos llegaron.</b> Si apartaron 4 y llegaron 3, se cuentan 3. Si llegan más de 15 minutos tarde, puedes marcar “Llegaron tarde, sin descuento”.</p></li>
+        </ul>
+      </article>
+
+      <!-- 5 · No llegó -->
+      <article class="escena-r" data-pantalla="#pantalla-nollego" aria-labelledby="t-nollego">
+        <div class="escena-r__texto entra">
+          <p class="hito"><span class="hito__hora">6:20 pm</span>Una mesa no llegó</p>
+          <h3 class="r-h2" id="t-nollego">Si no llegan, esa mesa no&nbsp;se&nbsp;cobra.</h3>
+          <p class="r-p">La marcas como “No llegó” y esa mesa no se te cobra. A esa persona le cuenta como falta.</p>
+        </div>
+        <div class="escena-r__tel">
+          <div class="tel-r" role="img" aria-label="Pantalla de ejemplo, Hoy a las 6:20 pm, con el aviso: ¿Marcar que no llegó? Comensal, 2 personas, 6:00 pm. No se te cobra esta mesa y a la persona le cuenta como falta. Si dice que sí fue, el equipo de Pásenle lo revisa. Botones: Sí llegó y No llegó.">
+            <div class="pantalla-r" aria-hidden="true">
+              <!-- C · el aviso de hoy.dart, palabra por palabra -->
+              <div class="rt rt-b rt-c" id="pantalla-nollego" data-anima>
+                <div class="rt-sis"><span>6:20</span><span class="rt-sis__ic"><svg class="s1"><use href="#s-senal"/></svg><svg class="s2"><use href="#s-wifi"/></svg><svg class="s3"><use href="#s-pila"/></svg></span></div>
+                <div class="rt-toldo"><img class="rt-toldo__lona" src="img/portada/toldo-lona.webp" alt="" decoding="async"><img class="rt-toldo__faldon" src="img/portada/toldo-faldon.webp" alt="" decoding="async">
+                  <p class="rt-toldo__t"><b>Hoy</b><small>Martes · Tu restaurante</small></p><span class="ejemplo">Ejemplo</span></div>
+                <div class="rt-cuerpo">
+                  <div class="rt-caja b-cont"><p><b>5</b>mesas<br>apartadas</p><p><b>15</b>personas<br>en total</p><p class="nuevo"><b>3</b>primera vez<br>contigo</p></div>
+                  <p class="b-sub"><b>Quién llega</b><span>Cambiar horas</span></p>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>3:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas · ya se sentaron</small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-petroleo">-25<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>4:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>4 personas · ya se sentaron</small></p><p class="b-der"><span class="sello t-mango">-40<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>5:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas · ya se sentaron</small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-guajillo">-45<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa"><p class="b-reloj"><b>5:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>5 personas · ya se sentaron</small><em>Primera vez aquí</em></p><p class="b-der"><span class="sello t-guajillo">-45<span class="pct">%</span></span><small>en la comida</small><span class="b-ok"><svg><use href="#s-palomita"/></svg>Sentados</span></p></div>
+                  <div class="rt-caja b-mesa b-mesa--tarde"><p class="b-reloj"><b>6:00</b><small>PM</small></p><p class="b-quien"><b>Comensal</b><small>2 personas</small></p><p class="b-der"><span class="sello t-mango">-35<span class="pct">%</span></span><small>en la comida</small><span class="b-dos"><span class="b-nollego">No llegó</span><span class="b-llegaron">Llegaron</span></span></p></div>
+                </div>
+                <nav class="rt-tabs"><span class="si"><svg><use href="#tab-hoy"/></svg>Hoy</span><span><svg><use href="#tab-horas"/></svg>Horas</span><span><svg><use href="#tab-num"/></svg>Números</span><span><svg><use href="#tab-local"/></svg>Tu local</span></nav>
+                <i class="c-velo"></i>
+                <div class="c-aviso">
+                  <b>¿Marcar que no llegó?</b>
+                  <p>Comensal · 2 personas · 6:00 pm. No se te cobra esta mesa y a la persona le cuenta como falta. Si dice que sí fue, el equipo de Pásenle lo revisa.</p>
+                  <p class="c-aviso__botones"><span>Sí llegó</span><span class="no">No llegó</span></p>
+                </div>
+                <i class="rt-home"></i>
+              </div>
+            </div>
+            <img class="tel-r__marco" src="img/portada/iphone-18-pro-700.webp" srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w" sizes="280px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <!-- la ventana para marcar, dibujada -->
+        <div class="ventana entra">
+          <p class="ventana__cabeza"><span>Mesa de las 6:00 pm</span><span class="ejemplo">Ejemplo</span></p>
+          <ol aria-label="Cuándo puedes marcar que no llegó">
+            <li><b>6:00 pm</b><span>Su hora.</span></li>
+            <li class="abre"><b>6:15 pm</b><span>Desde aquí puedes marcar “No llegó”.</span></li>
+            <li class="cierra"><b>10:00 pm</b><span>Se cierra: si no marcaste nada, cuenta como que llegaron todos.</span></li>
+          </ol>
+        </div>
+        <ul class="r-lista entra">
+          <li><svg aria-hidden="true"><use href="#i-escudo"/></svg><p><b>Nadie aparta a lo loco.</b> Para apartar hay que confirmar el celular con un código, y nadie tiene más de tres mesas apartadas a la vez.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-pausa"/></svg><p><b>Quien falta, se detiene.</b> No llegar o cancelar con menos de 30 minutos cuenta como falta. Con 4 faltas en 12 meses, la cuenta se suspende hasta que la revisemos.</p></li>
+          <li><svg aria-hidden="true"><use href="#i-cierra"/></svg><p><b>¿Un imprevisto?</b> Si se fue la luz o faltó el cocinero, cierras ese día y escribes el motivo. Cada persona con mesa lo ve. Tus horas de la semana no cambian.</p></li>
+        </ul>
+        <p class="escena-r__pie entra">Si tú y la persona no coinciden, lo revisamos nosotros.</p>
+      </article>
+
+      <!-- 6 · Tus números, sin dinero: lo que pagas va en "Lo que cuesta" (planes de docs/modelo-de-negocio.md, sección 5) -->
+      <article class="escena-r" data-pantalla="#pantalla-numeros" aria-labelledby="t-numeros">
+        <div class="escena-r__texto entra">
+          <p class="hito"><span class="hito__hora">30 de septiembre</span>Fin de mes</p>
+          <h3 class="r-h2" id="t-numeros">Tus números, sin calculadora.</h3>
+          <p class="r-p">Cada mes ves cuántos se sentaron por la app, cuántos venían contigo por primera vez y cuántos repitieron. Con eso ves cuánta gente nueva te trae la app. En “Tu cuenta del mes” ves a cuántas personas se les cobró y qué plan te conviene.</p>
+        </div>
+        <div class="escena-r__tel">
+          <div class="tel-r" role="img" aria-label="Pantalla de ejemplo, Tus números de septiembre: 231 comensales sentados que llegaron por la app; 148 vinieron contigo por primera vez por la app y 83 ya habían venido y regresaron.">
+            <div class="pantalla-r" aria-hidden="true">
+              <!-- D · Tus números (numeros.dart) sin "Antes / Con", sin reseñas, sin la cuenta en pesos. 148 + 83 = 231. -->
+              <div class="rt rt-d" id="pantalla-numeros" data-anima>
+                <div class="rt-sis"><span>10:15</span><span class="rt-sis__ic"><svg class="s1"><use href="#s-senal"/></svg><svg class="s2"><use href="#s-wifi"/></svg><svg class="s3"><use href="#s-pila"/></svg></span></div>
+                <div class="rt-toldo"><img class="rt-toldo__lona" src="img/portada/toldo-lona.webp" alt="" decoding="async"><img class="rt-toldo__faldon" src="img/portada/toldo-faldon.webp" alt="" decoding="async">
+                  <p class="rt-toldo__t"><b>Tus números</b><small>Septiembre · Tu restaurante</small></p><span class="ejemplo">Ejemplo</span></div>
+                <div class="rt-cuerpo">
+                  <div class="d-total"><b data-cuenta="231">231</b><p>comensales sentados este mes que llegaron por la app.</p></div>
+                  <div class="d-par">
+                    <p class="nuevo"><b data-cuenta="148">148</b>vinieron contigo por primera vez por la app</p>
+                    <p class="rt-caja"><b data-cuenta="83">83</b>ya habían venido por la app y regresaron</p>
+                  </div>
+                  <p class="d-nota">De los 231, 148 venían contigo por primera vez por la app.</p>
+                </div>
+                <nav class="rt-tabs"><span><svg><use href="#tab-hoy"/></svg>Hoy</span><span><svg><use href="#tab-horas"/></svg>Horas</span><span class="si"><svg><use href="#tab-num"/></svg>Números</span><span><svg><use href="#tab-local"/></svg>Tu local</span></nav>
+                <i class="rt-home"></i>
+              </div>
+            </div>
+            <img class="tel-r__marco" src="img/portada/iphone-18-pro-700.webp" srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w" sizes="280px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <p class="escena-r__pie entra">Pantallas con datos de ejemplo. No son resultados de ningún restaurante.</p>
+      </article>
+    </div>
+
+    <!-- el teléfono fijo del escritorio: restaurantes.js pone aquí una copia de cada pantalla -->
+    <div class="panel__fijo" aria-hidden="true">
+      <div class="tel-r">
+        <div class="pantalla-r"></div>
+        <img class="tel-r__marco" src="img/portada/iphone-18-pro-1000.webp" srcset="img/portada/iphone-18-pro-1000.webp 1000w, img/portada/iphone-18-pro-1350.webp 1350w" sizes="380px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 7 · lo que cuesta (bloque petróleo): los tres planes de docs/modelo-de-negocio.md, sección 5 ─────────── -->
+<section class="r-cobro" data-fondo="oscuro" aria-labelledby="t-cobro">
+  <div class="r-cobro__bloque">
+    <p class="r-ojo">Lo que cuesta</p>
+    <h2 class="r-cobro__cifras" id="t-cobro">
+      <span><b>$0</b><small><em>Básico</em> al mes, y $25 por persona que llega. En fondas, $10.</small></span>
+      <span><b>$499</b><small><em>Plan 499</em> al mes, y $10 por persona que llega.</small></span>
+      <span><b>$999</b><small><em>Plan 999</em> al mes, y $5 por persona que llega.</small></span>
+    </h2>
+    <p class="r-cobro__iva">Todo más IVA. Sin contrato: mes a mes. Tú eliges tu plan y lo cambias para el mes siguiente.</p>
+    <div class="r-cobro__cuerpo">
+      <div class="r-cobro__tarjeta entra">
+        <p>¿Cuál te conviene? Depende de cuánta gente te llega con reserva al mes.</p>
+        <ul class="r-cobro__cual">
+          <li><span>Hasta 33 personas</span><b>Básico</b></li>
+          <li><span>De 33 a 100 personas</span><b>Plan 499</b></li>
+          <li><span>Más de 100 personas</span><b>Plan 999</b></li>
+        </ul>
+        <p class="r-cobro__nota">Cada mes, la app te dice si otro plan te habría salido más barato.</p>
+        <p class="r-cobro__sello">Solo se cobra a quien llega</p>
+      </div>
+      <div class="r-cobro__mas entra">
+        <p>Se cobra por cada persona que llegó con reserva de <span data-nombre>Pásenle</span>, con o sin descuento. Al que ya había venido le cobramos igual que al nuevo; en tus números te los separamos, para que veas cuánta gente nueva te llega.</p>
+        <p>No se cobran los “No llegó”, las cancelaciones ni la gente que llega sin reserva. Si apartaron 4 y llegaron 3, lo corriges y se cobran 3.</p>
+        <p>El día 1 te llega la cuenta del mes, todo junto en un solo cargo: automático con tarjeta, o pagas en efectivo en OXXO o por transferencia. El comensal te paga a ti, en tu caja: por la app no pasa dinero.</p>
+        <p class="r-cobro__fundador"><b>Restaurantes fundadores: 6&nbsp;meses gratis.</b> Sin mensualidad y sin cobro por persona. Cada mes te llega tu cuenta en ceros: cuánta gente te llevamos, cuánto vendiste con ella y cuánto habrías pagado.</p>
+        <a class="r-boton r-boton--claro" data-wa data-cta href="https://wa.me/523317636108?text=Hola%2C%20tengo%20un%20restaurante%20y%20quiero%20entrar%20al%20piloto%20de%20M%C3%B3chate." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero entrar al piloto</a>
+        <p class="r-cobro__micro">Se abre WhatsApp con tu mensaje listo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── dudas del dueño ─────────── -->
+<section class="dudas" aria-labelledby="t-dudas">
+  <div class="dudas__in">
+    <h2 class="r-h2 dudas__titulo" id="t-dudas">Lo que te estás preguntando</h2>
+    <div class="dudas__lista">
+      <details open>
+        <summary>¿Me va a quitar clientes que pagan completo?<i aria-hidden="true"></i></summary>
+        <p>Tú decides, hora por hora, cuántas mesas sueltas en la app y si llevan descuento. En tus horas llenas puedes soltar mesas a tu precio normal, y esas reservas también cuentan. Tú conoces a tus clientes de siempre: si ves que se están pasando al descuento, lo bajas o lo quitas cuando quieras.</p>
+      </details>
+      <details open>
+        <summary>¿No se abarata mi marca?<i aria-hidden="true"></i></summary>
+        <p>El descuento solo aparece en las horas que tú eliges; en las demás estás a precio normal. La gente ve tu carta real con el precio tachado, no un cupón ni un paquete sorpresa. Y las bebidas se pueden quedar a precio normal.</p>
+      </details>
+      <details open>
+        <summary>¿Tengo que poner descuento?<i aria-hidden="true"></i></summary>
+        <p>No. No hay mínimo para estar en la app: puedes recibir reservas a tu precio normal. Pero el descuento en tus horas tranquilas es lo que atrae gente nueva: es lo primero que ve quien busca dónde comer. Por eso, junto a cada hora, la app te sugiere un descuento según qué tan lleno sueles estar. Lo pones y lo quitas cuando quieras.</p>
+      </details>
+      <details>
+        <summary>¿Y si apartan y no llegan?<i aria-hidden="true"></i></summary>
+        <p>Marcas la mesa como “No llegó”, desde 15 minutos después de su hora y hasta 4 horas después, y esa mesa no se te cobra. Para apartar hay que confirmar el celular con un código. A quien junta 4 faltas en 12 meses se le suspende la cuenta. Si en esas 4 horas no marcas nada, cuenta como que llegaron todos.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si no respeto el descuento?<i aria-hidden="true"></i></summary>
+        <p>El descuento lo aplicas tú en la cuenta: el que trae la mesa. Es falta no respetar el descuento o el precio que el comensal vio al apartar, no darle su mesa o cancelársela sin un motivo real, marcarlo “No llegó” si sí llegó, cobrarle algo que no está en tu carta o tratarlo mal. Si alguien lo reporta, te avisamos y tienes 3 días para contarnos tu versión. Solo cuenta si lo confirmamos.</p>
+        <p>En 12 meses: a la primera, un aviso; a la segunda, dejas de recibir reservas nuevas por 7 días (las que ya tenías se respetan); a la tercera, te damos de baja. Discriminar a alguien o un fraude, como marcar “No llegó” falsos una y otra vez para no pagar, es baja directa. Si te damos de baja, no se devuelve lo ya pagado, se cobran las personas que ya llegaron y no puedes volver en 12 meses.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto me cuesta?<i aria-hidden="true"></i></summary>
+        <p>Depende del plan que elijas, todo más IVA. Básico: $0 al mes y $25 por persona que llega ($10 si eres fonda, con ticket promedio menor a $200 por persona). Plan 499: $499 al mes y $10 por persona. Plan 999: $999 al mes y $5 por persona. Se cobra por cada persona que llegó con reserva de la app, nueva o de siempre, con o sin descuento. No es un porcentaje de tu venta.</p>
+      </details>
+      <details>
+        <summary>¿Cómo pago?<i aria-hidden="true"></i></summary>
+        <p>El día 1 te llega la cuenta del mes: la mensualidad y las personas del mes anterior, en un solo cargo. Se cobra automático con tarjeta, o pagas en efectivo en OXXO o por transferencia. Si a los 5 días no está pagada, dejas de recibir reservas nuevas; las que ya tenías se respetan. Al pagar, se reactiva solo. A los 30 días sin pagar, te damos de baja.</p>
+      </details>
+      <details>
+        <summary>¿Qué es ser restaurante fundador?<i aria-hidden="true"></i></summary>
+        <p>Los restaurantes fundadores del piloto tienen 6 meses gratis: sin mensualidad y sin cobro por persona. Cada mes te llega tu cuenta en ceros, con cuánta gente te llevamos, cuánto vendiste con ella y cuánto habrías pagado.</p>
+      </details>
+      <details>
+        <summary>¿Me amarran con un contrato?<i aria-hidden="true"></i></summary>
+        <p>No. No hay contrato ni plazo forzoso: es mes a mes. Si no te conviene, nos avisas y te damos de baja. Mientras estás, puedes quitar tus horas o cerrar un día cuando quieras.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto trabajo me da?<i aria-hidden="true"></i></summary>
+        <p>Al principio, armar tus horas, y eso lo hacemos contigo en tu local. Después, ver en “Hoy” quién llega, tocar “Llegaron” y aplicar en la cuenta el descuento que trae cada mesa. Si un día se te pasa marcar la llegada, la visita se cuenta sola, con todas las personas que apartaron.</p>
+      </details>
+      <details>
+        <summary>¿Necesito otra tableta o conectar mi sistema?<i aria-hidden="true"></i></summary>
+        <p>No. El panel vive en la misma app de <span data-nombre>Pásenle</span>, en tu celular: funciona en iPhone y en Android. No se conecta a tu caja ni lo necesita: cobras como siempre, con el descuento que dice la mesa.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── cierre ─────────── -->
+<section class="r-cierre" aria-labelledby="t-cierre">
+  <div class="r-cierre__luz" aria-hidden="true"></div>
+  <div class="r-cierre__in entra">
+    <h2 class="r-cierre__titulo" id="t-cierre">¿Le entras al piloto?</h2>
+    <p class="r-p">Estamos armando el primer grupo de restaurantes en <span data-ciudad>Guadalajara</span>. Escríbenos, te enseñamos la app en tu local y, si te late, armamos tus horas juntos.</p>
+    <div class="r-cierre__campo" data-cta>
+      <label for="nombre-resto">¿Cómo se llama tu restaurante? <span>Opcional</span></label>
+      <input id="nombre-resto" type="text" autocomplete="organization" maxlength="80" enterkeyhint="done" placeholder="El nombre, para tu mensaje">
+    </div>
+    <a class="r-boton r-boton--grande" data-wa data-cta href="https://wa.me/523317636108?text=Hola%2C%20tengo%20un%20restaurante%20y%20quiero%20entrar%20al%20piloto%20de%20M%C3%B3chate." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero entrar al piloto</a>
+    <p class="r-cierre__micro">Sin contrato y sin mínimo. Se abre WhatsApp con tu mensaje listo; aquí no se guarda nada.</p>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <div class="pie__fila">
+      <p class="r-logo r-logo--pie"><img src="img/icono-180.png" width="30" height="30" alt=""><span><b data-nombre>Pásenle</b><small>Para restaurantes</small></span></p>
+      <nav class="pie__ligas" aria-label="Pie de página">
+        <a href="index.html">Para comensales</a>
+        <a href="ayuda.html">Ayuda y contacto</a>
+        <a href="privacidad.html">Aviso de privacidad</a>
+      </nav>
+    </div>
+    <p class="pie__nota">Pantallas, platillos, precios y fotos de esta página son de ejemplo. Fotos: Unsplash.<br>
+      Apple e iPhone son marcas de Apple Inc. Android es una marca de Google LLC.<br>
+      Hecho en <span data-ciudad>Guadalajara</span>.</p>
+  </div>
+</footer>
+
+<!-- el botón a la mano en el celular: sale cuando el de la portada se va y se esconde en el cierre -->
+<div class="r-fija" aria-hidden="true">
+  <a class="r-boton" data-wa href="https://wa.me/523317636108?text=Hola%2C%20tengo%20un%20restaurante%20y%20quiero%20entrar%20al%20piloto%20de%20M%C3%B3chate." target="_blank" rel="noopener" tabindex="-1"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero entrar al piloto</a>
+</div>
+
+<script src="js/sitio.js"></script>
+<script src="js/restaurantes.js"></script>
+</body>
+</html>

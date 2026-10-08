@@ -1,0 +1,929 @@
+/* Portada (index.html). Tokens, toldo, sellos y fuentes vienen de sitio.css.
+   Orden: piezas comunes · barra y portada · prueba · cinta · ediciones · 1:00 · 2:41 (teléfono) · 5:00 · 5:10
+   · 6:20 (ticket) · 9:00 y mapa · 9:30 · cierre y pie · reloj pegado · 320 · tableta · escritorio · movimiento reducido. */
+
+/* ───────────── piezas comunes (espec 5.3) ───────────── */
+.titulo { font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.10; text-wrap: balance;
+  letter-spacing: .2px; font-size: clamp(34px, 10.3vw, 48px); margin: 22px 0 12px; color: var(--hondo); text-shadow: .05em .05em 0 var(--agua); }
+[data-fondo="oscuro"] .titulo { color: var(--crudo); text-shadow: .05em .05em 0 var(--hondo); }
+.noche .titulo, .cierre .titulo { text-shadow: .05em .05em 0 var(--laguna); }       /* sobre hondo */
+.subtitulo { font-size: 30px; line-height: 1.10; }
+.folio { display: flex; justify-content: space-between; margin: 0; padding-bottom: 8px;
+  font: 800 11px/1 Figtree, system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--petroleo);
+  border-bottom: 1px solid rgba(6, 40, 48, .2); }
+[data-fondo="oscuro"] .folio { color: var(--agua); border-color: rgba(169, 196, 200, .3); }
+/* insignia del App Store al estilo de la de Apple, en español; sin href hasta que exista SITIO.tienda */
+.tienda { display: inline-flex; align-items: center; gap: 9px; height: 56px; padding: 0 22px 0 16px; flex: none;
+  border-radius: 13px; background: #000; color: #fff; border: 1.5px solid #A6A6A6; text-decoration: none; text-align: left; white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif; }
+/* sobre hondo la negra casi no se separa del fondo (1.35:1): va la blanca, que Apple también da */
+[data-fondo="oscuro"] .tienda:not(.play), .reloj:not(.reloj--claro) .tienda:not(.play) { background: #fff; color: #000; border-color: #fff; }
+.tienda svg { width: 30px; height: 30px; margin-top: -3px; flex: none; }
+.tienda small { display: block; font-size: 12px; font-weight: 500; line-height: 1.1; letter-spacing: .1px; }
+.tienda b { display: block; font-size: 25px; font-weight: 600; line-height: 1.02; letter-spacing: -.5px; }
+.tienda--chica { height: 40px; gap: 6px; padding: 0 12px 0 9px; border-radius: 9px; border-width: 1px; }
+.tienda--chica svg { width: 20px; height: 20px; margin-top: -2px; }
+.tienda--chica small { font-size: 8.5px; }
+.tienda--chica b { font-size: 16px; letter-spacing: -.3px; }
+/* las dos tiendas, una junto a la otra y del mismo alto; si no caben, la de Google baja a otra fila. Entre las dos queda
+   1/4 del alto de la insignia libre, lo que piden Apple y Google alrededor de la suya */
+.tiendas { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+/* Google Play: su insignia oficial en español (img/google-play.png, bajada de la página de insignias de Google; solo se le quitó el margen transparente de arriba y abajo), al alto de la de Apple que lleva al lado (Google la pide igual
+   o más grande). Siempre la negra: Google no da otra, y su borde gris la separa del hondo */
+.tienda.play, .insignia.play { padding: 0; background: none; border: 0; }
+/* sin la sombra de la insignia de Apple, ni al pasar el mouse: Google pide no ponerle efectos a la suya */
+.insignia.play, .insignia.play:hover { box-shadow: none; }
+.play img { height: 100%; width: auto; max-width: none; }
+.texto { margin: 0; font: 400 16px/1.6 Figtree, system-ui, sans-serif; color: var(--tinta-2); max-width: 60ch; }
+[data-fondo="oscuro"] .texto { color: rgba(246, 239, 221, .88); }
+.remate { margin: 16px 0 0; font: 800 19px/1.35 Figtree, system-ui, sans-serif; color: var(--hondo); max-width: 30ch; text-wrap: balance; }
+[data-fondo="oscuro"] .remate { color: var(--crudo); }
+.nota { margin: 6px 0 0; font: 700 13px/1.4 Figtree, system-ui, sans-serif; color: var(--gris); text-align: center; text-wrap: balance; }
+[data-fondo="oscuro"] .nota { color: rgba(246, 239, 221, .7); }
+.pie-v { position: absolute; right: 6px; bottom: 8px; writing-mode: vertical-rl; rotate: 180deg; margin: 0;
+  font: 700 10.5px/1 Figtree, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--crudo);
+  background: rgba(6, 40, 48, .72); padding: 8px 4px; border-radius: 4px; }
+section { scroll-margin-top: 16px; }
+html:not(.js) .solo-js { display: none; } /* "Arrastra la hora", "Toca un punto": sin JS no pasa nada al tocar */
+@keyframes cae { from { transform: translateY(-.35em); opacity: .2; } }
+@keyframes golpe { from { transform: scale(1.8) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(6deg); opacity: 1; } }
+@keyframes entra { from { transform: translateY(26px); opacity: 0; } }
+@keyframes enciende { from { opacity: 0; } to { opacity: 1; } }
+@keyframes revela { to { opacity: 1; } }
+@keyframes corre { to { transform: translateX(-50%); } }
+
+/* ───────────── barra y portada (primera pantalla, solo index): "Crema luminosa" ─────────────
+   El papel crema con la luz de las 5, la sombra del toldo cayendo inclinada, el Inicio de la app en un iPhone
+   y, en escritorio, el precio de las 5 en vidrio junto al teléfono. portada.js le da a la tarde una vuelta corta (5 → 6 → 4 → 5). */
+:root {
+  --papel-1: #FBF6EA;   /* donde pega la luz */
+  --papel-2: #F6EFDD;   /* crudo */
+  --papel-3: #EFE5CC;   /* el papel lejos de la luz */
+  --texto-2: #3F5459;   /* lema: hondo apagado, 7.4:1 sobre crudo */
+  --muelle: cubic-bezier(.2, .9, .25, 1);
+  --muelle-chico: cubic-bezier(.34, 1.3, .64, 1);
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --muelle: linear(0, .06 2.4%, .25 5.6%, .52 9.8%, .74 14.4%, .87 18.8%, .95 24%, .99 30%, 1.003 38%, 1);
+    --muelle-chico: linear(0, .1 3%, .45 9%, .86 16%, 1.03 22%, 1.04 27%, 1.01 36%, .998 48%, 1);
+  }
+}
+
+/* barra: silenciosa, encima de la portada */
+.barra { position: absolute; z-index: 20; top: 0; left: 0; right: 0; }
+.barra__in { display: flex; align-items: center; justify-content: space-between; height: 60px;
+  width: min(1200px, 100% - 40px); margin-inline: auto; }
+.barra__logo { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--hondo); }
+.barra__logo img { width: 28px; height: 28px; border-radius: 7px; box-shadow: 0 0 0 .5px rgba(6, 40, 48, .25), 0 1px 2px rgba(6, 40, 48, .18); }
+.barra__logo b { font: 800 22px/1 Playfair, Georgia, serif; letter-spacing: -.2px; }
+.barra__liga { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; text-decoration: none;
+  font: 700 13.5px/1 Figtree, system-ui, sans-serif; color: var(--petroleo);
+  border: 1px solid rgba(14, 69, 82, .2); background: rgba(255, 250, 238, .55);
+  transition: background-color .2s, border-color .2s; position: relative; }
+.barra__liga::after { content: ""; position: absolute; inset: -5px -2px; } /* 44 px para el dedo */
+@media (hover: hover) { .barra__liga:hover { background: var(--nata); border-color: rgba(14, 69, 82, .38); } }
+
+/* ───────── portada ───────── */
+.portada { --sol: 0; position: relative; isolation: isolate; overflow: clip; padding-top: 60px;
+  background: linear-gradient(178deg, var(--papel-1) 0%, var(--papel-2) 46%, var(--papel-3) 100%); }
+/* la luz de las 5: entra por arriba a la derecha, cálida */
+.portada__luz { position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(70% 52% at 84% 16%, rgba(255, 252, 244, 1), rgba(255, 250, 238, .5) 40%, rgba(255, 250, 238, 0) 74%); } /* el sol pega justo bajo el festón */
+/* la sombra del toldo sobre el papel: el toldo queda fuera, arriba; a las 5 el sol entra de lado y su sombra
+   (franjas y festón) cae inclinada. La barra vive bajo la sombra; el título, ya en el sol. */
+.portada__persiana { --r: 18px; position: absolute; z-index: -1; top: 0; left: -30%; right: -30%; height: 72px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(6, 40, 48, .08) 0 calc(var(--r) * 2), rgba(6, 40, 48, .04) calc(var(--r) * 2) calc(var(--r) * 4));
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) + 1px) no-repeat,
+    radial-gradient(circle at 50% 0, #000 calc(var(--r) - .5px), transparent var(--r)) 0 100% / calc(var(--r) * 2) var(--r) repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--r) + 1px) no-repeat,
+    radial-gradient(circle at 50% 0, #000 calc(var(--r) - .5px), transparent var(--r)) 0 100% / calc(var(--r) * 2) var(--r) repeat-x;
+  transform: skewX(calc(-32deg - var(--sol) * 7deg)); transform-origin: 0 0; filter: blur(3.5px);
+  transition: transform 1.1s var(--muelle); }
+/* grano: solo quita el bandeado del degradado */
+.portada::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.024 0 0 0 0 0.157 0 0 0 0 0.188 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") 0 0 / 220px; }
+
+.portada__marco { display: flex; flex-direction: column; align-items: center; min-height: calc(100svh - 60px); padding-bottom: 40px; }
+.portada__texto { text-align: center; padding: 18px 20px 0; }
+.portada__titulo { margin: 0; font: 400 clamp(44px, 14.6vw, 66px)/.92 Anton, Impact, sans-serif; letter-spacing: -.006em; word-spacing: -.045em; text-transform: uppercase;
+  color: var(--hondo); font-kerning: normal; }
+.portada__titulo .l { display: block; }
+.portada__lema { margin: 16px auto 0; max-width: 31ch; font: 400 17px/1.45 Figtree, system-ui, sans-serif; color: var(--texto-2); text-wrap: balance; }
+.portada__corte { display: none; } /* a 320 el lema corta por frases y no en "según la / hora" */
+@media (max-width: 340px) { .portada__corte { display: inline; } }
+
+/* insignia del App Store: la negra oficial, sobre papel claro */
+.portada__tiendas { margin-top: 24px; gap: 12px; }
+.insignia { display: inline-flex; align-items: center; gap: 7px; height: 48px; padding: 0 16px 0 12px;
+  border-radius: 10px; background: #000; color: #fff; text-decoration: none; text-align: left; white-space: nowrap;
+  box-shadow: inset 0 0 0 1px #A6A6A6, 0 1px 1px rgba(6, 40, 48, .12), 0 6px 14px -6px rgba(6, 40, 48, .35);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+  transition: transform .18s var(--muelle), box-shadow .18s; -webkit-tap-highlight-color: transparent; }
+.insignia svg { width: 24px; height: 24px; margin-top: -2px; flex: none; }
+.insignia small { display: block; font-size: 10.5px; font-weight: 500; line-height: 1.1; letter-spacing: .1px; }
+.insignia b { display: block; font-size: 21px; font-weight: 600; line-height: 1.05; letter-spacing: -.02em; }
+@media (hover: hover) { .insignia:hover { transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px #A6A6A6, 0 2px 3px rgba(6, 40, 48, .14), 0 12px 24px -8px rgba(6, 40, 48, .4); } }
+.insignia:active { transform: scale(.98); }
+.insignia:focus-visible { outline: 3px solid var(--petroleo); outline-offset: 3px; }
+/* abajo de 380 de ancho las dos no caben juntas a 48 px: bajan a 44, como en las pantallas bajas. A 320 la de Google pasa abajo */
+@media (max-width: 379px) { .insignia { height: 44px; } }
+
+/* ───────── escena: el iPhone y, en escritorio, el vidrio a su lado ───────── */
+/* el marco es el oficial de Apple (App Store Marketing Guidelines): de frente y tal cual. Nada encima, ni sombra,
+   reflejo, giro o movimiento del aparato; solo se mueve lo que pasa en la pantalla. */
+.escena { --w: clamp(200px, 64vw, 290px); position: relative; margin-top: 28px; width: var(--w); container-type: inline-size; }
+/* el marco mide 1350x2760 px (3x): 450 pt de ancho, y la pantalla del iPhone 18 Pro es de 402x874 pt */
+.iphone { --pt: calc(var(--w) / 450); position: relative; aspect-ratio: 1350 / 2760; }
+.iphone__marco { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; }
+
+/* ───────── la pantalla: el Inicio de la app diseñado a 390 de ancho, que llena los 402 pt de la pantalla ───────── */
+/* el hueco del marco va de (72, 69) a (1277, 2690) px; la pantalla se pasa 2 pt por lado (6 px), bajo el bisel negro,
+   para que al escalar no quede una raya de papel entre la app y el marco. El radio (42 pt) queda por dentro de la
+   esquina del cuerpo y por fuera de la del hueco: ni se asoma fuera del teléfono ni deja huecos */
+.pantalla { --u: calc(var(--pt) * 402 / 390); position: absolute; left: 4.8889%; top: 2.2826%; width: 90.2222%; height: 95.4348%;
+  overflow: hidden; border-radius: 10.345% / 4.784%; background: #FAFAF8;
+  color: var(--tinta); font-family: Figtree, system-ui, sans-serif; line-height: 1.2; text-align: left; }
+.pantalla p { margin: 0; }
+.pantalla svg { display: block; fill: currentColor; }
+/* barra de estado como en iOS: a la altura de la isla del marco (14.3 a 50.3 pt), la hora al centro de la oreja izquierda
+   y los íconos al de la derecha (la isla mide 94 pt) */
+.a-sistema { position: absolute; z-index: 6; top: calc(16.3 * var(--pt)); left: calc(2 * var(--pt)); right: calc(2 * var(--pt)); height: calc(36 * var(--pt));
+  display: grid; grid-template-columns: 1fr calc(94 * var(--pt)) 1fr; align-items: center; justify-items: center; color: #fff;
+  font: 600 calc(17 * var(--pt))/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.01em; }
+.a-iconos { grid-column: 3; display: flex; align-items: center; gap: calc(6 * var(--u)); }
+.a-iconos svg:nth-child(1) { width: calc(17 * var(--u)); height: calc(11 * var(--u)); }
+.a-iconos svg:nth-child(2) { width: calc(15.5 * var(--u)); height: calc(11 * var(--u)); }
+.a-iconos svg:nth-child(3) { width: calc(25 * var(--u)); height: calc(12 * var(--u)); }
+
+.app { position: absolute; inset: 0; }
+/* toldo de la app: las mismas lonas del teléfono (assets/marca) */
+.a-toldo { position: relative; height: calc(139 * var(--u)); }
+.a-lona, .a-faldon { position: absolute; left: 0; width: 100%; max-width: none; }
+.a-lona { top: 0; height: calc(120 * var(--u)); }
+.a-toldo::before { content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: calc(120 * var(--u));
+  background: radial-gradient(75% 60% at 50% 62%, rgba(6, 40, 48, .25), rgba(6, 40, 48, 0)), linear-gradient(rgba(6, 40, 48, .28), rgba(6, 40, 48, .18)); }
+.a-faldon { z-index: 2; top: calc(119.3 * var(--u)); height: calc(36.3 * var(--u)); }
+.a-luz { position: absolute; z-index: 0; left: 0; right: 0; top: calc(140 * var(--u)); height: calc(64 * var(--u));
+  background: radial-gradient(calc(58 * var(--u)) calc(58 * var(--u)) at 14% 0, rgba(238, 222, 190, .75), transparent),
+    radial-gradient(calc(58 * var(--u)) calc(58 * var(--u)) at 41.5% 0, rgba(238, 222, 190, .75), transparent),
+    radial-gradient(calc(58 * var(--u)) calc(58 * var(--u)) at 69% 0, rgba(238, 222, 190, .75), transparent),
+    radial-gradient(calc(58 * var(--u)) calc(58 * var(--u)) at 97% 0, rgba(238, 222, 190, .75), transparent); }
+.a-marca { position: absolute; z-index: 3; left: 0; right: 0; top: calc(56 * var(--u)); text-align: center; color: #fff; }
+.a-marca b { display: block; font: 800 calc(40 * var(--u))/1.05 Playfair, Georgia, serif; text-shadow: 0 calc(2 * var(--u)) calc(8 * var(--u)) rgba(0, 0, 0, .35); }
+.a-marca small { display: block; margin-top: calc(4 * var(--u)); font: 700 calc(10.5 * var(--u))/1.2 Figtree, sans-serif; letter-spacing: calc(3 * var(--u)); color: rgba(255, 255, 255, .9); }
+.a-perfil { position: absolute; z-index: 3; right: calc(14 * var(--u)); top: calc(64.5 * var(--u)); width: calc(42 * var(--u)); height: calc(42 * var(--u));
+  display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--petroleo); box-shadow: 0 calc(2 * var(--u)) calc(8 * var(--u)) rgba(0, 0, 0, .2); }
+.a-perfil svg { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+
+.a-lista { position: relative; z-index: 1; padding: calc(26 * var(--u)) calc(14 * var(--u) + 2 * var(--pt)) 0; }
+.a-busca { display: flex; align-items: center; gap: calc(10 * var(--u)); height: calc(50 * var(--u)); padding: 0 calc(16 * var(--u));
+  border-radius: calc(25 * var(--u)); background: #fff; border: calc(1 * var(--u)) solid rgba(23, 24, 28, .14);
+  box-shadow: 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(23, 24, 28, .04); font-size: calc(14 * var(--u)); color: var(--gris2); }
+.a-busca svg { width: calc(22 * var(--u)); height: calc(22 * var(--u)); color: var(--gris-app); flex: none; }
+.a-cats { display: flex; gap: calc(12 * var(--u)); margin-top: calc(16 * var(--u)); width: calc(420 * var(--u)); }
+.a-cat { flex: none; width: calc(70 * var(--u)); display: flex; flex-direction: column; align-items: center; }
+.a-cat i { display: grid; place-items: center; width: calc(60 * var(--u)); height: calc(60 * var(--u)); border-radius: 50%;
+  background: color-mix(in srgb, var(--c) 13%, transparent); color: var(--c); }
+.a-cat svg { width: calc(27 * var(--u)); height: calc(27 * var(--u)); }
+.a-cat.si i { background: var(--petroleo); color: #fff; box-shadow: inset 0 0 0 calc(1.5 * var(--u)) var(--tinta); }
+.a-cat small { margin-top: calc(6 * var(--u)); font-size: calc(11.5 * var(--u)); line-height: 1.45; font-weight: 400; color: var(--gris-app); white-space: nowrap; }
+.a-cat.si small { font-weight: 700; color: var(--tinta); }
+.a-chips { display: flex; gap: calc(8 * var(--u)); margin-top: calc(14 * var(--u)); }
+.a-chips span { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); height: calc(44 * var(--u)); padding: 0 calc(20 * var(--u));
+  border-radius: calc(22 * var(--u)); background: #fff; border: calc(1 * var(--u)) solid rgba(23, 24, 28, .14);
+  font-size: calc(13.5 * var(--u)); font-weight: 700; color: var(--tinta); }
+.a-chips .si { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
+.a-chips svg { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+.a-hora { display: flex; align-items: center; justify-content: space-between; gap: calc(10 * var(--u)); margin-top: calc(18 * var(--u)); }
+.a-hora p:first-child { white-space: nowrap; line-height: 1; }
+.a-hora b { font-size: calc(40 * var(--u)); font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.a-hora small { font-size: calc(18 * var(--u)); font-weight: 400; color: var(--gris-app); }
+.a-estado { display: flex; align-items: center; gap: calc(5 * var(--u)); font-size: calc(12.5 * var(--u)); font-weight: 700; color: var(--petroleo); }
+.a-estado svg { width: calc(14 * var(--u)); height: calc(14 * var(--u)); flex: none; }
+.a-riel { --p: .4091; position: relative; margin-top: calc(12 * var(--u)); height: calc(74 * var(--u)); }
+.a-barras { display: flex; align-items: flex-end; height: calc(52 * var(--u)); }
+.a-barras i { flex: 1; margin: 0 calc(2.5 * var(--u)); height: calc(var(--h) * 100%); border-radius: calc(5 * var(--u)) calc(5 * var(--u)) 0 0;
+  background: rgba(14, 69, 82, var(--o)); }
+.a-barras i.v { background: #E7E7E4; }
+.a-horas { display: flex; margin-top: calc(5 * var(--u)); }
+.a-horas span { flex: 1; text-align: center; font-size: calc(9.5 * var(--u)); font-weight: 700; color: var(--gris2); white-space: nowrap; }
+.a-aguja { position: absolute; top: calc(-6 * var(--u)); left: calc(100% * var(--p)); width: calc(2.5 * var(--u)); height: calc(60 * var(--u));
+  margin-left: calc(-1.25 * var(--u)); background: var(--tinta); transition: left .55s var(--muelle); }
+.a-tit { display: flex; align-items: center; justify-content: space-between; margin-top: calc(24 * var(--u)); }
+.a-tit b { font-size: calc(18 * var(--u)); font-weight: 800; }
+.a-tit > span { padding: calc(5 * var(--u)) calc(12 * var(--u)); border-radius: calc(14 * var(--u)); background: #E9EEEF; color: var(--petroleo);
+  font-size: calc(13.5 * var(--u)); font-weight: 700; }
+.a-filtrar { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); height: calc(32 * var(--u)); margin-top: calc(12 * var(--u));
+  padding: 0 calc(12 * var(--u)); border-radius: 999px; background: #fff; color: var(--petroleo); font-size: calc(12.5 * var(--u)); font-weight: 700;
+  box-shadow: 0 calc(3 * var(--u)) calc(10 * var(--u)) rgba(23, 24, 28, .14); }
+.a-filtrar svg { width: calc(15 * var(--u)); height: calc(15 * var(--u)); }
+.a-tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: calc(14 * var(--u)); margin-top: calc(16 * var(--u)); }
+.a-tarjeta { border-radius: calc(18 * var(--u)); background: #fff; box-shadow: 0 calc(4 * var(--u)) calc(14 * var(--u)) rgba(23, 24, 28, .08); }
+.a-foto { position: relative; aspect-ratio: 1.42; }
+.a-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(18 * var(--u)) calc(18 * var(--u)) calc(6 * var(--u)) calc(6 * var(--u)); }
+.a-foto .sello { position: absolute; left: calc(9 * var(--u)); top: calc(9 * var(--u)); font-size: calc(15 * var(--u)); }
+.a-corazon { position: absolute; right: calc(9 * var(--u)); top: calc(9 * var(--u)); display: grid; place-items: center;
+  width: calc(32 * var(--u)); height: calc(32 * var(--u)); border-radius: 50%; background: #fff; color: var(--tinta); }
+.a-corazon svg { width: calc(17 * var(--u)); height: calc(17 * var(--u)); }
+.a-cuerpo { padding: calc(10 * var(--u)) calc(10 * var(--u)) calc(12 * var(--u)) calc(11 * var(--u)); }
+.a-cuerpo b { display: block; font-size: calc(16 * var(--u)); font-weight: 700; }
+.a-cuerpo small { display: block; margin-top: calc(3 * var(--u)); font-size: calc(12.5 * var(--u)); color: var(--gris-app); }
+.a-cuerpo .precio { display: block; margin-top: calc(7 * var(--u)); font-size: calc(15 * var(--u)); font-weight: 800; color: var(--petroleo); }
+.a-cuerpo .a-nota { margin-top: calc(3 * var(--u)); font-size: calc(10.5 * var(--u)); line-height: 1.3; color: var(--gris-app); }
+.a-tabs { position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; display: flex; padding: calc(7 * var(--u)) calc(2 * var(--pt)) calc(28 * var(--u) + 2 * var(--pt));
+  background: #fff; border-top: calc(1 * var(--u)) solid rgba(23, 24, 28, .08); }
+.a-tabs span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: calc(2 * var(--u)); font-size: calc(10 * var(--u)); font-weight: 700; color: var(--gris2); }
+.a-tabs svg { width: calc(23 * var(--u)); height: calc(23 * var(--u)); }
+.a-tabs .si { color: var(--petroleo); }
+.a-home { position: absolute; z-index: 7; bottom: calc(10 * var(--pt)); left: 50%; width: calc(139 * var(--pt)); height: calc(5 * var(--pt)); translate: -50% 0;
+  border-radius: 999px; background: var(--tinta); }
+
+/* sellos: la escala de la app; el color cambia suave cuando cambia la hora */
+.escena .sello { transition: background-color .3s, color .3s, text-shadow .3s; white-space: nowrap; }
+.a-foto .sello { padding: .32em .5em; border-radius: .55em; line-height: 1; }
+.a-foto .sello .pct { font-size: .62em; }
+
+/* rodillo de cifras */
+.rueda { display: inline-block; overflow: hidden; vertical-align: bottom; height: 1.12em; line-height: 1.12; }
+.rueda .pila { display: flex; flex-direction: column; }
+
+/* ───────── el vidrio: el precio de las 5, junto al teléfono (solo escritorio) ───────── */
+/* nada va encima del iPhone: en el celular no cabe al lado y no se enseña (la pantalla ya trae Sal de Mar a $105).
+   En escritorio vive en el hueco entre el texto y el teléfono; sus medidas van en --v, 1% del ancho del teléfono pero nunca
+   menos de 3.3 px: con el teléfono chico (laptops de 657 de alto) "Ejemplo" y la hora no bajan de 10 y 11 px */
+.vidrio { display: none; position: absolute; z-index: 3; right: calc(100% + 8cqw); --v: max(1cqw, 3.3px); bottom: 21%; width: calc(70 * var(--v)); padding: calc(3.6 * var(--v)) calc(4.8 * var(--v));
+  border-radius: calc(5.8 * var(--v)); color: var(--tinta);
+  background: linear-gradient(145deg, rgba(255, 253, 247, .8), rgba(255, 250, 238, .56));
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    0 0 0 .5px rgba(6, 40, 48, .12),
+    0 2px 4px rgba(6, 40, 48, .06),
+    0 14px 28px -8px rgba(6, 40, 48, .2),
+    0 44px 70px -24px rgba(6, 40, 48, .34); }
+/* canto de luz: más brillante donde pega el sol (arriba a la derecha) */
+.vidrio::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(215deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, .35) 35%, rgba(255, 255, 255, .15) 60%, rgba(6, 40, 48, .1));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.vidrio__hora { display: flex; justify-content: space-between; align-items: baseline; margin: 0;
+  font: 800 calc(3.3 * var(--v))/1.12 Figtree, system-ui, sans-serif; letter-spacing: .11em; text-transform: uppercase; color: var(--petroleo); }
+.vidrio__hora em { font-size: calc(3.1 * var(--v)); font-style: normal; font-weight: 700; letter-spacing: .11em; color: rgba(14, 69, 82, .72); }
+.vidrio__plato { display: flex; align-items: center; gap: calc(3.3 * var(--v)); margin-top: calc(2.6 * var(--v)); }
+.vidrio__plato img { width: calc(12 * var(--v)); height: calc(12 * var(--v)); border-radius: calc(3 * var(--v)); object-fit: cover; flex: none;
+  box-shadow: 0 0 0 .5px rgba(6, 40, 48, .15), 0 2px 4px rgba(6, 40, 48, .12); }
+.vidrio__plato b { display: block; font: 800 calc(4.5 * var(--v))/1.2 Figtree, system-ui, sans-serif; letter-spacing: -.01em; }
+.vidrio__plato small { display: block; margin-top: 1px; font: 400 calc(3.6 * var(--v))/1.2 Figtree, system-ui, sans-serif; color: var(--texto-2); }
+.vidrio__precio { display: flex; align-items: baseline; gap: calc(2.3 * var(--v)); margin: calc(1.8 * var(--v)) 0 0; line-height: 1; }
+.vidrio__precio s { font: 700 calc(4.25 * var(--v))/1 Figtree, system-ui, sans-serif; color: var(--gris); text-decoration-thickness: 1.5px; }
+.vidrio__precio b { font: 400 calc(10.5 * var(--v))/1.12 Anton, Impact, sans-serif; color: var(--hondo); letter-spacing: .005em; }
+.vidrio__sello { margin-left: auto; align-self: center; font-size: calc(6.6 * var(--v)); rotate: -5deg;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -2px 0 rgba(0, 0, 0, .12),
+    0 1px 1px rgba(6, 40, 48, .3), 0 8px 14px -6px rgba(6, 40, 48, .45), 0 22px 36px -14px rgba(6, 40, 48, .45); }
+
+/* ───────── pantallas bajas (390×664, 360×740) ───────── */
+@media (max-height: 760px) and (max-width: 959px) {
+  .barra__in { height: 52px; }
+  .portada__persiana { --r: 15px; height: 52px; }
+  .portada { padding-top: 52px; }
+  .portada__texto { padding-top: 8px; }
+  .portada__titulo { font-size: clamp(42px, 13.2vw, 56px); }
+  .portada__lema { margin-top: 10px; font-size: 16px; line-height: 1.4; }
+  .portada__tiendas { margin-top: 16px; }
+  .insignia { height: 44px; }
+  .escena { margin-top: 22px; }
+}
+/* 360×740 y parecidos: sobra un poco de alto, se devuelve arriba */
+@media (min-height: 701px) and (max-height: 760px) and (max-width: 959px) {
+  .portada__texto { padding-top: 16px; }
+  .portada__lema { margin-top: 12px; }
+  .portada__tiendas { margin-top: 20px; }
+}
+
+/* con alto de sobra (390×844, 393×852, 360×800) el teléfono cabe entero en la primera pantalla, en vez de quedar mocho por
+   unos píxeles: se mide con el alto que dejan la barra, el texto y la insignia (256 px + el título en dos líneas + la tercera
+   línea del lema, que abajo de 390 de ancho puede cortar en tres). Con menos alto (Safari con sus barras) no cabría ni a 200 px:
+   se queda a 64vw y se ve al bajar */
+@media (max-width: 959px) and (min-height: 790px) {
+  .escena { --w: clamp(205px, min(64vw, (100svh - 256px - min(26.86vw, 121.4px) - var(--lema3, 0px)) / 2.0444), 290px); }
+}
+@media (max-width: 389px) { .escena { --lema3: 24.7px; } }
+
+/* ───────── escritorio: texto a la izquierda, el teléfono entero a la derecha (de la barra a la cinta) y el vidrio entre los dos ───────── */
+@media (min-width: 960px) {
+  .barra__in { height: 76px; width: min(1280px, 100% - 96px); }
+  .barra__logo img { width: 32px; height: 32px; border-radius: 8px; }
+  .barra__logo b { font-size: 25px; }
+  .portada__persiana { --r: 24px; height: 104px; }
+  .barra__liga { height: 40px; padding: 0 18px; font-size: 15px; }
+  .portada { padding: 76px 0 0; }
+  /* el teléfono mide el alto de la ventana menos la barra y 24 px arriba y abajo (entero hasta 594 de alto: laptops de 1366×768
+     con el navegador dejan 657). El hueco entre columnas es el del vidrio (70 --v) más 8% del teléfono a cada lado:
+     el vidrio nunca toca ni el texto ni el teléfono. Tampoco crece tanto que al texto le queden menos de 310 px (columna =
+     ancho - teléfono - hueco, con 100vw, que cuenta la barra de scroll): las dos insignias juntas a 40 px de alto miden 275,
+     y sobran 35 para la barra de Windows (17) y por si allá su letra mide más. Pasa en ventanas angostas y altas: 960×800,
+     iPad Pro de pie (1024×1366) */
+  .portada__marco { --ventana: min(1280px, 100vw - 96px);
+    --w: clamp(230px, min((100svh - 124px) / 2.0444, (var(--ventana) - 310px - 231px) / 1.16, (var(--ventana) - 310px) / 1.86), 420px);
+    --hueco: calc(max(var(--w) * .7, 231px) + var(--w) * .16);
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    grid-auto-rows: minmax(calc(100svh - 76px), auto); align-items: center; column-gap: var(--hueco);
+    width: min(1280px, 100% - 96px); margin-inline: auto; min-height: 0; padding-bottom: 0; }
+  .portada__texto { text-align: left; padding: 0 0 48px; container-type: inline-size; }
+  /* el título se mide con lo que dejan el teléfono y el vidrio */
+  .portada__titulo { font-size: clamp(52px, calc((var(--ventana) - var(--w) - var(--hueco)) / 6.1), 104px); line-height: .9; }
+  .portada__lema { margin: 26px 0 0; max-width: 31ch; font-size: clamp(19px, 1.55vw, 22px); line-height: 1.45; text-wrap: pretty; }
+  /* las dos insignias van juntas a 52 px de alto si la columna da (364 px); si no, bajan parejas hasta 40 (cerca de 6.9 veces su alto:
+     Apple 3.15, Google 3.4 y el hueco de 1/4) */
+  .portada__tiendas { --h: clamp(40px, 100cqw / 7, 52px); margin-top: 34px; gap: calc(var(--h) * .27); justify-content: flex-start; }
+  .insignia { height: var(--h); gap: calc(var(--h) * .135); padding: 0 calc(var(--h) * .346) 0 calc(var(--h) * .25); border-radius: calc(var(--h) * .212); }
+  .insignia svg { width: calc(var(--h) * .5); height: calc(var(--h) * .5); }
+  .insignia small { font-size: calc(var(--h) * .221); }
+  .insignia b { font-size: calc(var(--h) * .442); }
+  .escena { --w: inherit; margin: 24px 0; }
+  .vidrio { display: block; }
+}
+
+/* ───────── entrada: una sola vez, 1.2 s, solo con movimiento ───────── */
+@keyframes p-luz { from { opacity: 0; } }
+@keyframes p-linea { from { opacity: 0; translate: 0 18px; filter: blur(6px); } }
+@keyframes p-sube { from { opacity: 0; translate: 0 10px; } }
+/* el teléfono no entra ni se mueve (reglas de Apple): está desde el principio. El vidrio no se transparenta al entrar
+   (se veía el papel a través): aparece en 200 ms y el resto es movimiento */
+@keyframes p-aparece { from { opacity: 0; } }
+@keyframes p-vidrio { from { translate: 0 40px; } }
+@keyframes p-sello { from { opacity: 0; scale: 1.25; rotate: -14deg; } }
+.recorre .portada__luz, .recorre .portada__persiana { animation: p-luz .7s ease-out both; }
+.recorre .portada__titulo .l { animation: p-linea .7s var(--muelle) both; animation-delay: .08s; }
+.recorre .portada__titulo .l + .l { animation-delay: .16s; }
+.recorre .portada__lema { animation: p-sube .5s var(--muelle) .26s both; }
+.recorre .insignia { animation: p-sube .45s var(--muelle) .34s both; }
+.recorre .vidrio { animation: p-aparece .2s linear .2s both, p-vidrio .9s var(--muelle) .2s both; }
+.recorre .vidrio__sello { animation: p-sello .4s var(--muelle-chico) .9s both; }
+
+/* ───────────── escena 1 · pruébalo: la mesa con el riel de horas (espec 6.1) ───────────── */
+.prueba { padding-block: 44px 36px; }
+.prueba .titulo { margin-top: 0; }
+.prueba__baja { margin: 0 0 18px; font: 400 16.5px/1.42 Figtree, system-ui, sans-serif; color: var(--tinta-2); max-width: 34ch; }
+
+.mesa { position: relative; background: var(--nata); border-radius: 24px; box-shadow: 8px 8px 0 var(--hondo); }
+.mesa__foto { position: relative; height: 172px; border-radius: 24px 24px 0 0; overflow: hidden; background: var(--masa); }
+.mesa__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 90%; }
+/* la sombra del toldo marca la hora */
+.mesa__sombra { position: absolute; inset: -40%; pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(6, 40, 48, .16) 0 32px, transparent 32px 64px);
+  transform: rotate(calc(var(--sol) * 28deg));
+  opacity: calc((.35 + var(--sol) * .65) * (1 - var(--noche)));
+  transition: transform .45s var(--resorte), opacity .45s; }
+.mesa__foto::after { content: ""; position: absolute; inset: 0; background: var(--hondo);
+  opacity: calc(var(--noche) * .5); transition: opacity .45s; pointer-events: none; }
+.mesa__ejemplo { position: absolute; left: 12px; top: 12px; z-index: 1; }
+.mesa__sello { position: absolute; right: 12px; top: 12px; z-index: 1; font-size: 26px; transform: rotate(6deg); }
+.placa { position: absolute; left: 0; bottom: 0; z-index: 1; margin: 0; background: var(--hondo); color: var(--crudo);
+  padding: 8px 14px 9px 16px; border-radius: 0 18px 0 0; }
+.placa b { font-size: 46px; line-height: 1; text-shadow: .05em .05em 0 var(--laguna); font-variant-numeric: tabular-nums; }
+.placa span { margin-left: 4px; font-weight: 800; font-size: 14px; color: var(--agua); }
+.placa small { display: block; margin-top: 3px; font-weight: 800; font-size: 11.5px; color: var(--agua); }
+.mesa__plato { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; padding: 12px 16px 0; }
+.mesa__lugar { margin: 0; font-weight: 700; font-size: 12.5px; color: var(--gris); }
+.mesa__nombre { margin: 2px 0 0; font-weight: 800; font-size: 18px; letter-spacing: -.01em; line-height: 1.25; }
+.mesa__precio { margin: 0; white-space: nowrap; line-height: 1; }
+.mesa__precio s { font-weight: 700; font-size: 15px; color: var(--gris); margin-right: 2px; }
+.mesa__precio b { display: inline-block; font-size: 34px; line-height: 1; color: var(--tinta); letter-spacing: 0; }
+.mesa__precio b.cae { animation: cae .45s var(--rebote); }
+
+/* encendido: los [data-vivo] prenden como tablero de central de autobuses.
+   Respaldo: si portada.js no carga, a los 2.5 s se ve el estado de las 5:00 del HTML. */
+.recorre .mesa:not(.encendida) [data-vivo] { opacity: 0; animation: revela 0s 2.5s forwards; }
+.recorre .mesa.encendida [data-vivo] { animation: enciende .27s steps(3) both; }
+.recorre .mesa.encendida .mesa__sello.golpe, .mesa__sello.golpe { animation: golpe .5s var(--golpe) both; }
+
+.riel { position: relative; padding: 12px 16px 14px; touch-action: pan-y; cursor: pointer; border-radius: 0 0 24px 24px;
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+.riel:focus-visible { outline: 3px solid var(--petroleo); outline-offset: -3px; }
+.riel__barras { display: grid; grid-template-columns: repeat(11, 1fr); gap: 5px; align-items: end; height: 46px; }
+.riel__barras i { display: block; background: var(--petroleo); border-radius: 5px 5px 2px 2px; }
+.riel__barras i.sin { background: var(--masa); }
+.riel__aguja { position: absolute; top: 6px; bottom: 30px; width: 4px; margin-left: -2px; background: var(--tinta); border-radius: 2px;
+  left: calc(16px + (100% - 32px) * var(--p)); transition: left .35s var(--resorte); pointer-events: none; }
+.riel__aguja::before { content: ""; position: absolute; left: -5px; top: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--tinta); }
+/* la pista cuelga del pie de la aguja, sobre las horas: arriba taparía el nombre del platillo */
+.riel__pista { position: absolute; top: calc(100% - 40px); left: calc(16px + (100% - 32px) * var(--p)); z-index: 2;
+  transform: translateX(-50%) scale(.6); transform-origin: 50% 0; opacity: 0; pointer-events: none;
+  background: var(--hondo); color: var(--crudo); font: 800 12px/1 Figtree, system-ui, sans-serif; padding: 7px 10px; border-radius: 999px; white-space: nowrap; }
+.riel__pista::after { content: ""; position: absolute; left: 50%; bottom: 100%; margin-left: -6px; border: 6px solid transparent; border-top: 0; border-bottom-color: var(--hondo); }
+.riel__pista.ve { opacity: 1; transform: translateX(-50%) scale(1); transition: transform .4s var(--rebote), opacity .2s; }
+.riel__horas { display: flex; justify-content: space-between; margin-top: 6px; font-weight: 700; font-size: 11.5px; line-height: 1.2; color: var(--gris); }
+
+.prueba__accion { margin-top: 18px; text-align: center; }
+.prueba .tiendas { margin-top: 18px; }
+
+/* ───────────── cinta (espec 6.2) ───────────── */
+/* va justo bajo la portada: la franja azul corta crema con crema */
+.cinta { position: relative; height: 44px; background: var(--petroleo); color: var(--crudo); overflow: hidden; }
+.cinta__pista { display: flex; width: max-content; animation: corre 32s linear infinite; }
+.cinta p { margin: 0; padding-right: 16px; white-space: nowrap; line-height: 44px;
+  font-family: Anton, Impact, sans-serif; font-size: 19px; letter-spacing: .02em; text-transform: uppercase; }
+.cinta b { margin: 0 12px; font-weight: 400; color: var(--agua); }
+.cinta:hover .cinta__pista, .cinta:focus-within .cinta__pista, .cinta:active .cinta__pista, .cinta:focus .cinta__pista { animation-play-state: paused; }
+.cinta:focus-visible { outline-offset: -3px; }
+
+/* ───────────── ediciones: 1:00, 5:00 y 9:00 (espec 6.3) ───────────── */
+.edicion { padding: 28px 0 72px; }
+.edicion__hora { display: flex; align-items: flex-start; gap: 6px; margin: 10px 0 -.21em; position: relative; z-index: 2;
+  font-size: clamp(140px, 46vw, 300px); line-height: 1; }
+.edicion__hora b { flex: none; white-space: nowrap; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 1em; line-height: 1; color: var(--hondo);
+  text-shadow: .035em .035em 0 var(--agua); }
+.edicion__hora small { margin-top: 26px; font: 800 15px/1 Figtree, system-ui, sans-serif; letter-spacing: .2em; color: var(--petroleo); }
+[data-fondo="oscuro"] .edicion__hora b { color: var(--crudo); text-shadow: .035em .035em 0 var(--laguna); }
+[data-fondo="oscuro"] .edicion__hora small { color: var(--agua); }
+.d { display: inline-block; width: .5em; text-align: center; }
+.d.cae { animation: cae .09s linear; }
+.edicion__foto { position: relative; margin: 0 calc(50% - 50vw); }
+.edicion__foto img { width: 100%; height: 300px; object-fit: cover; }
+.edicion__texto > .titulo { margin-top: 26px; }
+
+/* escena 2 · 1:00 · "¿Cuál es la trampa?" */
+.compara { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.compara p { margin: 0; border: 1.5px solid var(--hondo); border-radius: 14px; padding: 10px 12px 12px; }
+.compara small { display: block; font-weight: 800; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--petroleo); }
+.compara b { display: block; margin: 4px 0 2px; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 44px; line-height: 1.05; color: var(--hondo); }
+.compara span { font-weight: 700; font-size: 13px; color: var(--gris); }
+.compara .si { background: var(--hondo); color: var(--crudo); }
+.compara .si small, .compara .si span { color: var(--agua); }
+.compara .si b { color: var(--crudo); }
+.compara__pie { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; font-weight: 700; font-size: 12.5px; color: var(--gris); }
+
+/* ───────────── escena 3 · 2:41 · Apartas (espec 6.4) ───────────── */
+.apartas { color: var(--crudo); padding: 28px 0 72px; }
+.apartas__pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.paso { display: grid; grid-template-columns: 52px 1fr; column-gap: 12px; align-content: start; }
+.paso__num { grid-row: 1 / 3; font-size: 44px; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--agua); }
+.paso h3 { margin: 2px 0 4px; font: 800 20px/1.25 Figtree, system-ui, sans-serif; color: var(--crudo); }
+.paso p { margin: 0; font-size: 15px; line-height: 1.5; color: rgba(246, 239, 221, .88); max-width: 46ch; }
+.apartas__avance, .apartas__hitos { display: none; }
+
+/* el teléfono: el mismo marco oficial de la portada (sin el marco CSS de sitio.css, que sigue en restaurantes).
+   El marco mide 450 pt × --z. Las pantallas se diseñaron a 360 px de ancho y llenan los 402 pt de la pantalla:
+   1 pt = 360/402 px de diseño. La pantalla se pasa 2 pt por lado bajo el bisel, como en la portada:
+   406 × 878 pt = 363.6 × 786.3 px, desde (22, 21) pt = (19.7, 18.8) px, radio 42 pt = 37.6 px */
+.apartas .tel { --z: .6; position: relative; width: calc(450px * var(--z)); height: auto; margin: 16px auto 0;
+  padding: 0; background: none; border-radius: 0; box-shadow: none; }
+/* en el celular el marco pegado (100svh) lleva teléfono + rayitas + paso (unos 185 px) + el reloj (80): alto = 920 px × --z */
+@media (max-height: 830px) { .apartas .tel { --z: .585; } }
+@media (max-height: 760px) { .apartas .tel { --z: .504; } }
+@media (max-height: 680px) { .apartas .tel { --z: .424; } }
+@media (max-height: 640px) { .apartas .tel { --z: .391; } }
+.apartas .tel__pantalla { position: absolute; left: 19.7px; top: 18.8px; width: 363.6px; height: 786.3px; zoom: calc(var(--z) * 402 / 360); border-radius: 37.6px; }
+/* barra de estado a la altura de la isla del marco (14.3 a 50.3 pt): la hora en la oreja izquierda, la pila en la derecha */
+.apartas .tel .estado { position: absolute; left: 1.8px; right: 1.8px; top: 14.6px; height: 32.2px; padding: 0;
+  display: grid; grid-template-columns: 1fr 84.2px 1fr; align-items: center; justify-items: center;
+  font: 600 15.2px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+/* los íconos de iOS de la portada (señal, wifi, pila), en px de diseño: 1 pt = .8955 px */
+.apartas .tel .iconos { grid-column: 3; display: flex; align-items: center; gap: 5.4px; }
+.apartas .tel .iconos svg { display: block; fill: currentColor; height: 9.85px; }
+.apartas .tel .iconos svg:nth-child(1) { width: 15.2px; }
+.apartas .tel .iconos svg:nth-child(2) { width: 13.9px; }
+.apartas .tel .iconos svg:nth-child(3) { width: 22.4px; height: 10.75px; }
+/* abajo, el aire de iOS para el indicador de inicio (139 × 5 pt, 8 pt sobre el borde), que va encima de todo */
+.apartas .tel .pestanas { height: 78px; }
+.apartas .tel .hoja { padding-bottom: 36px; }
+.apartas .tel__pantalla::after { content: ""; position: absolute; z-index: 9; left: 50%; bottom: 9px; width: 124.5px; height: 4.5px; translate: -50% 0;
+  border-radius: 999px; background: var(--tinta); }
+.tel .capa { position: absolute; inset: 54px 0 78px; transition: opacity .45s var(--resorte), transform .55s var(--resorte); }
+/* barra de pestañas de la app: Inicio en el paso 1, Mapa en el 2 y el 3 */
+.tel__pantalla[data-paso="1"] .pestanas .p-inicio, .tel__pantalla[data-paso="2"] .pestanas .p-mapa, .tel__pantalla[data-paso="3"] .pestanas .p-mapa { color: var(--hondo); }
+.tel .dias { display: flex; gap: 8px; margin: 4px 0 16px; }
+.tel .dias span { height: 34px; padding: 0 16px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; border: 1.5px solid #E2E3E5;
+  background: #fff; font-weight: 800; font-size: 14px; }
+.tel .dias .si { background: var(--hondo); border-color: var(--hondo); color: var(--crudo); }
+
+/* paso 1: la lista */
+.tel .capa--lista { padding: 6px 16px 0; }
+.tel__pantalla[data-paso="2"] .capa--lista, .tel__pantalla[data-paso="3"] .capa--lista { opacity: 0; transform: translateX(-18%); transition-duration: .45s; }
+.tel .hora-fila { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+.tel .hora-app { font-family: Anton, Impact, sans-serif; font-size: 58px; line-height: .9; }
+.tel .hora-app small { margin-left: 4px; font-family: Figtree, system-ui, sans-serif; font-weight: 700; font-size: 17px; color: var(--gris-app); }
+.tel .estado-hora { margin-bottom: 4px; font-weight: 800; font-size: 12.5px; color: var(--petroleo); text-align: right; max-width: 130px; }
+.tel .rielito { position: relative; margin-top: 16px; }
+.tel .barras { display: grid; grid-template-columns: repeat(11, 1fr); gap: 5px; align-items: end; height: 56px; }
+.tel .barras i { display: block; background: var(--petroleo); border-radius: 5px 5px 2px 2px; }
+.tel .barras i.sin { background: var(--masa); }
+.tel .barras i.pasada { height: 18%; background: #EDEDEA; } /* ya pasó: la app la pinta así (piezas.dart) */
+.tel .aguja { position: absolute; top: -6px; bottom: 18px; left: calc(100% * 4.5 / 11); width: 3px; margin-left: -1.5px; background: var(--tinta); border-radius: 2px; }
+.tel .aguja::before { content: ""; position: absolute; left: -5.5px; top: -6px; width: 14px; height: 14px; border-radius: 50%; background: var(--tinta); }
+.tel .horas { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11.5px; font-weight: 700; color: var(--gris-app); }
+.tel .titulo-lista { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; font-size: 16px; }
+.tel .tarjeta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; padding: 10px; border-radius: 20px; background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 6px 16px -10px rgba(6, 40, 48, .25); }
+.tel .foto { position: relative; flex: none; }
+.tel .foto img { width: 84px; height: 84px; border-radius: 14px; object-fit: cover; }
+.tel .foto .sello { position: absolute; left: -6px; top: -8px; font-size: 20px; rotate: -4deg; }
+.tel .lugar { font-size: 12.5px; font-weight: 700; color: var(--gris-app); }
+.tel .plato { margin: 2px 0 3px; font-weight: 800; font-size: 17px; }
+.tel .precio { display: flex; align-items: baseline; gap: 6px; }
+.tel .precio s { font-size: 14px; font-weight: 700; color: var(--gris-app); }
+.tel .precio b { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; line-height: 1; }
+
+/* paso 2: el mapa con la hojita de precios por hora */
+.tel .capa--mapa { opacity: 0; transform: translateX(18%); }
+.tel__pantalla[data-paso="2"] .capa--mapa, .tel__pantalla[data-paso="3"] .capa--mapa { opacity: 1; transform: none; }
+.tel .capa--mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tel .mapa-barra { position: absolute; top: 6px; left: 12px; right: 12px; z-index: 2; display: flex; align-items: center; gap: 10px;
+  height: 40px; padding: 0 6px 0 14px; background: #fff; border-radius: 999px; box-shadow: 0 2px 10px rgba(0, 0, 0, .08); font-size: 13.5px; font-weight: 700; }
+.tel .mapa-barra .gris { flex: 1; color: var(--gris-app); }
+.tel .mapa-barra .h { padding: 7px 10px; border-radius: 999px; background: var(--hondo); color: var(--crudo); font-size: 12.5px; }
+/* los pines viven en el área que deja libre la hojita; .tel .pin no hereda nada del mapa de la escena 7 */
+.tel .pines { position: absolute; left: 0; right: 0; top: 0; bottom: 176px; }
+.tel .pin { position: absolute; left: var(--x); top: var(--y); width: 14px; height: 14px; margin: 0; padding: 0; border: 0; translate: -50% -50%;
+  border-radius: 50%; background: #C9CDD0; box-shadow: 0 0 0 2px #fff; opacity: 1; transform: scale(.7);
+  transition: background .3s, transform .5s var(--rebote); transition-delay: calc(var(--i) * 45ms); }
+.tel__pantalla[data-paso="2"] .pin, .tel__pantalla[data-paso="3"] .pin { background: var(--petroleo); transform: scale(1); }
+.tel .pin-activo { position: absolute; left: var(--x); top: var(--y); z-index: 3; display: flex; align-items: center; gap: 6px;
+  padding: 5px 6px 5px 10px; border-radius: 12px; background: var(--hondo); color: var(--crudo); font-weight: 800; font-size: 13px; white-space: nowrap;
+  transform: translate(-26px, 16px) scale(.4); transform-origin: 26px 0; opacity: 0; transition: transform .6s var(--rebote), opacity .2s; }
+.tel .pin-activo::after { content: ""; position: absolute; left: 26px; bottom: 100%; margin-left: -7px; border: 7px solid transparent; border-top: 0; border-bottom-color: var(--hondo); }
+.tel .pin-activo .sello { font-size: 15px; }
+.tel__pantalla[data-paso="2"] .pin-activo, .tel__pantalla[data-paso="3"] .pin-activo { opacity: 1; transform: translate(-26px, 16px) scale(1); transition-delay: .55s; }
+.tel .mapa-hoja { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 10px 14px 18px; background: #fff; border-radius: 24px 24px 0 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .1); }
+.tel .asa { width: 36px; height: 5px; margin: 0 auto 10px; border-radius: 3px; background: #D7D9DC; }
+.tel .mh-top { display: flex; gap: 10px; align-items: center; }
+.tel .mh-top img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; }
+.tel .mh-top b { font-size: 16px; }
+.tel .mh-top p { font-size: 12px; font-weight: 700; color: var(--gris-app); }
+.tel .mh-top .ejemplo { margin-left: auto; }
+.tel .mh-mesa { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding: 8px 0; border-top: 1px solid #F0F0EE;
+  font-size: 14px; font-weight: 800; }
+.tel .mh-mesa span { display: flex; align-items: center; gap: 10px; color: var(--gris-app); }
+.tel .mh-mesa i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #E2E3E5; font-style: normal; font-size: 16px; line-height: 1; }
+.tel .fichas { display: flex; gap: 6px; margin-top: 4px; }
+.tel .fichas span { flex: 1; min-width: 0; padding: 6px 0 5px; border: 1.5px solid #E2E3E5; border-radius: 12px; text-align: center;
+  font-weight: 800; font-size: 13px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.tel .fichas small { display: block; font-weight: 700; font-size: 12px; color: var(--gris-app); }
+.tel .fichas .si { background: var(--hondo); border-color: var(--hondo); color: var(--crudo); }
+.tel .fichas .si small { color: var(--agua); }
+.tel .mh-apartar { height: 46px; margin-top: 10px; }
+
+/* paso 3: velo y hoja "Confirma tu mesa" */
+.tel .velo { position: absolute; inset: 0; z-index: 6; background: rgba(6, 40, 48, .5); opacity: 0; transition: opacity .4s; }
+.tel__pantalla[data-paso="3"] .velo { opacity: 1; }
+.tel .hoja { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; padding: 10px 20px 16px; background: #fff; border-radius: 26px 26px 0 0;
+  transform: translateY(105%); transition: transform .7s var(--rebote); }
+.tel__pantalla[data-paso="3"] .hoja { transform: none; }
+.tel .hoja__cabeza { display: flex; justify-content: space-between; align-items: center; margin: 4px 0 8px; }
+.tel .hoja__cabeza p { font-size: 21px; font-weight: 800; }
+.tel dl { margin: 0; }
+.tel .fila { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid #F0F0EE; font-size: 14.5px; font-weight: 700; line-height: 1.3; }
+.tel .fila dt { width: 62px; flex: none; color: var(--gris-app); font-weight: 400; font-size: 13px; }
+.tel .fila dd { margin: 0; }
+.tel .fila small { display: block; font-weight: 400; font-size: 12.5px; color: var(--gris-app); }
+.tel .fila .sello { margin-right: 4px; font-size: 14px; }
+.tel .hoja__nota { margin-top: 10px; font-size: 12.5px; line-height: 1.4; color: var(--gris-app); }
+.tel .hoja__boton { display: grid; place-items: center; height: 50px; margin-top: 12px; border-radius: 14px; background: var(--hondo); color: var(--crudo); font-weight: 800; font-size: 16px; }
+.tel .hoja__cancelar { display: block; margin-top: 10px; text-align: center; font-weight: 800; font-size: 15px; color: var(--tinta); }
+
+/* mecánica en el celular: el teléfono se queda pegado y cambia de pantalla con el scroll */
+@media (max-width: 959px) and (min-height: 600px) {
+  .js .apartas__obra { position: relative; }
+  .js .apartas { padding-bottom: 0; } /* el marco de 100svh ya trae ese aire */
+  /* se centra en lo que deja libre el reloj pegado (64 + 16 abajo) */
+  .js .apartas__marco { position: sticky; top: 0; height: 100vh; height: 100svh; padding-bottom: 80px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .js .apartas__marco .tel { margin-top: 0; }
+  .js .apartas__hitos { display: block; margin-top: -100vh; margin-top: -100svh; }
+  .js .apartas__hitos i { display: block; height: 80vh; height: 80svh; }
+  .js .apartas__pasos { display: block; min-height: 150px; order: 2; }
+  /* los pasos que no tocan se ocultan solo a la vista: el lector de pantalla lee los tres */
+  .js .paso:not(.activo) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .js .paso.activo { display: grid; animation: entra .3s var(--resorte); }
+  /* las rayitas van entre el teléfono y el paso: abajo quedaban tras el reloj pegado */
+  .js .apartas__avance { display: flex; justify-content: center; gap: 6px; margin: 0; order: 1; }
+  .js .apartas__avance i { width: 16px; height: 3px; border-radius: 2px; background: rgba(246, 239, 221, .3); transition: background .2s; }
+  .js .apartas__avance i.si { background: var(--crudo); }
+}
+/* teléfonos altos (430x932): el teléfono se lee más grande */
+@media (max-width: 959px) and (min-height: 900px) { .apartas .tel { --z: .68; } }
+
+/* ───────────── escena 4 · 5:00 · "Sin cupón y sin pena." (espec 6.5) ───────────── */
+.edicion--tarde { background-color: var(--masa); }
+.edicion--tarde .nota, .edicion--tarde .compara__pie { color: var(--tinta-2); }
+.clave { position: relative; margin: 20px 0 18px; padding: 18px 20px 16px; border-radius: 20px; background: var(--hondo); color: var(--crudo);
+  box-shadow: 6px 6px 0 var(--laguna); }
+.clave .ejemplo { position: absolute; right: 14px; top: 14px; }
+.clave small { display: block; font-weight: 800; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--agua); }
+.clave b { display: block; margin: 6px 0; font-size: 64px; letter-spacing: .06em; line-height: 1; white-space: nowrap; }
+.clave b span { display: inline-block; text-align: center; }
+.clave p { margin: 0; font-weight: 700; font-size: 14px; color: rgba(246, 239, 221, .88); text-wrap: balance; }
+.linea-precio { display: flex; align-items: baseline; gap: 10px; margin-top: 22px; padding-top: 14px; border-top: 1px solid rgba(6, 40, 48, .2); }
+.linea-precio small { flex: 1; font-weight: 800; font-size: 12px; line-height: 1.4; letter-spacing: .14em; text-transform: uppercase; color: var(--petroleo); }
+.linea-precio s { font-weight: 700; font-size: 22px; color: var(--tinta-2); }
+.linea-precio b { font-size: 64px; line-height: 1; color: var(--hondo); }
+
+/* ───────────── escena 5 · 5:10 · La carta (espec 6.6) ───────────── */
+.carta { background-color: var(--masa); padding: 28px 0 72px; }
+.carta .nota { color: var(--tinta-2); text-align: left; }
+.carta__guia { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; font-weight: 700; font-size: 13px; color: var(--tinta-2); }
+.carta__muestra { text-wrap: balance; }
+.carta__desliza { margin-left: auto; color: var(--petroleo); white-space: nowrap; }
+.carta__pista { list-style: none; margin: 16px 0 0; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px; padding: 8px 20px 28px; overscroll-behavior-x: contain; scrollbar-width: none; }
+.carta__pista::-webkit-scrollbar { display: none; }
+.carta__pista:focus-visible { outline-offset: -3px; }
+.carta__pista li:last-child { margin-right: 6px; }
+.ficha { flex: 0 0 78%; max-width: 320px; scroll-snap-align: start; background: var(--nata); border-radius: 20px; padding: 10px 10px 14px;
+  box-shadow: 6px 6px 0 var(--hondo); display: flex; flex-direction: column; }
+.ficha .tira { margin-top: auto; } /* las tiras de precios quedan alineadas aunque el nombre ocupe dos renglones */
+.ficha__cabeza { margin: 2px 4px 8px; font-size: 14px; color: var(--petroleo); line-height: 1; }
+.ficha__foto { position: relative; }
+.ficha__foto img { aspect-ratio: 1; width: 100%; height: auto; object-fit: cover; border-radius: 14px; background: var(--masa); }
+.ficha__foto .ejemplo { position: absolute; left: 10px; top: 10px; }
+.ficha h3 { margin: 12px 4px 2px; font-weight: 800; font-size: 19px; line-height: 1.25; letter-spacing: -.01em; color: var(--tinta); text-wrap: balance; }
+.ficha__lugar { margin: 0 4px 12px; font-weight: 700; font-size: 13px; color: var(--gris); }
+.tira { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0; }
+.tira div { border-radius: 12px; background: var(--crudo); padding: 8px 0 7px; text-align: center; }
+.tira dt { font-weight: 800; font-size: 10.5px; letter-spacing: .12em; color: var(--petroleo); }
+.tira dd { margin: 2px 0 0; font-family: Anton, Impact, sans-serif; font-size: 22px; line-height: 1.15; color: var(--tinta); }
+.tira .si { background: var(--hondo); }
+.tira .si dt { color: var(--agua); }
+.tira .si dd { color: var(--crudo); }
+.recorre .ficha.visto .si dd { animation: cae .45s .15s var(--rebote) both; }
+
+/* ───────────── escena 6 · 6:20 · La cuenta (espec 6.7) ───────────── */
+.cuenta { background-color: var(--petroleo); color: var(--crudo); padding: 28px 0 72px; }
+.ticket-caja { margin-top: 28px; filter: drop-shadow(8px 8px 0 var(--hondo)); rotate: -1deg; }
+.ticket { --d: 4px; background: var(--nata); color: var(--tinta); padding: 26px 18px 24px; font: 700 14.5px/1.45 Figtree, system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--d)) 51% repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--d)) 51% repeat-x;
+  mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--d)) 51% repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--d)) 51% repeat-x;
+  transition: clip-path 1.4s steps(14, end), transform 1.4s var(--resorte); text-wrap: pretty; }
+/* se imprime una vez al entrar; sin JS o con movimiento reducido llega completo */
+.recorre .ticket-caja:not(.visto) .ticket { clip-path: inset(0 0 100% 0); transform: translateY(-12px); }
+.ticket p { margin: 0; }
+.ticket__cabeza { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; align-items: start; padding-bottom: 12px; border-bottom: 2px dashed var(--masa); }
+.ticket__cabeza .rotulo { font-size: 18px; line-height: 1.15; color: var(--hondo); }
+.ticket__sub { grid-column: 1 / -1; font-weight: 700; font-size: 12.5px; color: var(--gris); }
+.ticket__renglones { list-style: none; padding: 0; margin: 12px 0 0; }
+.ticket__renglones li { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; }
+.ticket__renglones span { flex: none; max-width: 70%; }
+.ticket__renglones small { display: block; font-weight: 700; font-size: 12px; line-height: 1.35; color: var(--gris); }
+.ticket__renglones i { flex: 1; min-width: 12px; border-bottom: 2px dotted var(--masa); translate: 0 -4px; }
+.ticket__renglones b { font-weight: 800; font-size: 15px; }
+.ticket__renglones .total { margin-top: 6px; padding-top: 10px; border-top: 2px solid var(--hondo);
+  font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1; text-transform: uppercase; color: var(--hondo); }
+.ticket__renglones .total b { font-weight: 400; font-size: inherit; }
+.ticket .ticket__antes { margin: 8px 0 18px; font-weight: 800; font-size: 14px; color: var(--petroleo); }
+.ticket__titulo { margin: 0 0 6px; padding-top: 16px; border-top: 2px dashed var(--masa); font-size: 18px; color: var(--hondo); }
+.reglas { list-style: none; padding: 0; margin: 0; }
+.reglas li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hilo); }
+.reglas b { font-size: 56px; line-height: .9; color: var(--petroleo); text-shadow: .04em .04em 0 var(--agua); }
+.reglas strong { display: block; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.3; text-transform: uppercase; color: var(--hondo); }
+.reglas span { display: block; margin-top: 4px; font-weight: 400; font-size: 14px; line-height: 1.45; color: var(--tinta-2); }
+.ticket .ticket__bebidas { margin: 14px 0; font-weight: 400; font-size: 13.5px; color: var(--tinta-2); }
+.ticket__gracias { font-size: 16px; letter-spacing: .08em; text-align: center; color: var(--hondo); }
+
+/* ───────────── escena 7 · 9:00 · La cena + ¿Dónde? (espec 6.8) ───────────── */
+.noche { background-color: var(--hondo); color: var(--crudo); }
+.subtitulo { margin: 40px 0 10px; padding-top: 28px; border-top: 1px solid rgba(169, 196, 200, .3); color: var(--crudo); text-wrap: balance; }
+/* en el celular el mapa va entre el texto y el aviso de las mesas */
+.donde { display: flex; flex-direction: column; }
+.donde__texto { display: contents; }
+.donde .subtitulo { order: 1; } .donde .texto { order: 2; } .donde .nota { order: 3; } .donde__mapa { order: 4; } .urge { order: 5; }
+.mapa { position: relative; margin-top: 20px; aspect-ratio: 350 / 419; }
+.mapa svg { display: block; width: 100%; height: 100%; }
+.pin { position: absolute; left: var(--x); top: var(--y); width: 32px; height: 32px; translate: -50% -50%; border: 0; padding: 0; border-radius: 50%; cursor: pointer;
+  background: radial-gradient(circle, var(--crudo) 0 6px, rgba(169, 196, 200, .3) 6.5px 12px, transparent 12.5px);
+  -webkit-tap-highlight-color: transparent; transition: transform .3s var(--golpe); }
+.pin[aria-pressed="true"] { background: radial-gradient(circle, var(--crudo) 0 8px, var(--agua) 8.5px 11px, rgba(169, 196, 200, .3) 11.5px 16px, transparent 16.5px); transform: scale(1.15); }
+.pin::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; } /* 44 px tocables; entre pines hay 49 px o más a 360 */
+.pin:focus-visible { outline-offset: 0; }
+/* encendido: las luces se prenden una por una al entrar */
+.recorre .mapa:not(.visto) .pin { opacity: 0; }
+.recorre .mapa.visto .pin { animation: prende .4s calc(var(--i) * 60ms) var(--golpe) backwards; }
+@keyframes prende { from { opacity: 0; transform: scale(.4); } }
+.mapa__ficha { position: relative; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 14px 0 0; padding: 14px 16px; border-radius: 16px;
+  background: var(--nata); color: var(--tinta); box-shadow: 4px 4px 0 var(--laguna); font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; }
+.mapa__ficha b { flex-basis: 100%; padding-right: 96px; font-weight: 800; font-size: 16px; }
+.mapa__ficha span:not(.ejemplo) { color: var(--tinta-2); }
+.mapa__ficha s { color: var(--gris); }
+.mapa__ficha strong { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 24px; line-height: 1; color: var(--hondo); }
+.mapa__ficha .ejemplo { position: absolute; right: 14px; top: 14px; }
+.urge { margin: 20px 0 0; padding: 14px 16px; border: 1.5px solid var(--agua); border-radius: 14px; font: 800 18px/1.35 Figtree, system-ui, sans-serif; color: var(--crudo); }
+.donde .nota { margin-top: 10px; text-align: left; }
+
+/* ───────────── escena 8 · 9:30 · Antes de que preguntes (espec 6.9) ───────────── */
+.preguntas { background: var(--petroleo); color: var(--crudo); padding: 28px 0 72px; }
+.preguntas__lista { margin-top: 20px; }
+.preguntas__lista { background: var(--nata); color: var(--tinta); border-radius: 20px; box-shadow: 6px 6px 0 var(--hondo); overflow: hidden; }
+.preguntas details { border-top: 1px solid var(--hilo); }
+.preguntas details:first-child { border-top: 0; }
+.preguntas summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; padding: 18px;
+  font: 800 17px/1.35 Figtree, system-ui, sans-serif; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.preguntas summary::-webkit-details-marker { display: none; }
+.preguntas summary::after { content: "+"; flex: none; font: 400 32px/1 Anton, Impact, sans-serif; color: var(--petroleo); translate: 0 -3px; transition: rotate .2s var(--resorte); }
+.preguntas [open] summary::after { rotate: 45deg; }
+.preguntas summary:focus-visible { outline-color: var(--petroleo); outline-offset: -4px; } /* dentro del panel: el overflow lo cortaría */
+.preguntas details p { margin: 0; padding: 0 18px 18px; font-size: 16px; line-height: 1.6; color: var(--tinta-2); }
+.preguntas details a { font-weight: 800; color: var(--hondo); text-decoration-color: var(--laguna); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* ───────────── cierre y pie (espec 6.10) ───────────── */
+.cierre { background: var(--hondo); color: var(--crudo); text-align: center; padding-bottom: 72px; }
+.toldo--cierre { --franja: 32px; height: 32px; box-sizing: content-box; border-top: 14px solid var(--hondo); } /* franja hondo: sin ella las franjas petróleo se pierden en las preguntas */
+.cierre__cuerpo { padding-top: 56px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.cierre__texto { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+.cierre__hora { margin: 0; line-height: 1; }
+.cierre__hora b { display: block; font-weight: 400; font-size: clamp(150px, 46vw, 300px); line-height: 1; color: var(--crudo); text-shadow: .035em .035em 0 var(--laguna); white-space: nowrap; }
+.cierre .titulo { margin: 0; }
+.cierre .texto { max-width: 34ch; text-wrap: balance; }
+.cierre .tiendas { margin-top: 8px; }
+/* remate: la tarde en una línea (los mismos precios de la carta) */
+.cierre__tira { width: 100%; max-width: 320px; margin-top: 10px; }
+.cierre__tira div { background: var(--petroleo); }
+.cierre__tira dt { color: var(--agua); }
+.cierre__tira dd { color: var(--crudo); }
+.cierre__tira .si { background: var(--crudo); }
+.cierre__tira .si dt { color: var(--petroleo); }
+.cierre__tira .si dd { color: var(--hondo); }
+.cierre__pie { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: -4px 0 0; font-weight: 700; font-size: 12.5px; color: rgba(246, 239, 221, .7); }
+.liga-flecha { position: relative; margin-top: 18px; text-wrap: balance; padding-bottom: 3px; font-weight: 800; font-size: 16px; color: var(--agua); text-decoration: none; border-bottom: 2px solid var(--laguna); }
+.liga-flecha::after { content: ""; position: absolute; inset: -10px -4px; } /* 44 px de alto para el dedo */
+footer.pie { padding-top: 0; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+.pie > .envoltura { padding-top: 40px; border-top: 1px solid rgba(169, 196, 200, .25); }
+.pie .marca--clara { background: var(--crudo); color: var(--hondo); box-shadow: 4px 4px 0 var(--laguna); }
+.pie .pie__nota { font-size: 13px; line-height: 1.7; color: rgba(246, 239, 221, .6); opacity: 1; }
+
+/* ───────────── reloj pegado (espec 7.2): el hilo de la tarde ───────────── */
+/* la insignia (40 px, el mínimo de Apple) lleva 10 px libres alrededor, 1/4 de su alto: 64 de alto y 19 a la derecha,
+   que en la punta redonda del reloj dejan 10 px también en sus esquinas */
+.reloj { display: none; }
+.js .reloj { display: flex; position: fixed; left: max(16px, env(safe-area-inset-left)); right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 30; height: 64px;
+  align-items: center; gap: 12px; padding: 0 19px 0 20px; border-radius: 999px; background: var(--hondo); color: var(--crudo); border: 1.5px solid var(--agua);
+  box-shadow: 0 12px 30px -12px rgba(6, 40, 48, .6); transition: transform .32s var(--rebote), background .2s, color .2s, border-color .2s; }
+.js .reloj--fuera { transform: translateY(calc(100% + 24px + env(safe-area-inset-bottom))); transition-timing-function: ease-in; transition-duration: .2s; }
+.reloj__dato { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; container-type: inline-size; }
+.reloj__hora { display: flex; flex-direction: column; min-width: 96px; margin: 0; line-height: 1; }
+.reloj__hora b { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; white-space: nowrap; }
+.reloj__hora b.cae { animation: cae .22s var(--resorte); }
+.reloj__hora small { margin-top: 3px; font-weight: 700; font-size: 11px; color: var(--agua); white-space: nowrap; }
+.reloj__riel { position: relative; flex: 1; min-width: 36px; display: grid; grid-template-columns: repeat(11, 1fr); gap: 2px; align-items: end; height: 24px; }
+.reloj__riel i { display: block; border-radius: 2px; background: var(--agua); }
+.reloj__riel i.sin { opacity: .25; }
+.reloj__riel u { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; border-radius: 1px; background: var(--crudo); left: calc(100% * var(--p)); transition: left .45s var(--resorte); }
+/* el riel va solo si cabe junto al estado más largo ("Los mejores precios del día", 135 px): si no, la letra se le encima
+   (en el celular, y más con la insignia de Google, que es más ancha) */
+@container (max-width: 182px) { .reloj__riel { display: none; } }
+/* sobre fondo oscuro, la barra se vuelve clara */
+.js .reloj--claro { background: var(--crudo); color: var(--hondo); border-color: var(--hondo); }
+.reloj--claro .reloj__hora small { color: var(--petroleo); }
+.reloj--claro .reloj__riel i { background: var(--petroleo); }
+.reloj--claro .reloj__riel u { background: var(--hondo); }
+.reloj :focus-visible { outline-color: var(--agua); }
+.reloj--claro :focus-visible { outline-color: var(--petroleo); }
+/* en el celular no caben la hora, el riel y dos insignias: va la de la tienda de ese teléfono (Android: Google Play) */
+@media (max-width: 599px) {
+  .reloj .play, .android .reloj [data-tienda] { display: none; }
+  .android .reloj .play { display: inline-flex; }
+}
+
+
+/* ───────────── pantallas de 320 a 359 ───────────── */
+@media (max-width: 359px) {
+  .reloj__hora small { white-space: normal; } /* a 320 el estado largo no cabe en una línea junto a la insignia */
+  .edicion__hora { font-size: 42vw; }
+  .mesa__plato { padding-inline: 14px; }
+  .mesa__nombre { font-size: 17px; }
+  .mesa__precio s { font-size: 13px; }
+  .mesa__precio b { font-size: 30px; }
+  .linea-precio { flex-wrap: wrap; row-gap: 6px; }
+  .linea-precio small { flex-basis: 100%; }
+  .clave b { font-size: 56px; }
+}
+
+/* ───────────── tableta: la mesa se queda en una columna de celular grande ───────────── */
+@media (min-width: 600px) and (max-width: 959px) {
+  .prueba { width: min(560px, 100% - 40px); }
+  .mesa__foto { height: 220px; }
+}
+
+/* ───────────── escritorio ───────────── */
+@media (min-width: 960px) {
+  .titulo { font-size: clamp(48px, 5.2vw, 72px); }
+  .subtitulo { font-size: 36px; }
+  .folio { font-size: 12px; }
+  .texto { font-size: 17px; line-height: 1.65; }
+  .remate { font-size: 22px; }
+  .nota { font-size: 14px; }
+  .edicion { padding: 40px 0 112px; }
+
+  /* pruébalo en dos columnas */
+  .prueba { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-rows: auto auto; column-gap: 56px; align-items: center; padding-block: 96px 24px; }
+  .prueba__texto { grid-column: 1; grid-row: 1; align-self: end; }
+  .prueba__accion { grid-column: 1; grid-row: 2; align-self: start; max-width: 440px; }
+  .mesa { grid-column: 2; grid-row: 1 / 3; width: 100%; max-width: 460px; justify-self: end; rotate: 1.2deg; box-shadow: 10px 10px 0 var(--hondo); }
+  .prueba__baja { margin: 18px 0 0; font-size: 20px; line-height: 1.55; max-width: 30ch; }
+  .prueba__accion, .prueba__accion .nota { text-align: left; }
+  .prueba .tiendas { margin-top: 26px; justify-content: flex-start; }
+  .mesa__foto { height: 240px; }
+  .placa b { font-size: 64px; }
+  .mesa__sello { font-size: 32px; }
+  .mesa__nombre { font-size: 20px; }
+  .mesa__lugar { font-size: 13px; }
+  .mesa__precio b { font-size: 44px; }
+  .riel__barras { height: 64px; }
+
+  .cinta p { font-size: 22px; }
+
+  /* ediciones: la hora gigante encima de la foto */
+  .edicion .envoltura { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; }
+  .edicion .folio { grid-column: 1 / -1; }
+  .edicion__hora { grid-column: 1 / 9; grid-row: 2; margin-bottom: 0; font-size: 260px; }
+  .edicion__hora small { font-size: 17px; margin-top: 40px; }
+  /* la foto se queda a la vista mientras se lee la columna de texto; los dígitos pasan por encima */
+  .edicion__foto { grid-column: 5 / 13; grid-row: 2 / 4; margin: 120px 0 0; align-self: start; position: sticky; top: 14vh; }
+  .edicion__foto img { height: auto; aspect-ratio: 4 / 3; max-height: 420px; border-radius: 14px; }
+  .edicion__foto .pie-v { right: 8px; bottom: 10px; }
+  .edicion__texto { grid-column: 1 / 5; grid-row: 3; }
+  .edicion__texto > .titulo { margin-top: 8px; }
+  .compara b { font-size: 56px; }
+  .linea-precio { flex-wrap: wrap; row-gap: 6px; }
+  .linea-precio small { flex-basis: 100%; }
+  .linea-precio b { font-size: 88px; }
+  .clave { rotate: -2deg; max-width: 420px; margin-block: 28px 30px; }
+  .clave b { font-size: 80px; }
+
+  /* apartas: teléfono pegado a la izquierda, pasos a la derecha */
+  .apartas { padding: 40px 0 112px; }
+  .apartas__marco { display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; }
+  /* con el paso 1 al centro de la ventana, el teléfono queda entero arriba del reloj pegado (nada encima del aparato) */
+  .apartas__marco .tel { --z: .69; position: sticky; top: 12vh; align-self: start; margin: 24px auto 0; }
+  .apartas__pasos { gap: 0; }
+  .paso { display: grid; grid-template-columns: 1fr; min-height: 70vh; align-content: center; }
+  .paso__num { grid-row: auto; font-size: 120px; line-height: 1; -webkit-text-stroke-width: 2px; }
+  .paso h3 { margin: 8px 0 8px; font-size: 28px; }
+  .paso p { font-size: 18px; line-height: 1.55; }
+  .js .paso { opacity: .72; transition: opacity .35s var(--resorte); } /* .72: el texto atenuado sigue arriba de 4.5:1 */
+  .js .paso.activo { opacity: 1; }
+
+  .carta { padding: 40px 0 112px; }
+  .ficha h3 { font-size: 20px; }
+
+  /* cuenta: el título se queda mientras pasa el ticket */
+  .cuenta { padding: 40px 0 112px; }
+  .cuenta__grid { display: grid; grid-template-columns: 5fr 7fr; column-gap: 56px; align-items: start; }
+  .cuenta__cabeza { position: sticky; top: 40px; }
+  .ticket-caja { max-width: 460px; margin-top: 48px; }
+
+  /* 9:00 en espejo: foto a la izquierda, hora a la derecha */
+  .noche .edicion__foto { grid-column: 1 / 9; position: relative; top: auto; } /* sin pegar: bajaría encima del mapa */
+  .noche .edicion__hora { grid-column: 5 / 13; justify-content: flex-end; }
+  .noche .edicion__texto { grid-column: 9 / 13; }
+  .donde { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; margin-top: 40px; padding-top: 48px;
+    border-top: 1px solid rgba(169, 196, 200, .3); }
+  .donde__mapa { grid-column: 1 / 8; grid-row: 1; max-width: 560px; }
+  .donde__texto { display: block; grid-column: 8 / 13; grid-row: 1; position: sticky; top: 40px; }
+  .donde .subtitulo { margin-top: 0; padding-top: 0; border-top: 0; }
+  .mapa { margin-top: 0; }
+
+  .preguntas { padding: 40px 0 112px; }
+  .preguntas__grid { display: grid; grid-template-columns: 4fr 7fr; column-gap: 56px; align-items: start; }
+  .preguntas__cabeza { position: sticky; top: 40px; }
+  .preguntas__lista { max-width: 640px; margin-top: 8px; }
+  .preguntas summary { font-size: 19px; }
+
+  /* cierre en dos columnas: la hora a la izquierda, lo demás a la derecha */
+  .toldo--cierre { --franja: 44px; height: 44px; }
+  .cierre { text-align: left; padding-bottom: 112px; }
+  .cierre__cuerpo { padding-top: 96px; flex-direction: row; align-items: center; justify-content: center; gap: 72px; }
+  /* abajo de 1061 de ancho la hora se achica para que a su lado quepan las dos insignias en una fila (391 px, más 36 para la
+     barra de scroll de Windows, 17, y por si allá su letra mide más): "5:00" mide 1.74 veces su tamaño de letra, y quedan
+     40 de orillas y 72 de hueco */
+  .cierre__hora b { font-size: min(300px, (100vw - 539px) / 1.74); }
+  .cierre__texto { width: auto; max-width: 440px; align-items: flex-start; }
+  .cierre__pie, .cierre .tiendas { justify-content: flex-start; }
+
+  /* 440 de la hora, el riel y la insignia de Apple, más la de Google y su hueco (147) */
+  .js .reloj { left: 50%; right: auto; width: 587px; translate: -50% 0; bottom: 24px; }
+}
+@media (min-width: 960px) and (max-height: 880px) { .apartas__marco .tel { --z: .6; } }
+@media (min-width: 960px) and (max-height: 780px) { .apartas__marco .tel { --z: .52; } }
+@media (min-width: 960px) and (max-width: 1099px) {
+  .carta__pista { scroll-padding-inline: max(20px, (100vw - 1180px) / 2); }
+}
+@media (min-width: 1100px) {
+  .carta__pista { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; width: min(var(--ancho), 100% - 40px); max-width: var(--ancho);
+    margin: 28px auto 0; padding: 8px 0 40px; overflow: visible; }
+  .carta__pista li:last-child { margin-right: 0; }
+  .ficha { max-width: none; }
+  .ficha:nth-child(2), .ficha:nth-child(4) { translate: 0 28px; }
+  .carta__desliza { display: none; }
+  .carta .nota { margin-top: 20px; }
+}
+
+/* ───────────── movimiento reducido: todo llega quieto en su estado final ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cinta__pista { animation: none; }
+  .tel .capa, .tel .pin, .tel .pin-activo, .tel .velo, .tel .hoja { transition: none; }
+}

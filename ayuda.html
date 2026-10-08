@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayuda y contacto · Pásenle</title>
+<meta name="description" content="¿Algo no funciona o tienes dudas sobre tus datos? Escríbenos por WhatsApp y te contesta una persona.">
+<link rel="icon" href="img/icono-180.png">
+<link rel="stylesheet" href="css/sitio.css">
+<style>
+  .ayuda { max-width: 820px; margin: 0 auto; padding: 72px 20px 110px; }
+  .ayuda h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(44px, 6.4vw, 80px); line-height: 1.04; margin: 14px 0 20px; color: var(--hondo); text-shadow: .05em .05em 0 var(--agua); }
+  .ayuda > p { font-size: 18px; line-height: 1.6; color: var(--tinta-2); max-width: 560px; }
+  .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; margin-top: 36px; }
+  .tarjeta { background: var(--nata); border-radius: 20px; padding: 24px; box-shadow: 5px 5px 0 var(--petroleo); text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: transform .12s var(--resorte), box-shadow .12s var(--resorte); }
+  .tarjeta:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--petroleo); }
+  .tarjeta b { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 26px; color: var(--petroleo); }
+  .tarjeta span { line-height: 1.55; color: var(--tinta-2); }
+</style>
+</head>
+<body class="papel">
+<header class="toldo">
+  <div class="envoltura nav">
+    <a class="marca" href="index.html"><b data-nombre>Pásenle</b><small data-ciudad>Guadalajara</small></a>
+    <nav class="nav__ligas"><a class="pildora pildora--siempre" href="index.html">Volver</a></nav>
+  </div>
+</header>
+<main class="ayuda">
+  <p class="ojo">Ayuda</p>
+  <h1>¿En qué te ayudamos?</h1>
+  <p>Si algo no funciona o tienes una duda sobre tus datos, escríbenos. Te contesta una persona. Para cancelar una mesa, hazlo en la app, en Reservas: es gratis hasta 30 minutos antes.</p>
+  <div class="tarjetas">
+    <a class="tarjeta" href="index.html#preguntas"><b>Preguntas</b><span>Cuánto cuesta, qué pasa si no llegas, cómo se califica, dónde funciona.</span></a>
+    <a class="tarjeta" data-wa="ayuda" href="https://wa.me/523317636108?text=Hola%2C%20necesito%20ayuda%20con%20M%C3%B3chate." target="_blank" rel="noopener"><b>WhatsApp</b><span>Escríbenos y te contesta una persona. También si tu cuenta se pausó por faltas y quieres que la revisemos.</span></a>
+    <a class="tarjeta" href="privacidad.html"><b>Tus datos</b><span>Qué guardamos y para qué. Tu ubicación es opcional: solo sirve para ver lo que hay cerca de ti.</span></a>
+    <a class="tarjeta" href="borrar-cuenta.html"><b>Tu cuenta</b><span>Para apartar necesitas tener 18 años o más. Si borras tu cuenta, tus datos personales se borran en máximo 30 días.</span></a>
+  </div>
+</main>
+<footer class="pie"><div class="envoltura">
+  <div class="pie__ligas"><a href="borrar-cuenta.html">Borrar tu cuenta</a></div>
+  <p class="pie__nota" style="margin:12px 0 0">Hecho en <span data-ciudad>Guadalajara</span>.</p>
+</div></footer>
+<script src="js/sitio.js"></script>
+</body>
+</html>

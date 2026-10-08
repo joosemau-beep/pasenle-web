@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Borrar tu cuenta · Pásenle</title>
+<meta name="description" content="Cómo borrar tu cuenta de Pásenle desde la app o, si ya no la tienes, por WhatsApp. Qué se borra y qué se queda.">
+<link rel="icon" href="img/icono-180.png">
+<link rel="stylesheet" href="css/sitio.css">
+<style>
+  .ayuda { max-width: 820px; margin: 0 auto; padding: 72px 20px 110px; }
+  .ayuda h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(44px, 6.4vw, 80px); line-height: 1.04; margin: 14px 0 20px; color: var(--hondo); text-shadow: .05em .05em 0 var(--agua); }
+  .ayuda > p { font-size: 18px; line-height: 1.6; color: var(--tinta-2); max-width: 560px; }
+  .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 36px; }
+  .tarjeta { background: var(--nata); border-radius: 20px; padding: 24px; box-shadow: 5px 5px 0 var(--petroleo); text-decoration: none; display: flex; flex-direction: column; gap: 8px; }
+  a.tarjeta { transition: transform .12s var(--resorte), box-shadow .12s var(--resorte); }
+  a.tarjeta:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--petroleo); }
+  .tarjeta b { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 26px; color: var(--petroleo); }
+  .tarjeta span, .tarjeta li { line-height: 1.55; color: var(--tinta-2); }
+  .tarjeta ol, .tarjeta ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .tarjeta .pildora { align-self: flex-start; margin-top: 8px; }
+</style>
+</head>
+<body class="papel">
+<header class="toldo">
+  <div class="envoltura nav">
+    <a class="marca" href="index.html"><b data-nombre>Pásenle</b><small data-ciudad>Guadalajara</small></a>
+    <nav class="nav__ligas"><a class="pildora pildora--siempre" href="ayuda.html">Volver</a></nav>
+  </div>
+</header>
+<main class="ayuda">
+  <p class="ojo">Tu cuenta</p>
+  <h1>Borrar tu cuenta</h1>
+  <p>Puedes borrar tu cuenta de <span data-nombre>Pásenle</span> cuando quieras. No se puede deshacer: si vuelves, abres una cuenta nueva.</p>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <b>Desde la app</b>
+      <ol>
+        <li>Abre la app y entra a Perfil.</li>
+        <li>Toca "Borrar mi cuenta".</li>
+        <li>Lee qué se borra y qué se queda, y toca "Borrar mi cuenta".</li>
+      </ol>
+      <span>Se borra en ese momento.</span>
+    </div>
+    <div class="tarjeta">
+      <b>Sin la app</b>
+      <span>Escríbenos por WhatsApp desde el celular de tu cuenta. Te pedimos confirmar que eres tú, la borramos en máximo 30 días y te avisamos cuando esté hecho.</span>
+      <a class="pildora pildora--oscura" data-wa="borrar" href="https://wa.me/523317636108?text=Hola%2C%20quiero%20borrar%20mi%20cuenta%20de%20M%C3%B3chate.%20Te%20escribo%20desde%20el%20celular%20de%20mi%20cuenta." target="_blank" rel="noopener">Pedirlo por WhatsApp</a>
+    </div>
+  </div>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <b>Qué se borra</b>
+      <ul>
+        <li>Tu cuenta, tu celular y tu nombre.</li>
+        <li>El texto y las fotos de tus calificaciones.</li>
+        <li>Tus avisos y lo que escribiste en tus casos.</li>
+        <li>Tus mesas apartadas que aún no empiezan se cancelan y el restaurante lo ve. Si a alguna le faltan menos de 30 minutos, cuenta como falta.</li>
+      </ul>
+    </div>
+    <div class="tarjeta">
+      <b>Qué se queda</b>
+      <ul>
+        <li>Tus visitas y las estrellas que diste, sin tu nombre ni tu celular. El restaurante las necesita para sus cuentas y su calificación.</li>
+        <li>Por 30 días, una clave que sale de tu celular (no tu número) en tus reservas recientes, para que borrar la cuenta no borre tus faltas. Después se borra sola. Si tu cuenta estaba pausada por faltas, se queda hasta que la revisemos.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+<footer class="pie"><div class="envoltura">
+  <div class="pie__ligas"><a href="ayuda.html">Ayuda y contacto</a><a href="privacidad.html">Aviso de privacidad</a></div>
+  <p class="pie__nota" style="margin:12px 0 0">Hecho en <span data-ciudad>Guadalajara</span>.</p>
+</div></footer>
+<script src="js/sitio.js"></script>
+</body>
+</html>

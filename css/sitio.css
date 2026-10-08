@@ -1,0 +1,203 @@
+/* woff2 recortado primero; si falta, la TTF completa */
+@font-face { font-family: Anton; src: url(../fuentes/Anton-Regular.woff2) format('woff2'), url(../fuentes/Anton-Regular.ttf) format('truetype'); font-display: swap; }
+@font-face { font-family: Figtree; src: url(../fuentes/Figtree-Regular.woff2) format('woff2'), url(../fuentes/Figtree-Regular.ttf) format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: Figtree; src: url(../fuentes/Figtree-Bold.woff2) format('woff2'), url(../fuentes/Figtree-Bold.ttf) format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: Figtree; src: url(../fuentes/Figtree-ExtraBold.woff2) format('woff2'), url(../fuentes/Figtree-ExtraBold.ttf) format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: Playfair; src: url(../fuentes/PlayfairDisplay-ExtraBold.woff2) format('woff2'), url(../fuentes/PlayfairDisplay-ExtraBold.ttf) format('truetype'); font-weight: 800; font-display: swap; }
+/* sin Figtree 600: donde se pida 600, el navegador toma la 700.
+   Playfair (solo el logotipo) va recortada a letras A-Z, a-z, acentos, ñ, ü, espacio, punto, guion y ·:
+   si el nombre de la marca lleva otro signo, hay que volver a recortarla desde la TTF. */
+
+:root {
+  --hondo: #062830;
+  --petroleo: #0E4552;
+  --laguna: #2E7D8C;   /* sombras sobre hondo, subrayados, bordes */
+  --agua: #A9C4C8;     /* el segundo color: acentos, sombras de título, estados */
+  --crudo: #F6EFDD;    /* papel */
+  --nata: #FFFAEE;     /* superficies (en lugar de #fff) */
+  --masa: #E9DDC1;     /* hilos, sombras suaves, la luz de la tarde */
+  --hueso: #FAFAF8;    /* solo dentro del teléfono (fondo de la app) */
+  --tinta: #17181C;
+  --tinta-2: #3B3D42;
+  --gris: #5F636A;     /* 5.26 sobre crudo; sobre masa NO pasa (4.48): ahí se usa tinta-2 */
+  --gris-app: #6B6F76; /* solo dentro del teléfono */
+  --gris2: #A9ACB2;
+  --hilo: rgba(6, 40, 48, .14);
+  /* solo dato: la escala de descuento de la app (tramos.dart) */
+  --guajillo: #C0341C;
+  --mango: #E89B1C;
+  --sombra-tibio: #2E7D8C;
+  --sombra-caliente: #FBEBC8;
+  --sombra-ardiendo: #50150B;
+  --franja: 44px;
+  --ancho: 1180px;
+  --resorte: cubic-bezier(.2, .9, .25, 1);   /* la curva suave */
+  --rebote: cubic-bezier(.34, 1.4, .64, 1);  /* respaldo */
+  --golpe: cubic-bezier(.2, 1.6, .4, 1);
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  :root { --rebote: linear(0, .009, .035 2.1%, .141 4.4%, .723 12.9%, .938 16.7%, 1.017 19.4%, 1.067, 1.087 23.4%, 1.083 25.2%, 1.043 30%, 1.009 34.7%, .994 39.4%, .995 49%, 1.001 61.6%, 1); }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-bottom: 96px; } /* el foco nunca queda bajo el reloj pegado */
+body {
+  margin: 0;
+  font-family: Figtree, system-ui, sans-serif;
+  color: var(--tinta);
+  background: var(--crudo);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* hidden rompe position: sticky */
+}
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+.envoltura { width: min(var(--ancho), 100% - 40px); margin-inline: auto; }
+/* iPhone de lado: con viewport-fit=cover el texto no se mete bajo la isla */
+@supports (width: env(safe-area-inset-left)) {
+  .envoltura { width: min(var(--ancho), 100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)); }
+}
+
+/* foco: petróleo sobre claro, agua sobre oscuro */
+:focus-visible { outline: 3px solid var(--petroleo); outline-offset: 3px; }
+.oscuro :focus-visible, [data-fondo="oscuro"] :focus-visible, .pie :focus-visible { outline-color: var(--agua); }
+/* sobre las franjas del toldo: anillo crudo con halo hondo, se ve sobre petróleo y sobre agua */
+.toldo :focus-visible { outline-color: var(--crudo); box-shadow: 0 0 0 8px var(--hondo); }
+
+/* papel: grano muy fino teñido de hondo */
+.papel {
+  background-color: var(--crudo);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.024 0 0 0 0 0.157 0 0 0 0 0.188 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+/* moteado: el mismo grano, en crudo al 5%, para fondos petróleo u hondo */
+.moteado {
+  background-color: var(--petroleo);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.965 0 0 0 0 0.937 0 0 0 0 0.867 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ── el toldo: franjas petróleo y agua con su faldón de ondas ── */
+.toldo {
+  position: relative;
+  background: repeating-linear-gradient(90deg, var(--petroleo) 0 var(--franja), var(--agua) var(--franja) calc(var(--franja) * 2));
+  z-index: 5;
+}
+.toldo::after {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 100%;
+  height: calc(var(--franja) / 2);
+  background:
+    radial-gradient(circle at calc(var(--franja) / 2) 0, var(--petroleo) calc(var(--franja) / 2 - .5px), transparent calc(var(--franja) / 2)) 0 0 / calc(var(--franja) * 2) 100% repeat-x,
+    radial-gradient(circle at calc(var(--franja) * 1.5) 0, var(--agua) calc(var(--franja) / 2 - .5px), transparent calc(var(--franja) / 2)) 0 0 / calc(var(--franja) * 2) 100% repeat-x;
+  filter: drop-shadow(0 3px 0 rgba(6, 40, 48, .18));
+}
+.toldo--oscuro { background: repeating-linear-gradient(90deg, var(--hondo) 0 var(--franja), var(--agua) var(--franja) calc(var(--franja) * 2)); }
+.toldo--oscuro::after {
+  background:
+    radial-gradient(circle at calc(var(--franja) / 2) 0, var(--hondo) calc(var(--franja) / 2 - .5px), transparent calc(var(--franja) / 2)) 0 0 / calc(var(--franja) * 2) 100% repeat-x,
+    radial-gradient(circle at calc(var(--franja) * 1.5) 0, var(--agua) calc(var(--franja) / 2 - .5px), transparent calc(var(--franja) / 2)) 0 0 / calc(var(--franja) * 2) 100% repeat-x;
+}
+
+/* barra de navegación sobre el toldo */
+.nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  height: 84px;
+}
+.marca {
+  display: inline-flex; flex-direction: column; align-items: center;
+  text-decoration: none; padding: 6px 18px 8px; border-radius: 14px;
+  background: var(--hondo); color: var(--crudo);
+  box-shadow: 4px 4px 0 rgba(6, 40, 48, .35);
+}
+.marca b { font-family: Playfair, Georgia, serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -.3px; }
+.marca small { font-size: 9.5px; font-weight: 800; letter-spacing: 2.2px; text-transform: uppercase; opacity: .8; margin-top: 3px; }
+.nav__ligas { display: flex; align-items: center; gap: 10px; }
+.pildora {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 18px; border-radius: 999px;
+  font-weight: 800; font-size: 14.5px; text-decoration: none;
+  background: var(--crudo); color: var(--petroleo);
+  box-shadow: 3px 3px 0 var(--hondo);
+  transition: transform .12s var(--resorte), box-shadow .12s var(--resorte);
+}
+@media (hover: hover) { .pildora:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--hondo); } }
+.pildora:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--hondo); }
+.pildora--oscura { background: var(--petroleo); color: var(--crudo); box-shadow: 3px 3px 0 var(--hondo); }
+
+/* cifras de rótulo: Anton con sombra dura de la misma letra */
+.rotulo {
+  /* 1.04 y no menos: con .92 los acentos de las mayúsculas (Á, Í, Ú) chocan
+     con el renglón de arriba */
+  font-family: Anton, Impact, sans-serif; font-weight: 400; line-height: 1.04;
+  text-transform: uppercase; letter-spacing: .2px;
+}
+.sombra-agua { text-shadow: .05em .05em 0 var(--agua); }
+.sombra-hondo { text-shadow: .05em .05em 0 var(--hondo); }
+
+/* sellos de descuento: los tres tramos de la app, con sus valores exactos */
+.sello {
+  display: inline-block; font-family: Anton, sans-serif; line-height: 1;
+  padding: .12em .3em .1em; border-radius: .22em;
+}
+.sello .pct { font-size: .6em; }
+.t-petroleo { background: var(--petroleo); color: var(--crudo); text-shadow: .085em .085em 0 var(--sombra-tibio); }
+.t-mango    { background: var(--mango); color: var(--petroleo); text-shadow: .085em .085em 0 var(--sombra-caliente); }
+.t-guajillo { background: var(--guajillo); color: var(--crudo); text-shadow: .085em .085em 0 var(--sombra-ardiendo); }
+
+/* "Ejemplo": junto a todo precio o dato de muestra */
+.ejemplo { display: inline-block; font: 800 10.5px/1 Figtree, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--petroleo); background: var(--nata); border: 1.5px dashed var(--laguna); border-radius: 999px; padding: 4px 8px 3px; white-space: nowrap; }
+
+/* teléfono con pantallas de la app reconstruidas en HTML: 360x740 con los
+   tamaños de la app, escalado con zoom (--z). Cada página pone sus pantallas. */
+.tel { --z: .7; width: calc(360px * var(--z)); height: calc(740px * var(--z)); margin: 0 auto;
+  border-radius: calc(46px * var(--z) + 10px); padding: 10px; background: var(--tinta);
+  box-shadow: 0 30px 60px -20px rgba(6, 40, 48, .6), inset 0 0 0 2px #2c2e34; box-sizing: content-box; flex: none; }
+.tel__pantalla { width: 360px; height: 740px; zoom: var(--z); position: relative; overflow: hidden;
+  border-radius: 40px; background: var(--hueso); color: var(--tinta); font-family: Figtree, system-ui, sans-serif; line-height: 1.3; }
+.tel p { margin: 0; }
+.tel .estado { position: relative; z-index: 8; display: flex; justify-content: space-between; align-items: center; height: 36px; padding: 6px 26px 0;
+  font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tel .isla { width: 90px; height: 25px; border-radius: 14px; background: var(--tinta); }
+.tel .bateria i { display: block; width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid var(--tinta); position: relative; }
+.tel .bateria i::after { content: ""; position: absolute; inset: 1.5px 5px 1.5px 1.5px; border-radius: 1px; background: var(--tinta); }
+.tel .pestanas { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; height: 58px; padding-top: 7px; background: #fff; border-top: 1px solid #EEEEEC; }
+.tel .pestanas span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; color: #9A9DA3; }
+.tel .pestanas svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.tel .pestanas .si { color: var(--hondo); }
+
+.ojo { font-size: 12px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase; color: var(--petroleo); }
+
+/* aparece al entrar en pantalla */
+/* solo se esconde si corre el JavaScript (clase js en <html>): sin él, todo se ve */
+.js .entra { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--resorte), transform .7s var(--resorte); }
+.js .entra.visto { opacity: 1; transform: none; }
+
+footer.pie { background: var(--hondo); color: var(--crudo); padding: 64px 0 40px; margin-top: 0; }
+.pie__fila { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 28px; }
+.pie a { text-decoration: none; opacity: .85; font-weight: 700; }
+@media (hover: hover) { .pie a:hover { opacity: 1; text-decoration: underline; } }
+.pie__ligas { display: flex; flex-direction: column; gap: 0; font-size: 15px; }
+.pie__ligas a { display: flex; align-items: center; min-height: 44px; } /* 44 px para el dedo */
+.pie__nota { margin-top: 40px; font-size: 13px; opacity: .6; }
+
+@media (max-width: 760px) {
+  :root { --franja: 32px; }
+  .nav { height: 72px; }
+  .marca b { font-size: 22px; }
+  .nav__ligas .pildora:not(.pildora--siempre) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .entra { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* el toldo no se parte en pantallas de 320 */
+.marca small, .nav__ligas .pildora { white-space: nowrap; }
+@media (max-width: 360px) {
+  .nav { gap: 10px; }
+  .marca { padding: 6px 10px 8px; }
+  .marca small { letter-spacing: 1.2px; }
+  .nav__ligas .pildora { padding: 0 14px; }
+}

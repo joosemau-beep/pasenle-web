@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<script>
+  document.documentElement.classList.add('js');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('recorre');
+  // en el reloj pegado del celular cabe una sola insignia: la de la tienda de ese teléfono
+  if (/Android/i.test(navigator.userAgent)) document.documentElement.classList.add('android');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F1E3">
+<title>Pásenle · Mueve la hora, paga menos</title>
+<meta name="description" content="Aparta mesa en restaurantes de Guadalajara. En las horas tranquilas, muchos bajan el precio de su comida. Apartas gratis, sin tarjeta, y pagas en el restaurante.">
+<!-- og:url y og:image con la dirección absoluta (WhatsApp no lee rutas relativas) -->
+<meta property="og:url" content="https://pasenle.com/">
+<link rel="canonical" href="https://pasenle.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Pásenle · Mueve la hora, paga menos">
+<meta property="og:description" content="Aparta mesa gratis en restaurantes de Guadalajara. En las horas tranquilas, más barato. Sin tarjeta: pagas allá.">
+<meta property="og:image" content="https://pasenle.com/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="icon" href="img/icono-180.png">
+<link rel="preload" href="fuentes/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Figtree-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/sitio.css">
+<link rel="stylesheet" href="css/comensal.css">
+</head>
+<body class="papel">
+<header class="barra">
+  <div class="barra__in">
+    <a class="barra__logo" href="index.html" aria-label="Pásenle, inicio"><img src="img/icono-180.png" width="28" height="28" alt=""><b data-nombre>Pásenle</b></a>
+    <a class="barra__liga" href="restaurantes.html">Para restaurantes</a>
+  </div>
+</header>
+
+<main>
+<!-- PRIMERA PANTALLA · la barra, título, lema, la insignia y la app en el teléfono a las 5, con el precio flotando en vidrio -->
+<section class="portada" data-fondo="claro" aria-labelledby="t-portada">
+  <div class="portada__luz" aria-hidden="true"></div>
+  <div class="portada__persiana" aria-hidden="true"></div>
+  <div class="portada__marco">
+    <div class="portada__texto">
+      <h1 class="portada__titulo" id="t-portada"><span class="l">Mueve la hora.</span><span class="l">Paga menos.</span></h1>
+      <p class="portada__lema">Aparta mesa gratis en restaurantes<br class="portada__corte"> de <span data-ciudad>Guadalajara</span>. En horas<br class="portada__corte"> tranquilas, más barato.</p>
+      <!-- insignias del App Store y de Google Play: sin href hasta que existan SITIO.tienda y SITIO.play (js/sitio.js) -->
+      <div class="tiendas portada__tiendas">
+        <a class="insignia" data-tienda aria-label="Descárgalo en el App Store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          <span><small>Descárgalo en el</small><b>App Store</b></span>
+        </a>
+        <a class="insignia play" data-play><img src="img/google-play.png" width="646" height="192" alt="Descargar en Google Play"></a>
+      </div>
+    </div>
+
+    <div class="escena" id="escena" role="img" aria-label="La app en un iPhone. A las 5 de la tarde, las tostadas de atún de Sal de Mar bajan de $190 a $105, 45% menos. Ejemplo con restaurantes de muestra.">
+      <!-- marco oficial de Apple (iPhone 18 Pro, Glacier), tal cual: sin sombra, sin reflejo, sin giro ni movimiento.
+           La app va debajo, en el hueco de la pantalla; el marco trae la isla dinámica. -->
+      <div class="iphone">
+          <div class="pantalla" aria-hidden="true">
+            <div class="app">
+              <div class="a-toldo">
+                <img class="a-lona" src="img/portada/toldo-lona.webp" alt="" decoding="async">
+                <i class="a-luz"></i>
+                <img class="a-faldon" src="img/portada/toldo-faldon.webp" alt="" decoding="async">
+                <div class="a-marca"><b data-nombre>Pásenle</b><small>GUADALAJARA</small></div>
+                <span class="a-perfil"><svg viewBox="0 0 24 24"><path d="M12 12C14.2 12 15.98 10.22 15.98 8.02C15.98 5.81 14.2 3.98 12 3.98C9.8 3.98 8.02 5.81 8.02 8.02C8.02 10.22 9.8 12 12 12ZM12 14.02C9.33 14.02 3.98 15.33 3.98 18V18.98C3.98 19.55 4.45 20.02 5.02 20.02H18.98C19.55 20.02 20.02 19.55 20.02 18.98V18C20.02 15.33 14.67 14.02 12 14.02Z"/></svg></span>
+              </div>
+              <div class="a-lista">
+                <div class="a-busca"><svg viewBox="0 0 24 24"><path d="M15.52 14.02H14.72L14.44 13.73C15.61 12.33 16.27 10.41 15.89 8.39C15.42 5.62 13.12 3.38 10.31 3.05C6.09 2.53 2.53 6.09 3.05 10.31C3.38 13.12 5.62 15.42 8.39 15.89C10.41 16.27 12.33 15.61 13.73 14.44L14.02 14.72V15.52L18.23 19.73C18.66 20.16 19.31 20.16 19.73 19.73C20.16 19.36 20.16 18.66 19.73 18.28L15.52 14.02ZM9.52 14.02C7.03 14.02 5.02 12 5.02 9.52C5.02 7.03 7.03 5.02 9.52 5.02C12 5.02 14.02 7.03 14.02 9.52C14.02 12 12 14.02 9.52 14.02Z"/></svg>Busca restaurante, platillo o cocina</div>
+                <!-- Birria en petróleo y no en guajillo: el guajillo y el mango son solo de los sellos (docs/modelo-de-negocio.md, sección 8) -->
+                <div class="a-cats">
+                  <span class="a-cat si"><i><svg viewBox="0 0 24 24"><path d="M18.98 17.02H2.02V18.98H21.98V17.02H18.98ZM21 15.98C20.72 11.95 17.77 8.58 13.83 7.78C13.92 7.55 14.02 7.27 14.02 6.98C14.02 5.91 13.08 5.02 12 5.02C10.92 5.02 9.98 5.91 9.98 6.98C9.98 7.27 10.08 7.55 10.17 7.78C6.23 8.58 3.28 11.95 3 15.98H21ZM12 9.56C14.95 9.56 17.48 11.39 18.52 13.97H5.48C6.52 11.39 9.05 9.56 12 9.56Z"/></svg></i><small>Todos</small></span>
+                  <span class="a-cat" style="--c:#0E4552"><i><svg viewBox="0 0 24 24"><path d="M21.05 17.58 3.09 18.52 3 17.02 21 16.08 21.05 17.58ZM21 19.5H3V21H21V19.5ZM23.02 12.98V3.98C23.02 2.91 22.08 2.02 21 2.02H3C1.92 2.02 0.98 2.91 0.98 3.98V12.98C0.98 14.11 1.92 15 3 15H21C22.08 15 23.02 14.11 23.02 12.98ZM21 12.98H3V3.98H21V12.98ZM20.02 6C18.33 6 16.97 6.98 16.78 8.25C16.17 7.5 14.06 5.48 10.27 5.48C5.58 5.48 3.52 8.48 3.52 8.48C3.52 8.48 5.58 11.48 10.27 11.48C14.06 11.48 16.17 9.52 16.78 8.77C16.97 10.03 18.33 11.02 20.02 11.02V6Z"/></svg></i><small>Mariscos</small></span>
+                  <span class="a-cat" style="--c:#0E4552"><i><svg viewBox="0 0 24 24"><path d="M8.11 13.36 10.92 10.5 3.89 3.52C2.34 5.06 2.34 7.59 3.89 9.14L8.11 13.36ZM14.86 11.53C16.41 12.23 18.56 11.72 20.16 10.17C22.08 8.25 22.45 5.48 20.95 4.03C19.5 2.58 16.78 2.95 14.86 4.83C13.27 6.42 12.75 8.58 13.45 10.12L3.7 19.88L5.11 21.28L12 14.39L18.89 21.28L20.3 19.880L13.41 12.98L14.86 11.53Z"/></svg></i><small>Birria</small></span>
+                  <span class="a-cat" style="--c:#0E4552"><i><svg viewBox="0 0 24 24"><path d="M15.98 6V14.02H18.98V21.98H21V2.02C18.23 2.02 15.98 4.22 15.98 6ZM11.02 9H9V2.02H6.98V9H5.02V2.02H3V9C3 11.2 4.78 12.98 6.98 12.98V21.98H9V12.98C11.2 12.98 12.98 11.2 12.98 9V2.02H11.02V9Z"/></svg></i><small>De autor</small></span>
+                  <span class="a-cat" style="--c:#0E4552"><i><svg viewBox="0 0 24 24"><path d="M18.52 3H6C4.92 3 3.98 3.89 3.98 5.02V10.69C3.98 14.53 6.94 17.91 10.78 18C14.72 18.14 18 14.95 18 11.02V9.98H18.52C20.44 9.98 21.98 8.44 21.98 6.52C21.98 4.55 20.44 3 18.52 3ZM15.98 5.02V8.02H6V5.02H15.98ZM15.98 9.98V11.02C15.98 13.78 13.78 15.98 11.020 15.98C8.25 15.98 6 13.78 6 11.02V9.98ZM18.52 8.02H18V5.02H18.52C19.31 5.02 20.02 5.67 20.02 6.52C20.02 7.31 19.31 8.02 18.52 8.02ZM3.98 18.98H20.02V21H3.98V18.98Z"/></svg></i><small>Café</small></span>
+                </div>
+                <div class="a-chips"><span class="si">Hoy</span><span>Mañana</span><span><svg viewBox="0 0 24 24"><path d="M18.98 3.98H18V2.02H15.98V3.98H8.02V2.02H6V3.98H5.02C3.89 3.98 3 4.92 3 6V20.02C3 21.09 3.89 21.98 5.02 21.98H18.98C20.11 21.98 21 21.09 21 20.02V6C21 4.92 20.11 3.98 18.98 3.98ZM18.98 20.02H5.02V9.98H18.98V20.02ZM18.98 8.02H5.02V6H18.98V8.02ZM9 14.02H6.98V12H9V14.02ZM12.98 14.02H11.02V12H12.98V14.02ZM17.02 14.02H15V12H17.02V14.02ZM9 18H6.98V15.98H9V18ZM12.98 18H11.02V15.98H12.98V18ZM17.02 18H15V15.98H17.02V18Z"/></svg>Otro día</span></div>
+                <div class="a-hora">
+                  <p><b class="rueda" id="hApp">5:00</b><small> pm</small></p>
+                  <p class="a-estado"><svg viewBox="0 0 24 24"><path d="M18.98 9 20.25 6.23 23.02 5.02 20.25 3.75 18.98 0.98 17.77 3.75 15 5.02 17.77 6.23 18.98 9ZM11.48 9.52 9 3.98 6.52 9.52 0.98 12 6.52 14.48 9 20.02 11.48 14.48 17.02 12 11.48 9.52ZM18.98 15 17.77 17.77 15 18.98 17.77 20.25 18.98 23.02 20.25 20.25 23.02 18.98 20.25 17.77 18.98 15Z"/></svg><span id="eApp">Los mejores precios del día</span></p>
+                </div>
+                <!-- máximo de la demo por hora (maximosPorHora de la semilla): 25 30 35 40 45 35 20 0 0 15 25.
+                     alto .3 + d/45·.7 (0: .2); color petróleo al .42 / .70 / 1 (piezas.dart y tramos.dart) -->
+                <div class="a-riel" id="aRiel">
+                  <div class="a-barras">
+                    <i style="--h:.689;--o:.7"></i><i style="--h:.767;--o:.7"></i><i style="--h:.844;--o:.7"></i><i style="--h:.922;--o:1"></i>
+                    <i style="--h:1;--o:1"></i><i style="--h:.844;--o:.7"></i><i style="--h:.611;--o:.42"></i><i class="v" style="--h:.2"></i>
+                    <i class="v" style="--h:.2"></i><i style="--h:.533;--o:.42"></i><i style="--h:.689;--o:.7"></i>
+                  </div>
+                  <div class="a-horas"><span>1 pm</span><span></span><span>3</span><span></span><span>5</span><span></span><span>7</span><span></span><span>9</span><span></span><span>11 pm</span></div>
+                  <i class="a-aguja"></i>
+                </div>
+                <div class="a-tit"><b>Con descuento a las <span class="rueda" id="tApp">5:00</span></b><span>14</span></div>
+                <span class="a-filtrar"><svg viewBox="0 0 24 24"><path d="M3 18C3 18.56 3.47 18.98 3.98 18.98H9V17.02H3.98C3.47 17.02 3 17.44 3 18ZM3 6C3 6.56 3.47 6.98 3.98 6.98H12.98V5.02H3.98C3.470 5.02 3 5.44 3 6ZM12.98 20.02V18.98H20.02C20.53 18.98 21 18.56 21 18C21 17.44 20.53 17.02 20.02 17.02H12.98V15.98C12.98 15.47 12.56 15 12 15C11.44 15 11.02 15.47 11.02 15.98V20.02C11.02 20.53 11.44 21 12 21C12.56 21 12.98 20.53 12.98 20.02ZM6.98 9.98V11.02H3.98C3.47 11.02 3 11.44 3 12C3 12.56 3.47 12.98 3.98 12.98H6.98V14.02C6.98 14.53 7.45 15 8.02 15C8.53 15 9 14.53 9 14.02V9.98C9 9.47 8.53 9 8.02 9C7.45 9 6.98 9.47 6.98 9.98ZM21 12C21 11.44 20.53 11.02 20.02 11.02H11.02V12.98H20.02C20.53 12.98 21 12.56 21 12ZM15.98 9C16.55 9 17.02 8.53 17.02 8.02V6.98H20.02C20.53 6.98 21 6.56 21 6C21 5.44 20.53 5.02 20.02 5.02H17.02V3.98C17.02 3.47 16.55 3 15.98 3C15.47 3 15 3.47 15 3.98V8.02C15 8.53 15.47 9 15.98 9Z"/></svg>Filtrar</span>
+                <!-- tarjetas como las de la app (inicio.dart _Tarjeta), sin la calificación: la web no enseña estrellas.
+                     Sal de Mar con las tostadas de atún ($190) del vidrio y de toda la página; El Peltre, comida corrida ($145).
+                     data-desc: descuento de la 1 a las 11 pm (semilla.dart) -->
+                <div class="a-tarjetas">
+                  <div class="a-tarjeta" data-antes="190" data-desc="0 0 25 40 45 35 20 0 0 0 0">
+                    <div class="a-foto"><img src="img/portada/salmar_1-espejo.webp" width="800" height="600" alt="" decoding="async"><span class="sello t-guajillo"><span class="n">-45</span><span class="pct">%</span></span>
+                      <span class="a-corazon"><svg viewBox="0 0 24 24"><path d="M19.64 3.98C17.02 2.2 13.78 3.05 12 5.11C10.22 3.05 6.98 2.2 4.36 3.98C2.95 4.97 2.06 6.56 2.02 8.3C1.88 12.14 5.3 15.28 10.55 20.06L10.64 20.11C11.39 20.81 12.56 20.81 13.36 20.11L13.45 20.02C18.7 15.28 22.12 12.14 21.98 8.25C21.94 6.56 21.05 4.97 19.64 3.98ZM12.09 18.56 12 18.66 11.91 18.56C7.12 14.25 3.98 11.39 3.98 8.48C3.98 6.52 5.48 5.02 7.5 5.02C9.05 5.02 10.55 6 11.06 7.36H12.94C13.45 6 14.95 5.02 16.5 5.02C18.52 5.02 20.02 6.52 20.02 8.48C20.02 11.39 16.88 14.25 12.09 18.56Z"/></svg></span></div>
+                    <div class="a-cuerpo"><b>Sal de Mar</b><small>Mariscos · $$ · 3 min</small><span class="precio rueda">$105</span><p class="a-nota">Descuento en la comida; bebidas a precio normal.</p></div>
+                  </div>
+                  <div class="a-tarjeta" data-antes="145" data-desc="0 0 20 35 40 30 15 0 0 0 0">
+                    <div class="a-foto"><img src="img/portada/peltre_0.webp" width="640" height="480" alt="" decoding="async"><span class="sello t-mango"><span class="n">-40</span><span class="pct">%</span></span>
+                      <span class="a-corazon"><svg viewBox="0 0 24 24"><path d="M19.64 3.98C17.02 2.2 13.78 3.05 12 5.11C10.22 3.05 6.98 2.2 4.36 3.98C2.95 4.97 2.06 6.56 2.02 8.3C1.88 12.14 5.3 15.28 10.55 20.06L10.64 20.11C11.39 20.81 12.56 20.81 13.36 20.11L13.45 20.02C18.7 15.28 22.12 12.14 21.98 8.25C21.94 6.56 21.05 4.97 19.64 3.98ZM12.09 18.56 12 18.66 11.91 18.56C7.12 14.25 3.98 11.39 3.98 8.48C3.98 6.52 5.48 5.02 7.5 5.02C9.05 5.02 10.55 6 11.06 7.36H12.94C13.45 6 14.95 5.02 16.5 5.02C18.52 5.02 20.02 6.52 20.02 8.48C20.02 11.39 16.88 14.25 12.09 18.56Z"/></svg></span></div>
+                    <div class="a-cuerpo"><b>El Peltre</b><small>Fonda · $$ · 1 min</small><span class="precio rueda">$87</span><p class="a-nota">Descuento en la comida; bebidas a precio normal.</p></div>
+                  </div>
+                </div>
+              </div>
+              <nav class="a-tabs">
+                <span class="si"><svg viewBox="0 0 24 24"><path d="M9.98 18.98V14.02H14.02V18.98C14.02 19.55 14.44 20.02 15 20.02H18C18.56 20.02 18.98 19.55 18.98 18.98V12H20.72C21.14 12 21.38 11.44 21.05 11.11L12.66 3.61C12.28 3.28 11.72 3.28 11.34 3.61L2.95 11.11C2.62 11.44 2.86 12 3.28 12H5.02V18.98C5.02 19.55 5.44 20.02 6 20.02H9C9.56 20.02 9.98 19.55 9.98 18.98Z"/></svg>Inicio</span>
+                <span><svg viewBox="0 0 24 24"><path d="M20.48 3 20.34 3.05 15 5.11 9 3 3.38 4.92C3.14 4.97 3 5.16 3 5.39V20.48C3 20.77 3.23 21 3.52 21L3.66 20.95L9 18.89L15 21L20.62 19.08C20.86 19.03 21 18.84 21 18.61V3.52C21 3.23 20.77 3 20.48 3ZM9.98 5.48 14.02 6.89V18.52L9.98 17.11V5.48ZM5.02 6.47 8.02 5.44V17.16L5.02 18.33V6.47ZM18.98 17.53 15.98 18.56V6.84L18.98 5.72V17.53Z"/></svg>Mapa</span>
+                <span><svg viewBox="0 0 24 24"><path d="M20.02 3H18.98V0.98H17.02V3H6.98V0.98H5.02V3H3.98C2.91 3 2.02 3.89 2.02 5.02V21C2.02 22.08 2.91 23.02 3.98 23.02H20.02C21.09 23.02 21.98 22.08 21.98 21V5.02C21.98 3.89 21.09 3 20.02 3ZM20.02 21H3.98V9.98H20.02V21ZM20.02 8.02H3.98V5.02H20.02V8.02Z"/></svg>Reservas</span>
+                <span><svg viewBox="0 0 24 24"><path d="M12 5.91C13.17 5.91 14.11 6.84 14.11 8.02C14.11 9.14 13.17 10.08 12 10.08C10.83 10.08 9.89 9.14 9.89 8.02C9.89 6.84 10.83 5.91 12 5.91ZM12 14.91C14.95 14.91 18.09 16.36 18.09 17.02V18.09H5.91V17.02C5.91 16.36 9.05 14.91 12 14.91ZM12 3.98C9.8 3.98 8.02 5.81 8.02 8.02C8.02 10.22 9.8 12 12 12C14.2 12 15.98 10.22 15.98 8.02C15.98 5.81 14.2 3.98 12 3.98ZM12 12.98C9.33 12.98 3.98 14.34 3.98 17.02V18.98C3.98 19.55 4.45 20.02 5.02 20.02H18.98C19.55 20.02 20.02 19.55 20.02 18.98V17.02C20.02 14.34 14.67 12.98 12 12.98Z"/></svg>Perfil</span>
+              </nav>
+              <i class="a-home"></i>
+            </div>
+            <div class="a-sistema"><span>12:40</span>
+              <span class="a-iconos">
+                <svg viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4.6" y="5" width="3" height="6" rx=".8"/><rect x="9.2" y="2.6" width="3" height="8.4" rx=".8"/><rect x="13.8" y="0" width="3" height="11" rx=".8"/></svg>
+                <svg viewBox="0 0 15.5 11"><path d="M7.75 2.3c2.1 0 4.02.8 5.46 2.13a.4.4 0 0 0 .56-.01l1.04-1.05a.4.4 0 0 0 0-.57A10.1 10.1 0 0 0 7.75 0 10.1 10.1 0 0 0 .69 2.8a.4.4 0 0 0 0 .57l1.04 1.05a.4.4 0 0 0 .56.01A7.9 7.9 0 0 1 7.75 2.3Zm0 3.45c1.13 0 2.17.42 2.97 1.12a.4.4 0 0 0 .55-.01l1.05-1.05a.4.4 0 0 0-.01-.58 6.6 6.6 0 0 0-9.12 0 .4.4 0 0 0-.01.58l1.05 1.05a.4.4 0 0 0 .55.01 4.5 4.5 0 0 1 2.97-1.12Zm2.03 2.63a.4.4 0 0 0-.02-.58 3.06 3.06 0 0 0-4.02 0 .4.4 0 0 0-.02.58l1.73 1.74a.4.4 0 0 0 .57 0Z"/></svg>
+                <svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.3" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.3-1.1 1.3-2S23.8 4.3 23 4Z" fill-opacity=".45"/></svg>
+              </span>
+            </div>
+          </div>
+        <img class="iphone__marco" src="img/portada/iphone-18-pro-700.webp"
+          srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w, img/portada/iphone-18-pro-1350.webp 1350w"
+          sizes="(min-width: 960px) 420px, (max-width: 453px) 64vw, 290px" width="1350" height="2760" alt="" fetchpriority="high">
+      </div>
+
+      <div class="vidrio">
+        <p class="vidrio__hora"><span>A las <span class="rueda" id="hVid">5:00</span> pm</span><em>Ejemplo</em></p>
+        <div class="vidrio__plato"><img src="img/portada/tostadas.webp" width="88" height="88" alt="" decoding="async"><div><b>Tostadas de atún</b><small>Sal de Mar</small></div></div>
+        <p class="vidrio__precio"><s>$190</s><b class="rueda" id="pVid">$105</b><span class="sello t-guajillo vidrio__sello" id="sVid"><span class="n rueda">-45</span><span class="pct">%</span></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cinta (espec 6.2): va entre la portada y "Pruébalo", las dos crema; la franja azul marca el corte -->
+<div class="cinta" data-fondo="oscuro" tabindex="0">
+  <div class="cinta__pista">
+    <p>Apartar es gratis<b>·</b>Sin tarjeta<b>·</b>Pagas en el restaurante<b>·</b>En las horas tranquilas, más barato<b>·</b>Descuento en la comida de toda la carta<b>·</b>Cerca de ti, en <span data-ciudad>Guadalajara</span><b>·</b></p>
+    <p aria-hidden="true">Apartar es gratis<b>·</b>Sin tarjeta<b>·</b>Pagas en el restaurante<b>·</b>En las horas tranquilas, más barato<b>·</b>Descuento en la comida de toda la carta<b>·</b>Cerca de ti, en <span data-ciudad>Guadalajara</span><b>·</b></p>
+  </div>
+</div>
+
+<!-- ESCENA 1 · Pruébalo: la mesa con el riel de horas (espec 6.1) -->
+<section class="prueba envoltura" data-fondo="claro" aria-labelledby="t-prueba">
+  <div class="prueba__texto">
+    <h2 class="titulo" id="t-prueba">Pruébalo.</h2>
+    <p class="prueba__baja">En <span data-nombre>Pásenle</span> apartas mesa en restaurantes de <span data-ciudad>Guadalajara</span>. Cuando están tranquilos, muchos bajan el precio de su comida.</p>
+  </div>
+
+  <div class="mesa entra" id="mesa" style="--sol:1;--noche:0" role="group" aria-label="Ejemplo con un restaurante de muestra">
+    <div class="mesa__foto">
+      <img src="img/platos/salmar_1.webp" width="800" height="600" alt="Pescado crudo con rábano, jalapeño y ajonjolí" decoding="async">
+      <i class="mesa__sombra" aria-hidden="true"></i>
+      <span class="ejemplo mesa__ejemplo">Ejemplo</span>
+      <span class="sello t-guajillo mesa__sello" id="sello" data-vivo>-45<span class="pct">%</span></span>
+      <p class="placa" data-vivo><b class="rotulo" id="hora">5:00</b><span>PM</span><small id="estado">Los mejores precios del día</small></p>
+    </div>
+    <div class="mesa__plato">
+      <div><p class="mesa__lugar">Sal de Mar · Mariscos · a&nbsp;3&nbsp;min</p><p class="mesa__nombre">Tostadas de atún</p></div>
+      <p class="mesa__precio" data-vivo><s id="antes">$190</s> <b class="rotulo" id="ahora">$105</b></p>
+    </div>
+    <div class="riel" id="riel" style="--p:.4091">
+      <div class="riel__barras" aria-hidden="true">
+        <i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i>
+        <i style="height:69%;opacity:.7"></i><i style="height:92%"></i><i style="height:100%"></i>
+        <i style="height:84%;opacity:.7"></i><i style="height:61%;opacity:.42"></i>
+        <i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i>
+      </div>
+      <div class="riel__aguja" id="aguja" data-vivo></div>
+      <span class="riel__pista solo-js" id="pista" aria-hidden="true">Arrastra la hora</span>
+      <div class="riel__horas" aria-hidden="true"><span>1 pm</span><span>3</span><span>5</span><span>7</span><span>9</span><span>11 pm</span></div>
+    </div>
+  </div>
+
+  <div class="prueba__accion">
+    <p class="nota">Ejemplo con un restaurante de muestra.<span class="solo-js"> Arrastra la hora.</span></p>
+    <div class="tiendas">
+      <a class="tienda" data-tienda>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9c-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8 2.2-1.3 3.1-2.5c1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+        <span><small>Descárgalo en el</small><b>App Store</b></span>
+      </a>
+      <a class="tienda play" data-play><img src="img/google-play.png" width="646" height="192" alt="Descargar en Google Play"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENA 2 · 1:00 PM · La comida (espec 6.3) -->
+<section class="edicion papel" data-hora="13:00" data-fondo="claro" aria-labelledby="t-trampa">
+  <div class="envoltura">
+    <p class="folio"><span>1:00 PM</span><span>La comida</span></p>
+    <p class="edicion__hora" aria-hidden="true"><b><span class="d">1</span>:00</b><small>PM</small></p>
+    <figure class="edicion__foto entra">
+      <img src="img/ciudad/una.jpg" width="800" height="600" alt="Salón de un restaurante a mediodía, con mesas puestas" loading="lazy" decoding="async">
+      <figcaption class="pie-v">El salón a la 1 · Ejemplo</figcaption>
+    </figure>
+    <div class="edicion__texto">
+      <h2 class="titulo" id="t-trampa">¿Cuál es la trampa?</h2>
+      <p class="texto">Ninguna. Cada restaurante sabe a qué horas se le llena el salón y a qué horas no. En el ejemplo, a la 1 cobra lo de siempre. A las 5 la cocina sigue prendida y hay mesas libres, y prefiere llenarlas con descuento.</p>
+      <p class="remate">Tú comes más barato. Ellos llenan la tarde.</p>
+      <div class="compara">
+        <p><small>A la 1</small><b>$190</b><span>precio de carta</span></p>
+        <p class="si"><small>A las 5</small><b>$105</b><span>con descuento</span></p>
+      </div>
+      <p class="compara__pie">Tostadas de atún · Sal de Mar <span class="ejemplo">Ejemplo</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENA 3 · 2:41 PM · Apartas (espec 6.4) -->
+<section class="apartas moteado" data-hora="14:41" data-fondo="oscuro" aria-labelledby="t-apartas">
+  <div class="envoltura">
+    <p class="folio"><span>2:41 PM</span><span>Apartas</span></p>
+    <h2 class="titulo" id="t-apartas">Tres toques y tienes mesa.</h2>
+  </div>
+  <div class="apartas__obra">
+    <div class="apartas__marco envoltura">
+      <!-- pantallas de la app reconstruidas en HTML, con datos de la semilla, bajo el marco oficial del iPhone (tal cual y quieto) -->
+      <div class="tel iphone" aria-hidden="true" inert>
+        <div class="tel__pantalla" id="tel" data-paso="1">
+          <div class="estado"><span>2:41</span><span class="iconos">
+                <svg viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4.6" y="5" width="3" height="6" rx=".8"/><rect x="9.2" y="2.6" width="3" height="8.4" rx=".8"/><rect x="13.8" y="0" width="3" height="11" rx=".8"/></svg>
+                <svg viewBox="0 0 15.5 11"><path d="M7.75 2.3c2.1 0 4.02.8 5.46 2.13a.4.4 0 0 0 .56-.01l1.04-1.05a.4.4 0 0 0 0-.57A10.1 10.1 0 0 0 7.75 0 10.1 10.1 0 0 0 .69 2.8a.4.4 0 0 0 0 .57l1.04 1.05a.4.4 0 0 0 .56.01A7.9 7.9 0 0 1 7.75 2.3Zm0 3.45c1.13 0 2.17.42 2.97 1.12a.4.4 0 0 0 .55-.01l1.05-1.05a.4.4 0 0 0-.01-.58 6.6 6.6 0 0 0-9.12 0 .4.4 0 0 0-.01.58l1.05 1.05a.4.4 0 0 0 .55.01 4.5 4.5 0 0 1 2.97-1.12Zm2.03 2.63a.4.4 0 0 0-.02-.58 3.06 3.06 0 0 0-4.02 0 .4.4 0 0 0-.02.58l1.73 1.74a.4.4 0 0 0 .57 0Z"/></svg>
+                <svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.3" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.3-1.1 1.3-2S23.8 4.3 23 4Z" fill-opacity=".45"/></svg>
+              </span></div>
+
+          <div class="capa capa--lista">
+            <div class="dias"><span class="si">Hoy</span><span>Mañana</span><span>Otro día</span></div>
+            <div class="hora-fila">
+              <p class="hora-app">5:00<small>pm</small></p>
+              <p class="estado-hora">Los mejores precios del día</p>
+            </div>
+            <div class="rielito">
+              <div class="barras">
+                <!-- el máximo de la demo por hora (estado.dart maximosPorHora): 25 30 35 40 45 35 20 0 0 15 25; a las 2:41 la 1 y las 2 ya pasaron (piezas.dart: 18% y gris) -->
+                <i class="pasada"></i><i class="pasada"></i><i style="height:84%;opacity:.7"></i>
+                <i style="height:92%"></i><i style="height:100%"></i><i style="height:84%;opacity:.7"></i><i style="height:61%;opacity:.42"></i>
+                <i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i style="height:53%;opacity:.42"></i><i style="height:69%;opacity:.7"></i>
+              </div>
+              <i class="aguja"></i>
+              <div class="horas"><span>1 pm</span><span>3</span><span>5</span><span>7</span><span>9</span><span>11 pm</span></div>
+            </div>
+            <div class="titulo-lista"><b>Con descuento a las 5:00</b><span class="ejemplo">Ejemplo</span></div>
+            <div class="tarjeta">
+              <div class="foto"><img src="img/platos/salmar_1-mini.webp" width="168" height="168" alt="" loading="lazy" decoding="async"><span class="sello t-guajillo">-45<span class="pct">%</span></span></div>
+              <div><p class="lugar">Sal de Mar · Mariscos · a 3 min</p><p class="plato">Tostadas de atún</p><p class="precio"><s>$190</s><b>$105</b></p></div>
+            </div>
+            <div class="tarjeta">
+              <div class="foto"><img src="img/platos/peltre_0-mini.webp" width="168" height="168" alt="" loading="lazy" decoding="async"></div>
+              <div><p class="lugar">El Peltre · Fonda · a 1 min</p><p class="plato">Comida corrida del día</p><p class="precio"><s>$145</s><b>$87</b></p></div>
+            </div>
+            <div class="tarjeta">
+              <div class="foto"><img src="img/platos/ronda_1-mini.webp" width="168" height="168" alt="" loading="lazy" decoding="async"></div>
+              <div><p class="lugar">Birria La Ronda · Birria · a 2 min</p><p class="plato">Orden de birria (½ kg)</p><p class="precio"><s>$240</s><b>$156</b></p></div>
+            </div>
+          </div>
+
+          <div class="capa capa--mapa">
+            <svg viewBox="0 0 360 704" preserveAspectRatio="xMidYMin slice">
+              <rect width="360" height="704" fill="#EFE9DA"/>
+              <g stroke="#FFFAEE" stroke-width="9" stroke-linecap="round" fill="none">
+                <path d="M-10 90 L370 110M-10 170 L370 182M-10 250 L370 256M-10 330 L370 334M-10 410 L370 406M-10 490 L370 484"/>
+                <path d="M40 -10 L30 714M110 -10 L104 714M180 -10 L178 714M250 -10 L254 714M320 -10 L328 714"/>
+              </g>
+              <path d="M-10 214 L370 222" stroke="#FFFAEE" stroke-width="16"/>
+              <rect x="196" y="270" width="44" height="50" rx="6" fill="#CBDADB"/>
+            </svg>
+            <div class="mapa-barra"><span>Hoy</span><span class="gris">Cerca de ti</span><span class="h">5:00 pm</span></div>
+            <div class="pines">
+              <!-- x = (lng + 103.3684) / 0.0098 · y = 16% + (20.6776 − lat) / 0.0104 × 56% del área sobre la hojita · --i de arriba abajo -->
+              <i class="pin" style="--x:55.1%;--y:20.3%;--i:0"></i><!-- Sal de Mar -->
+              <i class="pin" style="--x:43.9%;--y:25.2%;--i:1"></i><!-- Kaminari -->
+              <i class="pin" style="--x:19.4%;--y:28.9%;--i:2"></i><!-- Casa Naranjo -->
+              <i class="pin" style="--x:73.5%;--y:32.7%;--i:3"></i><!-- Terraza Minerva -->
+              <i class="pin" style="--x:89.8%;--y:34.8%;--i:4"></i><!-- Olivo Negro -->
+              <i class="pin" style="--x:12.2%;--y:36.5%;--i:5"></i><!-- El Peltre -->
+              <i class="pin" style="--x:67.3%;--y:40.8%;--i:6"></i><!-- Café Colomos -->
+              <i class="pin" style="--x:24.5%;--y:45.1%;--i:7"></i><!-- Birria La Ronda -->
+              <i class="pin" style="--x:88.8%;--y:47.8%;--i:8"></i><!-- El Patio -->
+              <i class="pin" style="--x:50.0%;--y:49.9%;--i:9"></i><!-- La Azucena -->
+              <i class="pin" style="--x:76.5%;--y:54.8%;--i:10"></i><!-- El Faro -->
+              <i class="pin" style="--x:32.7%;--y:58.5%;--i:11"></i><!-- La Tanda -->
+              <i class="pin" style="--x:57.1%;--y:63.4%;--i:12"></i><!-- Grano Bueno -->
+              <i class="pin" style="--x:36.7%;--y:68.2%;--i:13"></i><!-- La Esquina -->
+              <span class="pin-activo" style="--x:55.1%;--y:20.3%">Sal de Mar · $105 <span class="sello t-guajillo">-45<span class="pct">%</span></span></span>
+            </div>
+            <div class="mapa-hoja">
+              <div class="asa"></div>
+              <div class="mh-top"><img src="img/platos/salmar_1-mini.webp" width="168" height="168" alt="" loading="lazy" decoding="async"><div><b>Sal de Mar</b><p>Mariscos · a 3 min caminando</p></div><span class="ejemplo">Ejemplo</span></div>
+              <div class="mh-mesa"><b>Mesa · Para 2</b><span><i>−</i>2<i>+</i></span></div>
+              <div class="fichas"><span>3:00<small>-25%</small></span><span>4:00<small>-40%</small></span><span class="si">5:00<small>-45%</small></span><span>6:00<small>-35%</small></span><span>7:00<small>-20%</small></span></div>
+              <span class="hoja__boton mh-apartar">Apartar mesa · 5:00 pm</span>
+            </div>
+          </div>
+
+          <div class="pestanas">
+            <span class="p-inicio"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20h-5.5v-6h-5v6H4z"/></svg>Inicio</span>
+            <span class="p-mapa"><svg viewBox="0 0 24 24"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6zM9 4v14M15 6v14"/></svg>Mapa</span>
+            <span><svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>Reservas</span>
+            <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.8-3.8 3.9-6 7.5-6s6.7 2.2 7.5 6"/></svg>Perfil</span>
+          </div>
+          <div class="velo"></div>
+          <div class="hoja">
+            <div class="asa"></div>
+            <div class="hoja__cabeza"><p>Confirma tu mesa</p><span class="ejemplo">Ejemplo</span></div>
+            <dl>
+              <div class="fila"><dt>Lugar</dt><dd>Sal de Mar<small>Mariscos · a 3 min caminando</small></dd></div>
+              <div class="fila"><dt>Día</dt><dd id="telDia">Hoy</dd></div>
+              <div class="fila"><dt>Hora</dt><dd>5:00 pm</dd></div>
+              <div class="fila"><dt>Mesa</dt><dd>Para 2 personas</dd></div>
+              <div class="fila"><dt>Precio</dt><dd><span class="sello t-guajillo">-45<span class="pct">%</span></span> en la comida<small>Bebidas a precio normal</small></dd></div>
+            </dl>
+            <p class="hoja__nota">Si no puedes ir, cancela gratis desde Reservas hasta 30 minutos antes.</p>
+            <span class="hoja__boton">Confirmar</span>
+            <span class="hoja__cancelar">Cancelar</span>
+          </div>
+        </div>
+        <img class="iphone__marco" src="img/portada/iphone-18-pro-700.webp"
+          srcset="img/portada/iphone-18-pro-700.webp 700w, img/portada/iphone-18-pro-1000.webp 1000w, img/portada/iphone-18-pro-1350.webp 1350w"
+          sizes="310px" width="1350" height="2760" alt="" loading="lazy" decoding="async">
+      </div>
+      <ol class="apartas__pasos">
+        <li class="paso activo" data-paso="1"><span class="paso__num rotulo">1</span><h3>Mueve la hora.</h3><p>Ves cuánto cuesta cada restaurante a cada hora. Para ver no necesitas cuenta.</p></li>
+        <li class="paso" data-paso="2"><span class="paso__num rotulo">2</span><h3>Toca un restaurante y aparta.</h3><p>En el mapa o en la lista: su platillo estrella, sus descuentos por hora y para cuántos es la mesa.</p></li>
+        <li class="paso" data-paso="3"><span class="paso__num rotulo">3</span><h3>Confirma.</h3><p>Antes de apartar ves lugar, día, hora, mesa y precio. La primera vez confirmas tu celular con un código y que tienes 18 años o más.</p></li>
+      </ol>
+      <p class="apartas__avance" aria-hidden="true"><i class="si"></i><i></i><i></i></p>
+    </div>
+    <div class="apartas__hitos" aria-hidden="true"><i data-paso="1"></i><i data-paso="2"></i><i data-paso="3"></i></div>
+  </div>
+</section>
+
+<!-- ESCENA 4 · 5:00 PM · La tarde (espec 6.5) -->
+<section class="edicion edicion--tarde papel" data-hora="17:00" data-fondo="claro" aria-labelledby="t-pena">
+  <div class="envoltura">
+    <p class="folio"><span>5:00 PM</span><span>La tarde</span></p>
+    <p class="edicion__hora" aria-hidden="true"><b data-voltea="1"><span class="d">5</span>:00</b><small>PM</small></p>
+    <figure class="edicion__foto entra">
+      <img src="img/ciudad/cinco.jpg" width="800" height="600" alt="Mesas puestas con luz de la tarde entrando por la ventana" loading="lazy" decoding="async">
+      <figcaption class="pie-v">Mesas a las 5 · Ejemplo</figcaption>
+    </figure>
+    <div class="edicion__texto">
+      <h2 class="titulo" id="t-pena">Sin cupón y sin pena.</h2>
+      <div class="clave">
+        <span class="ejemplo">Ejemplo</span>
+        <small>Tu clave de mesa</small>
+        <b class="rotulo" id="clave" role="img" aria-label="PA-4472">PA-4472</b>
+        <p>Mesa para 2 · Hoy, 5:00 pm · Sal de Mar</p>
+      </div>
+      <p class="texto">Llegas a tu hora y dices que apartaste por <span data-nombre>Pásenle</span>. El restaurante ya te tiene en su lista: hora, cuántos van y tu descuento. Pagas ahí mismo, con el descuento ya puesto.</p>
+      <p class="remate">¿Van más? Le mandas la mesa a tu grupo con un toque.</p>
+      <div class="linea-precio">
+        <small>Tostadas de atún<br>Sal de Mar<br>Ejemplo</small>
+        <s>$190</s><b class="rotulo">$105</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENA 5 · 5:10 PM · La carta (espec 6.6) -->
+<section class="carta papel" data-hora="17:10" data-fondo="claro" aria-labelledby="t-carta">
+  <div class="envoltura">
+    <p class="folio"><span>5:10 PM</span><span>La carta</span></p>
+    <h2 class="titulo" id="t-carta">Mismo plato.<br>Otra hora.</h2>
+    <p class="texto">El descuento es en la comida de toda la carta. No es un menú aparte: es lo mismo que pedirías a las 9.</p>
+    <p class="carta__guia"><span class="ejemplo">Ejemplo</span> <span class="carta__muestra">Restaurantes, precios y fotos de muestra</span> <span class="carta__desliza" aria-hidden="true">Desliza →</span></p>
+  </div>
+  <ol class="carta__pista" aria-label="Carta de ejemplo: precio a la 1, a las 5 y a las 9" tabindex="0">
+    <li class="ficha" data-ve>
+      <p class="ficha__cabeza"><span class="rotulo">01</span></p>
+      <div class="ficha__foto"><img src="img/platos/salmar_1-carta.webp" width="600" height="600" alt="Pescado crudo con rábano y jalapeño" loading="lazy" decoding="async"><span class="ejemplo">Ejemplo</span></div>
+      <h3>Tostadas de atún</h3>
+      <p class="ficha__lugar">Sal de Mar · Mariscos</p>
+      <dl class="tira"><div><dt>1 PM</dt><dd>$190</dd></div><div class="si"><dt>5 PM</dt><dd>$105</dd></div><div><dt>9 PM</dt><dd>$190</dd></div></dl>
+    </li>
+    <li class="ficha" data-ve>
+      <p class="ficha__cabeza"><span class="rotulo">02</span></p>
+      <div class="ficha__foto"><img src="img/platos/ronda_1-carta.webp" width="600" height="600" alt="Birria en consomé, con cucharón" loading="lazy" decoding="async"><span class="ejemplo">Ejemplo</span></div>
+      <h3>Orden de birria (½ kg)</h3>
+      <p class="ficha__lugar">Birria La Ronda · Birria</p>
+      <dl class="tira"><div><dt>1 PM</dt><dd>$240</dd></div><div class="si"><dt>5 PM</dt><dd>$156</dd></div><div><dt>9 PM</dt><dd>$240</dd></div></dl>
+    </li>
+    <li class="ficha" data-ve>
+      <p class="ficha__cabeza"><span class="rotulo">03</span></p>
+      <div class="ficha__foto"><img src="img/platos/kaminari_1-carta.webp" width="600" height="600" alt="Tazón de ramen con huevo, cebollín y chile" loading="lazy" decoding="async"><span class="ejemplo">Ejemplo</span></div>
+      <h3>Ramen del día</h3>
+      <p class="ficha__lugar">Kaminari Sushi · Sushi</p>
+      <dl class="tira"><div><dt>1 PM</dt><dd>$168</dd></div><div class="si"><dt>5 PM</dt><dd>$137</dd></div><div><dt>9 PM</dt><dd>$210</dd></div></dl>
+    </li>
+    <li class="ficha" data-ve>
+      <p class="ficha__cabeza"><span class="rotulo">04</span></p>
+      <div class="ficha__foto"><img src="img/platos/peltre_0-carta.webp" width="600" height="600" alt="Guisado con arroz" loading="lazy" decoding="async"><span class="ejemplo">Ejemplo</span></div>
+      <h3>Comida corrida del día</h3>
+      <p class="ficha__lugar">El Peltre · Fonda</p>
+      <dl class="tira"><div><dt>1 PM</dt><dd>$145</dd></div><div class="si"><dt>5 PM</dt><dd>$87</dd></div><div><dt>9 PM</dt><dd>$145</dd></div></dl>
+    </li>
+    <li class="ficha" data-ve>
+      <p class="ficha__cabeza"><span class="rotulo">05</span></p>
+      <div class="ficha__foto"><img src="img/platos/minerva_1-carta.webp" width="600" height="600" alt="Tabla de quesos con uvas, nueces y galletas" loading="lazy" decoding="async"><span class="ejemplo">Ejemplo</span></div>
+      <h3>Tabla de quesos y embutidos</h3>
+      <p class="ficha__lugar">Terraza Minerva · Bar</p>
+      <dl class="tira"><div><dt>1 PM</dt><dd>$256</dd></div><div class="si"><dt>5 PM</dt><dd>$240</dd></div><div><dt>9 PM</dt><dd>$320</dd></div></dl>
+    </li>
+  </ol>
+  <div class="envoltura"><p class="nota">Cada restaurante pone su descuento, y cambia según la hora y el día.</p></div>
+</section>
+
+<!-- ESCENA 6 · 6:20 PM · La cuenta (espec 6.7) -->
+<section class="cuenta moteado" data-hora="18:20" data-fondo="oscuro" aria-labelledby="t-cuenta">
+  <div class="envoltura cuenta__grid">
+    <div class="cuenta__cabeza">
+      <p class="folio"><span>6:20 PM</span><span>La cuenta</span></p>
+      <h2 class="titulo" id="t-cuenta">La letra chiquita,<br>en grande.</h2>
+      <p class="texto">Apartar es gratis porque confiamos en que vas a llegar.</p>
+    </div>
+    <div class="ticket-caja" data-ve>
+      <article class="ticket" aria-label="Cuenta de ejemplo en Sal de Mar">
+        <header class="ticket__cabeza">
+          <p class="rotulo">Sal de Mar · Mesa para 2</p><span class="ejemplo">Ejemplo</span>
+          <p class="ticket__sub">Hoy · 5:00 pm · Clave PA-4472</p>
+        </header>
+        <ul class="ticket__renglones">
+          <li><span>2 órdenes de tostadas de atún<small>$105 cada orden; a las 9&nbsp;pm, $190</small></span><i></i><b>$210</b></li>
+          <li><span>2 Micheladas de la casa<small>Aquí las bebidas van a precio&nbsp;normal</small></span><i></i><b>$240</b></li>
+          <li><span>Apartar la mesa</span><i></i><b>$0</b></li>
+          <li class="total"><span>Total</span><i></i><b>$450</b></li>
+        </ul>
+        <p class="ticket__antes">A las 9 pm habría sido $620. Son $170&nbsp;menos.</p>
+        <h3 class="ticket__titulo rotulo">La letra chiquita</h3>
+        <ul class="reglas">
+          <li><b class="rotulo">$0</b><div><strong>Cuesta apartar.</strong><span>No pedimos tarjeta. Pagas en el restaurante, con el descuento ya puesto.</span></div></li>
+          <li><b class="rotulo">30</b><div><strong>Minutos antes, cancelas gratis.</strong><span>Si no llegas o cancelas más tarde, cuenta como falta y te llega un aviso privado: solo tú lo ves. Si juntas 4 faltas en 12 meses, tu cuenta se pausa hasta que la revisemos contigo. Es para que las mesas sean de quien sí va.</span></div></li>
+          <li><b class="rotulo">1</b><div><strong>Toque para calificar tu visita.</strong><span>Antes de tu siguiente mesa: de 1 a 5 estrellas, o “No fui”. En la app solo ves calificaciones de gente que sí fue.</span></div></li>
+          <li><b class="rotulo">3</b><div><strong>Mesas apartadas a la vez, como máximo.</strong><span>Por ejemplo: hoy, el jueves y el sábado.</span></div></li>
+        </ul>
+        <p class="ticket__bebidas">El descuento es en la comida de toda la carta. Las bebidas dependen de cada restaurante; la app te lo dice antes de apartar.</p>
+        <p class="ticket__gracias rotulo">Gracias por llegar a tu hora</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENA 7 · 9:00 PM · La cena + ¿Dónde? (espec 6.8) -->
+<section class="edicion noche moteado" id="donde" data-hora="21:00" data-fondo="oscuro" aria-labelledby="t-noche">
+  <div class="envoltura">
+    <p class="folio"><span>9:00 PM</span><span>La cena</span></p>
+    <p class="edicion__hora" aria-hidden="true"><b data-voltea="5"><span class="d">9</span>:00</b><small>PM</small></p>
+    <figure class="edicion__foto entra">
+      <img src="img/ciudad/nueve.jpg" width="800" height="600" alt="Barra de un restaurante de noche" loading="lazy" decoding="async">
+      <figcaption class="pie-v">La barra a las 9 · Ejemplo</figcaption>
+    </figure>
+    <div class="edicion__texto">
+      <h2 class="titulo" id="t-noche">A las 9 se llena.</h2>
+      <p class="texto">Es hora pico y regresa el precio de carta: en el ejemplo, las tostadas vuelven a $190. Tú ya comiste a las 5, y te salió más barato.</p>
+    </div>
+    <div class="donde">
+      <div class="donde__texto">
+        <h3 class="subtitulo rotulo">Cerca de ti, en <span data-ciudad>Guadalajara</span>.</h3>
+        <p class="texto">Si nos das tu ubicación, ves lo que hay cerca de ti. Si no, buscas por colonia. Tú eliges.</p>
+        <p class="urge">Cada restaurante decide cuántas mesas suelta por hora. Cuando se apartan, se acaban.</p>
+        <p class="nota">Ejemplo: así se vería el mapa con restaurantes de muestra. Los del piloto se anuncian pronto.<span class="solo-js"> Toca un punto para ver su platillo a las 5.</span></p>
+      </div>
+      <div class="donde__mapa">
+        <div class="mapa" data-ve>
+          <svg viewBox="0 0 350 419" aria-hidden="true">
+            <rect width="350" height="419" rx="24" fill="#0E4552"/>
+            <g transform="rotate(-6 175 210)" stroke="#062830" stroke-width="9" stroke-linecap="round">
+              <path d="M-40 40H390M-40 104H390M-40 168H390M-40 232H390M-40 296H390M-40 360H390"/>
+              <path d="M30 -40V460M94 -40V460M158 -40V460M222 -40V460M286 -40V460"/>
+              <path d="M-40 200H390" stroke-width="16"/>
+            </g>
+            <rect x="182" y="238" width="44" height="50" rx="6" fill="#A9C4C8" opacity=".2"/>
+          </svg>
+          <!-- lat/lng de la semilla proyectadas sobre 350x419 con márgenes de 34; data-lugar y no data-nombre (sitio.js reescribe [data-nombre]) -->
+          <button class="pin" type="button" style="--x:54.3%;--y:8.1%;--i:0" data-lugar="Sal de Mar" data-plato="Tostadas de atún" data-antes="190" data-ahora="105" aria-pressed="true" aria-label="Sal de Mar"></button>
+          <button class="pin" type="button" style="--x:42.6%;--y:16.5%;--i:1" data-lugar="Kaminari Sushi" data-plato="Omakase corto (8 piezas)" data-antes="420" data-ahora="273" aria-pressed="false" aria-label="Kaminari Sushi"></button>
+          <button class="pin" type="button" style="--x:17.1%;--y:23.2%;--i:2" data-lugar="Casa Naranjo" data-plato="Sopa de tuétano y guajillo" data-antes="210" data-ahora="137" aria-pressed="false" aria-label="Casa Naranjo"></button>
+          <button class="pin" type="button" style="--x:73.4%;--y:29.8%;--i:3" data-lugar="Terraza Minerva" data-plato="Tabla de quesos y embutidos" data-antes="320" data-ahora="240" aria-pressed="false" aria-label="Terraza Minerva"></button>
+          <button class="pin" type="button" style="--x:90.3%;--y:33.4%;--i:4" data-lugar="Olivo Negro" data-plato="Burrata con pipián verde" data-antes="240" data-ahora="168" aria-pressed="false" aria-label="Olivo Negro"></button>
+          <button class="pin" type="button" style="--x:9.7%;--y:36.3%;--i:5" data-lugar="El Peltre" data-plato="Comida corrida del día" data-antes="145" data-ahora="87" aria-pressed="false" aria-label="El Peltre"></button>
+          <button class="pin" type="button" style="--x:66.9%;--y:43.9%;--i:6" data-lugar="Café Colomos" data-plato="Concha rellena de nata" data-antes="72" data-ahora="50" aria-pressed="false" aria-label="Café Colomos"></button>
+          <button class="pin" type="button" style="--x:22.6%;--y:51.3%;--i:7" data-lugar="Birria La Ronda" data-plato="Orden de birria (½ kg)" data-antes="240" data-ahora="156" aria-pressed="false" aria-label="Birria La Ronda"></button>
+          <button class="pin" type="button" style="--x:89.1%;--y:56.1%;--i:8" data-lugar="El Patio Cantina" data-plato="Botana de la casa (para 2)" data-antes="160" data-ahora="120" aria-pressed="false" aria-label="El Patio Cantina"></button>
+          <button class="pin" type="button" style="--x:48.9%;--y:59.9%;--i:9" data-lugar="Postrería La Azucena" data-plato="Pastel de tres leches al mezcal" data-antes="115" data-ahora="92" aria-pressed="false" aria-label="Postrería La Azucena"></button>
+          <button class="pin" type="button" style="--x:76.6%;--y:68.3%;--i:10" data-lugar="El Faro Mariscos" data-plato="Coctel de camarón grande" data-antes="185" data-ahora="111" aria-pressed="false" aria-label="El Faro Mariscos"></button>
+          <button class="pin" type="button" style="--x:30.9%;--y:74.9%;--i:11" data-lugar="Tacos La Tanda" data-plato="Taco de asada con todo" data-antes="32" data-ahora="22" aria-pressed="false" aria-label="Tacos La Tanda"></button>
+          <button class="pin" type="button" style="--x:56.3%;--y:83.3%;--i:12" data-lugar="Grano Bueno" data-plato="Pan de elote tibio" data-antes="65" data-ahora="49" aria-pressed="false" aria-label="Grano Bueno"></button>
+          <button class="pin" type="button" style="--x:35.1%;--y:91.9%;--i:13" data-lugar="Fonda La Esquina" data-plato="Menú del día completo" data-antes="120" data-ahora="78" aria-pressed="false" aria-label="Fonda La Esquina"></button>
+        </div>
+        <p class="mapa__ficha" id="ficha" aria-live="polite"><b>Sal de Mar</b> <span>Tostadas de atún</span> <s>$190</s> <strong>$105</strong> a las 5 <span class="ejemplo">Ejemplo</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENA 8 · 9:30 PM · La sobremesa (espec 6.9) -->
+<section class="preguntas" id="preguntas" data-hora="21:30" data-fondo="oscuro" aria-labelledby="t-preguntas">
+  <div class="envoltura preguntas__grid">
+    <div class="preguntas__cabeza"><p class="folio"><span>9:30 PM</span><span>La sobremesa</span></p>
+    <h2 class="titulo" id="t-preguntas">Antes de que preguntes.</h2></div>
+    <div class="preguntas__lista">
+      <details><summary>¿Cuesta algo apartar?</summary><p>No. Apartar es gratis y no pedimos tarjeta. Pagas en el restaurante, ya con el descuento si lo hay.</p></details>
+      <details><summary>¿Solo hay mesas con descuento?</summary><p>No. Puedes apartar a cualquier hora en que el restaurante tenga mesas, con o sin descuento. En las horas tranquilas, muchos bajan el precio: entre más tranquila la hora, más barato.</p></details>
+      <details><summary>¿Es la misma comida?</summary><p>Sí. La carta de siempre y la misma cocina. Solo cambia la hora.</p></details>
+      <details><summary>¿El descuento es en todo?</summary><p>Es en la comida de toda la carta. Las bebidas dependen de cada restaurante; la app te lo dice antes de apartar. Lo que ya apartaste conserva su descuento.</p></details>
+      <details><summary>¿Qué pasa si no llego?</summary><p>Si no puedes ir, cancela desde Reservas hasta 30 minutos antes y no pasa nada. Si no llegas o cancelas más tarde, cuenta como falta: te llega un aviso privado, que solo ves tú. Si juntas 4 faltas en 12 meses, tu cuenta se pausa hasta que la revisemos; nos lo pides por WhatsApp. Si el que cancela es el restaurante, no es falta tuya.</p></details>
+      <details><summary>¿Y si llego tarde?</summary><p>Si llegas más de 15 minutos tarde, el restaurante puede no darte el descuento. Tu visita cuenta igual.</p></details>
+      <details><summary>¿Por qué me piden calificar?</summary><p>Antes de tu siguiente mesa, calificas la anterior con un toque: de 1 a 5 estrellas, o “No fui”. El comentario es opcional. Así, en la app solo ves calificaciones de gente que sí fue. Después te invitamos a dejarle una reseña en Google al restaurante, si quieres: es igual para todos y no hay premio.</p></details>
+      <details><summary>¿Qué necesito para apartar?</summary><p>Tu celular y tener 18 años o más. Te mandamos un código una sola vez, para que cada mesa sea de una persona de verdad. Para ver restaurantes no necesitas cuenta.</p></details>
+      <details><summary>¿Dónde funciona?</summary><p>En <span data-ciudad>Guadalajara</span>. Si nos das tu ubicación, ves lo que hay cerca de ti; si no, buscas por colonia.</p></details>
+      <details><summary>¿En qué celulares funciona?</summary><p>En iPhone y en Android.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE · Nos vemos a las 5 (espec 6.10) -->
+<section class="cierre" id="cierre" data-fondo="oscuro" aria-labelledby="t-cierre">
+  <div class="toldo toldo--cierre" aria-hidden="true"></div>
+  <div class="envoltura cierre__cuerpo">
+    <p class="cierre__hora rotulo" aria-hidden="true"><b data-voltea="9"><span class="d">5</span>:00</b></p>
+    <div class="cierre__texto">
+      <h2 class="titulo" id="t-cierre">Nos vemos a las 5.</h2>
+      <p class="texto">Para iPhone y Android. Restaurantes de <span data-ciudad>Guadalajara</span>, cerca de ti.</p>
+      <dl class="tira cierre__tira" aria-label="Tostadas de atún en Sal de Mar, ejemplo"><div><dt>1 PM</dt><dd>$190</dd></div><div class="si"><dt>5 PM</dt><dd>$105</dd></div><div><dt>9 PM</dt><dd>$190</dd></div></dl>
+      <p class="cierre__pie">Tostadas de atún · Sal de Mar <span class="ejemplo">Ejemplo</span></p>
+      <div class="tiendas">
+        <a class="tienda" data-tienda>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9c-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8 2.2-1.3 3.1-2.5c1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+          <span><small>Descárgalo en el</small><b>App Store</b></span>
+        </a>
+        <a class="tienda play" data-play><img src="img/google-play.png" width="646" height="192" alt="Descargar en Google Play"></a>
+      </div>
+      <a class="liga-flecha" href="restaurantes.html">¿Tienes restaurante? Súmate al&nbsp;piloto&nbsp;<span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <div class="pie__fila">
+      <span class="marca marca--clara"><b data-nombre>Pásenle</b><small data-ciudad>Guadalajara</small></span>
+      <div class="pie__ligas">
+        <a href="restaurantes.html">Para restaurantes</a><a href="#preguntas">Preguntas</a>
+        <a href="ayuda.html">Ayuda y contacto</a><a href="privacidad.html">Aviso de privacidad</a>
+      </div>
+    </div>
+    <p class="pie__nota">Restaurantes, platillos, precios y fotos de esta página son de ejemplo. Fotos: Unsplash.<br>
+      Apple, el logotipo de Apple, iPhone y App Store son marcas de Apple Inc. Android, Google Play y el logotipo de Google Play son marcas de Google LLC.<br>
+      Hecho en <span data-ciudad>Guadalajara</span>.</p>
+  </div>
+</footer>
+
+<!-- RELOJ pegado (espec 7.2): el hilo de la tarde -->
+<aside class="reloj reloj--fuera" id="reloj" aria-label="Descarga la app">
+  <div class="reloj__dato" aria-hidden="true">
+    <p class="reloj__hora"><b id="relojHora">1:00 PM</b><small id="relojEstado">Comida temprana</small></p>
+    <div class="reloj__riel">
+      <i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i style="height:69%;opacity:.7"></i><i style="height:92%"></i><i style="height:100%"></i><i style="height:84%;opacity:.7"></i><i style="height:61%;opacity:.42"></i><i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i><i class="sin" style="height:20%"></i>
+      <u id="relojAguja" style="--p:.0455"></u>
+    </div>
+  </div>
+  <a class="tienda tienda--chica" data-tienda>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9c-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8 2.2-1.3 3.1-2.5c1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+    <span><small>Descárgalo en el</small><b>App Store</b></span>
+  </a>
+  <a class="tienda tienda--chica play" data-play><img src="img/google-play.png" width="646" height="192" alt="Descargar en Google Play"></a>
+</aside>
+
+<script src="js/sitio.js"></script>
+<script src="js/portada.js"></script>
+</body>
+</html>
