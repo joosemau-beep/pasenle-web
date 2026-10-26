@@ -706,7 +706,7 @@ html:not(.js) .solo-js { display: none; } /* "Arrastra la hora", "Toca un punto"
 .pin { position: absolute; left: var(--x); top: var(--y); width: 32px; height: 32px; translate: -50% -50%; border: 0; padding: 0; border-radius: 50%; cursor: pointer;
   background: radial-gradient(circle, var(--crudo) 0 6px, rgba(169, 196, 200, .3) 6.5px 12px, transparent 12.5px);
   -webkit-tap-highlight-color: transparent; transition: transform .3s var(--golpe); }
-.pin[aria-pressed="true"] { background: radial-gradient(circle, var(--crudo) 0 8px, var(--agua) 8.5px 11px, rgba(169, 196, 200, .3) 11.5px 16px, transparent 16.5px); transform: scale(1.15); }
+.pin[aria-pressed="true"], .pin[aria-checked="true"] { background: radial-gradient(circle, var(--crudo) 0 8px, var(--agua) 8.5px 11px, rgba(169, 196, 200, .3) 11.5px 16px, transparent 16.5px); transform: scale(1.15); }
 .pin::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; } /* 44 px tocables; entre pines hay 49 px o más a 360 */
 .pin:focus-visible { outline-offset: 0; }
 /* encendido: las luces se prenden una por una al entrar */

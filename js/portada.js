@@ -254,16 +254,40 @@ const unaVez = (el, fn, umbral = .5) => { const o = new IntersectionObserver((es
   })();
 
   // ── 6. Mapa (escena 7): tocar un punto enseña su platillo a las 5, solo en pesos ──
+  // Con teclado es un grupo de opciones: una sola parada de Tab para los 14 puntos y las flechas
+  // (o Inicio y Fin) pasan de un restaurante a otro, en el orden del mapa, de norte a sur.
   (() => {
     const mapa = document.querySelector('.mapa'), ficha = $('ficha');
     if (!mapa || !ficha) return;
+    const pines = [...mapa.querySelectorAll('.pin')];
+    if (!pines.length) return;
+    const [b, span, s, strong] = ficha.querySelectorAll('b, span:not(.ejemplo), s, strong');
+    const elige = (pin) => {
+      pines.forEach((p) => {
+        p.setAttribute('aria-checked', p === pin ? 'true' : 'false');
+        p.tabIndex = p === pin ? 0 : -1;
+      });
+      const { lugar, plato, antes, ahora } = pin.dataset;
+      b.textContent = lugar; span.textContent = plato; s.textContent = `$${antes}`; strong.textContent = `$${ahora}`;
+    };
+    const inicial = pines.find((p) => p.getAttribute('aria-pressed') === 'true') || pines[0];
+    mapa.setAttribute('role', 'radiogroup');
+    mapa.setAttribute('aria-label', 'Restaurantes de ejemplo en el mapa');
+    pines.forEach((p) => { p.setAttribute('role', 'radio'); p.removeAttribute('aria-pressed'); });
+    elige(inicial);
     mapa.addEventListener('click', (ev) => {
       const pin = ev.target.closest('.pin');
-      if (!pin) return;
-      $$('.mapa .pin').forEach((p) => p.setAttribute('aria-pressed', p === pin ? 'true' : 'false'));
-      const { lugar, plato, antes, ahora } = pin.dataset;
-      const [b, span, s, strong] = ficha.querySelectorAll('b, span:not(.ejemplo), s, strong');
-      b.textContent = lugar; span.textContent = plato; s.textContent = `$${antes}`; strong.textContent = `$${ahora}`;
+      if (pin) elige(pin);
+    });
+    mapa.addEventListener('keydown', (ev) => {
+      const i = pines.indexOf(document.activeElement);
+      if (i < 0) return;
+      const paso = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[ev.key];
+      const j = ev.key === 'Home' ? 0 : ev.key === 'End' ? pines.length - 1 : paso ? (i + paso + pines.length) % pines.length : -1;
+      if (j < 0) return;
+      ev.preventDefault();
+      elige(pines[j]);
+      pines[j].focus();
     });
   })();
 
