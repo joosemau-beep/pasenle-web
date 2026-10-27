@@ -116,8 +116,7 @@ Esto se queda en tu teléfono. No nos lo manda a nosotros ni a nadie más:
 - Tu sesión, para que no tengas que entrar cada vez. Lleva tus llaves de acceso, tu identificador de cuenta y tu celular, y tu correo si entraste con Apple o Google. Se borra al cerrar sesión (Perfil > Cerrar sesión) o al borrar la app.
 - Copias temporales de las fotos que eliges para una reseña. La app no las borra.
 - Si tienes un restaurante: cuál sucursal elegiste, si estabas en el lado del restaurante y, si usas Modo entrada, una huella de tus 4 números (no los números).
-
-Tus favoritos solo existen mientras la app está abierta. No se guardan ni se mandan a ningún lado.
+- **Tus favoritos:** los restaurantes que marcaste con el corazón, junto con tu identificador de cuenta. Para guardarlos necesitas entrar a tu cuenta. No se mandan a ningún lado. Al cerrar sesión dejan de verse y vuelven cuando entras otra vez; se borran al borrar tu cuenta o la app.
 
 Si borras la app, se borra todo lo de esta lista.
 

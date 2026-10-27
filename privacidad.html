@@ -6,7 +6,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aviso de privacidad · Pásenle</title>
 <meta name="description" content="Qué datos usa Pásenle, para qué, con quién los comparte y cómo pedir que los borremos.">
-<link rel="icon" href="img/icono-180.png">
+<meta name="theme-color" content="#F7F1E3">
+<!-- al compartir por WhatsApp o en redes: dirección absoluta (WhatsApp no lee rutas relativas) -->
+<link rel="canonical" href="https://pasenle.com/privacidad.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Pásenle">
+<meta property="og:url" content="https://pasenle.com/privacidad.html">
+<meta property="og:title" content="Aviso de privacidad · Pásenle">
+<meta property="og:description" content="Qué datos usa Pásenle, para qué, con quién los comparte y cómo pedir que los borremos.">
+<meta property="og:image" content="https://pasenle.com/img/compartir.jpg?v=2">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pásenle. Mueve la hora, paga menos. Ejemplo: a las 5 de la tarde, unas tostadas de atún bajan de $190 a $105.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Pásenle. Mueve la hora, paga menos. Ejemplo: a las 5 de la tarde, unas tostadas de atún bajan de $190 a $105.">
+<link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="icon" type="image/png" sizes="96x96" href="img/icono-96.png">
+<link rel="icon" type="image/png" sizes="180x180" href="img/icono-180.png">
+<!-- las letras de la primera pantalla llegan antes del primer dibujo: el texto ya no brinca al cambiar de letra -->
+<link rel="preload" href="fuentes/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Figtree-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Figtree-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/sitio.css">
 <style>
   .doc { max-width: 760px; margin: 0 auto; padding: 72px 20px 110px; line-height: 1.7; font-size: 17px; }
@@ -117,8 +139,8 @@
 <li>Tu sesión, para que no tengas que entrar cada vez. Lleva tus llaves de acceso, tu identificador de cuenta y tu celular, y tu correo si entraste con Apple o Google. Se borra al cerrar sesión (Perfil &gt; Cerrar sesión) o al borrar la app.</li>
 <li>Copias temporales de las fotos que eliges para una reseña. La app no las borra.</li>
 <li>Si tienes un restaurante: cuál sucursal elegiste, si estabas en el lado del restaurante y, si usas Modo entrada, una huella de tus 4 números (no los números).</li>
+<li><strong>Tus favoritos:</strong> los restaurantes que marcaste con el corazón, junto con tu identificador de cuenta. Para guardarlos necesitas entrar a tu cuenta. No se mandan a ningún lado. Al cerrar sesión dejan de verse y vuelven cuando entras otra vez; se borran al borrar tu cuenta o la app.</li>
 </ul>
-<p>Tus favoritos solo existen mientras la app está abierta. No se guardan ni se mandan a ningún lado.</p>
 <p>Si borras la app, se borra todo lo de esta lista.</p>
 <p>Si no hay internet cuando abres la app, te lo dice en pantalla y te enseña tus mesas apartadas guardadas. En cuanto vuelve la señal, la app entra sola.</p>
 <h3>Permisos del teléfono</h3>
@@ -403,6 +425,6 @@ También revisar las reseñas que alguien reporta: una reseña con palabras ofen
   <div class="pie__ligas"><a href="borrar-cuenta.html">Borrar tu cuenta</a></div>
   <p class="pie__nota" style="margin:12px 0 0">Hecho en <span data-ciudad>Guadalajara</span>.</p>
 </div></footer>
-<script src="js/sitio.js"></script>
+<script src="js/sitio.js" defer></script>
 </body>
 </html>
