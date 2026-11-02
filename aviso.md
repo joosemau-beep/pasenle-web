@@ -7,7 +7,7 @@ correo:
 ---
 # Aviso de privacidad de Pásenle
 
-Última actualización: 13 de octubre de 2026
+Última actualización: 2 de noviembre de 2026
 
 Este aviso explica qué datos tuyos usa Pásenle, para qué los usa y quién los ve. También explica cómo puedes pedir que los corrijamos o los borremos. Es el aviso completo, también llamado aviso integral. Sigue la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, publicada el 20 de marzo de 2025.
 
@@ -18,6 +18,7 @@ Este aviso explica qué datos tuyos usa Pásenle, para qué los usa y quién los
 - Puedes entrar con tu celular, con Apple o con Google. Con Apple o Google nos llegan tu nombre y tu correo.
 - En tu reserva, el restaurante ve la hora, cuántas personas van y si es tu primera vez. No ve tu nombre, tu celular ni tu correo. Si reportas algo, le contamos qué pasó, nunca quién lo dijo.
 - Otros comensales y el restaurante ven tus reseñas publicadas y sus fotos, con tu nombre corto. Lo que cuentas en "Tuve un problema" no se publica.
+- La cuenta de tu mesa que guarda el restaurante al cobrar sirve para su resumen del mes y, junta con otras y sin nombres, para nuestras estadísticas.
 - Cancelar es gratis hasta 30 minutos antes. Cada falta te deja un aviso privado. Con 4 faltas en 12 meses, tu cuenta queda en pausa hasta que una persona la revise.
 - Tus mesas apartadas se guardan en tu teléfono para que las veas sin señal. Eso no sale de tu teléfono.
 - Tu ubicación es opcional y aproximada: solo se usa si tocas "Cerca de ti". No la mandamos a nuestro servidor ni la guardamos, pero el mapa se centra ahí y el que hace el mapa (Apple o Google) recibe esa zona para dibujarla. No usamos analíticas, publicidad ni rastreo.
@@ -67,6 +68,7 @@ Nuestro proveedor de cuentas (Supabase) guarda tu cuenta con tu celular y, si en
   - quién canceló y cuándo
   - el motivo, si canceló el restaurante (hasta 200 letras)
   - si dijiste "Sí fui" o "No me dieron mesa", y cuándo
+  - la cuenta de tu mesa, si el restaurante la guarda al cobrar: lo de comida, lo de bebidas, el descuento, el total y, si los elige de su carta, los platillos con su precio y cuántos
 - **Una huella de tu celular en cada reserva.** Es un código que sale de tu número con una llave secreta que solo tiene Pásenle: sin esa llave no se puede sacar tu número. Sirve para contar faltas y límites aunque abras otra cuenta con el mismo número.
 
 ### Tus faltas y tus avisos
@@ -82,7 +84,7 @@ Ya no damos puntos.
 - **La calificación:** de 1 a 5 estrellas, o "No fui"; un comentario opcional (hasta 600 letras), la fecha y el estado. El estado puede ser publicada, en revisión, retirada o "No fui". Un "No fui" no se publica.
 - **Las fotos:** de 0 a 3 por reseña. Puedes tomarlas con la cámara o elegirlas de tu galería. La app las hace más pequeñas antes de subirlas.
 - **Sin datos internos.** Antes de subirlas, la app les quita sus datos internos (metadatos), como el lugar donde tomaste la foto. Solo deja la orientación, para que se vea derecha.
-- **La liga de cada foto** incluye tu identificador de cuenta y el de la reserva.
+- **La liga de cada foto** lleva un código al azar, distinto en cada reseña. No incluye tu identificador de cuenta ni el de la reserva.
 - **Si reportas una reseña:** guardamos cuál reseña, el motivo que eliges (es ofensiva, es de otro lugar u otra cosa), la fecha, tu identificador de cuenta y cuándo la revisó nuestro equipo. Desde ese momento esa reseña ya no te sale. Ni el restaurante ni quien la escribió saben quién la reportó. Solo se puede reportar una vez cada reseña. Nuestro equipo la revisa y decide si la retira o la deja.
 - **Si tu reseña es reportada:** nuestro equipo la puede retirar. Si decide que tu cuenta ya no publica reseñas, guardamos desde cuándo y por cuál reseña. Puedes seguir apartando y calificando con estrellas, pero tus reseñas no se publican.
 
@@ -115,7 +117,7 @@ Esto se queda en tu teléfono. No nos lo manda a nosotros ni a nadie más:
 - **Los recordatorios de tus mesas,** si los pides: un aviso 2 horas antes de cada mesa, con el restaurante, la hora y tu clave. Los programa tu teléfono. Los puedes apagar en Perfil.
 - Tu sesión, para que no tengas que entrar cada vez. Lleva tus llaves de acceso, tu identificador de cuenta y tu celular, y tu correo si entraste con Apple o Google. Se borra al cerrar sesión (Perfil > Cerrar sesión) o al borrar la app.
 - Copias temporales de las fotos que eliges para una reseña. La app no las borra.
-- Si tienes un restaurante: cuál sucursal elegiste, si estabas en el lado del restaurante y, si usas Modo entrada, una huella de tus 4 números (no los números).
+- Si tienes un restaurante o eres de su equipo: cuál sucursal elegiste, si estabas en el lado del restaurante, a qué locales ya entraste en ese teléfono (se borra al cerrar sesión) y la última pestaña que usaste en Cobrar. También las marcas de "Llegaron" mientras no se mandan: la reserva, cuántos llegaron y si fue a tiempo. Esas sí nos llegan en cuanto hay señal, y entonces se borran del teléfono.
 - **Tus favoritos:** los restaurantes que marcaste con el corazón, junto con tu identificador de cuenta. Para guardarlos necesitas entrar a tu cuenta. No se mandan a ningún lado. Al cerrar sesión dejan de verse y vuelven cuando entras otra vez; se borran al borrar tu cuenta o la app.
 
 Si borras la app, se borra todo lo de esta lista.
@@ -149,12 +151,17 @@ Sin estos usos no podemos darte lo que pides, por eso no requieren un permiso ap
    También revisar las reseñas que alguien reporta: una reseña con palabras ofensivas no se publica hasta que la lea una persona del equipo, y el equipo puede retirar una reseña o dejar una cuenta sin publicar reseñas.
 6. Enseñarte lo que hay cerca de ti, si permites tu ubicación.
 7. Contar las personas que llegaron, que es lo que le cobramos al restaurante, y decirle si eres cliente nuevo o si regresas.
-8. Cuidar la seguridad del servicio y evitar abusos. Por ejemplo, poner un límite de 30 fotos al día o detectar a quien contradice seguido a un restaurante. También saber cuando la app falla, para arreglarla.
-9. Atender tus solicitudes y cumplir la ley.
+8. Armarle al restaurante su resumen del mes: cuántas mesas y personas le llevamos y cuánto gastaron. Usamos la cuenta que guardó al cobrar y, si no la guardó, su ticket promedio.
+9. Cuidar la seguridad del servicio y evitar abusos. Por ejemplo, poner un límite de 30 fotos al día o detectar a quien contradice seguido a un restaurante. También saber cuando la app falla, para arreglarla.
+10. Atender tus solicitudes y cumplir la ley.
 
 ### Otros usos
 
-No hay otros usos. No usamos tus datos para publicidad, mercadotecnia, estudios ni perfiles para vender. Si algún día queremos hacerlo, te pediremos permiso antes. Podrás decir que no y seguir usando la app.
+No usamos tus datos para publicidad, mercadotecnia ni perfiles para vender.
+
+Lo único aparte son nuestras estadísticas: juntamos lo que gastan las mesas (la cuenta que guarda el restaurante al cobrar), sin nombres ni cuentas, para saber cosas como cuánto se gasta en promedio por persona. Esos números juntos ya no dicen nada de ti ni de tu mesa. Si no quieres que lo tuyo entre en ellos, escríbenos {{contacto}}.
+
+Si algún día queremos usar tus datos para otra cosa, te pediremos permiso antes. Podrás decir que no y seguir usando la app.
 
 ## 4. Quién ve tus datos
 
@@ -172,18 +179,19 @@ Solo puedes consultar tus propios datos:
 De cada reserva en su local, el restaurante ve:
 - **"Comensal", no tu nombre.** En su lista de reservas no ve tu nombre.
 - **Los datos de la reserva:** fecha, hora, personas, descuento, si incluye bebidas, tu clave de mesa, si es tu primera visita, el estado (llegaste o no llegó) y cuántas personas llegaron.
+- **La cuenta de tu mesa** que guardó al cobrar.
 - **Tu identificador de cuenta.** Lo usa para contar cuántos clientes son nuevos y cuántos regresan.
-- **Tus reseñas publicadas de su local.** Para el restaurante no son anónimas: puede ligarlas a tu reserva y a tu nombre.
+- **Tus reseñas publicadas de su local.** Para el restaurante no son anónimas: ve tu nombre corto. La liga de las fotos no dice de qué reserva son, pero con la fecha, y si lleva fotos con la hora en que se subieron, podría saber de qué mesa son.
 
 El restaurante no ve tu celular, tu correo, la huella de tu celular, tus avisos, el registro de cambios, tus reseñas en revisión ni si reportaste una reseña. De tus casos solo ve lo que dice el apartado siguiente.
 
 ### Si reportas un problema
 
-Si nos cuentas que algo salió mal en tu visita (en "¿Qué pasó?", en "Tuve un problema" o por WhatsApp), lo revisamos con el restaurante: le contamos qué reportaste y le damos 3 días para responder. No le damos tu celular ni tu correo. Aun así, con el día, la hora y las personas de tu mesa, el restaurante podría saber quién eres.
+Si nos cuentas que algo salió mal en tu visita (en "¿Qué pasó?", en "Tuve un problema" o por WhatsApp), lo revisamos con el restaurante: le contamos qué reportaste. No le damos tu celular ni tu correo. Aun así, con el día, la hora y las personas de tu mesa, el restaurante podría saber quién eres.
 
-Si dices "Sí fui" o "No me dieron mesa", el restaurante ve en esa mesa una nota de lo que dijo el comensal, sin tu nombre.
+Si dices "Sí fui" o "No me dieron mesa", el restaurante ve en esa mesa una nota de lo que dijo el comensal, sin tu nombre. Si marcó que no llegaste y calificas esa visita, tu reseña se publica hasta que se resuelve a tu favor: con eso el restaurante puede saber de qué mesa es.
 
-Lo que nos cuentas en "Tuve un problema" no se publica: solo lo lee nuestro equipo para revisarlo con el restaurante. Lo que escribes en "¿Qué pasó?" al calificar sí se publica, con tu nombre corto, y la app te lo dice antes de mandarlo: otros comensales y el restaurante lo ven como cualquier reseña, y el restaurante la puede ligar a tu reserva. Si prefieres que algo no salga ahí, cuéntanoslo en "Tuve un problema" o por WhatsApp.
+Lo que nos cuentas en "Tuve un problema" no se publica: solo lo lee nuestro equipo para revisarlo con el restaurante. Lo que escribes en "¿Qué pasó?" al calificar sí se publica, con tu nombre corto, y la app te lo dice antes de mandarlo: otros comensales y el restaurante lo ven como cualquier reseña, y el restaurante podría ligarla a tu reserva. Si prefieres que algo no salga ahí, cuéntanoslo en "Tuve un problema" o por WhatsApp.
 
 ### Otros comensales
 
@@ -200,7 +208,7 @@ Nadie en la app, ni otros comensales ni el restaurante, ve quién reportó una r
 
 Las fotos de las reseñas se guardan en un espacio público. Quien tenga la liga puede abrir la foto, aunque no use la app. Las fotos de "Tuve un problema" no: esas son privadas.
 
-La liga incluye tu identificador de cuenta. Por eso, alguien con sesión puede saber qué reseñas son de la misma persona, aunque no sepa tu nombre ni tu número.
+La liga lleva un código al azar, distinto en cada reseña: no incluye tu identificador de cuenta ni el de tu reserva. Con la liga sola no se sabe de quién es la foto ni de qué mesa.
 
 ### El equipo de Pásenle
 
@@ -282,7 +290,7 @@ Las faltas, los límites y la pausa se cuentan por tu cuenta y también por la h
 ### Lo que decide una persona
 
 - **"No llegó"** lo marca el restaurante, una sola vez, entre 15 minutos y 4 horas después de tu hora.
-- **Cuántos llegaron y si llegaron tarde** lo marca el restaurante. Si llegas más de 15 minutos tarde, puede marcar "Llegaron tarde, sin descuento": tu visita cuenta, sin el descuento.
+- **Cuántos llegaron y si llegaron tarde** lo marca el restaurante. Si llegas más de 15 minutos tarde, tu visita cuenta a precio normal, salvo que el restaurante te dé el descuento al cobrar.
 - **Los casos** los resuelve una persona de nuestro equipo.
   - Si decide que llegaste, la reserva cuenta como visita.
   - Si decide que no llegaste, la falta cuenta desde el día en que se resolvió.
@@ -300,7 +308,7 @@ En la app, un "no llegó" se aclara tocando "Sí fui" en Reservas, hasta 7 días
 
 Tus datos se guardan mientras tengas cuenta. Los plazos de la sección 6 (12 meses, 7 y 90 días) solo sirven para contar faltas y reclamos, no para borrar. Cuando borras tu cuenta, tus datos personales se borran en máximo 30 días (sección 8). Tus reportes de reseñas se guardan mientras tengas cuenta, también después de que el equipo los revise, y se borran con ella.
 
-Lo que se queda sin tu nombre al borrar tu cuenta (sección 8) lo guardamos mientras sirva para cobrarle al restaurante, para atender una aclaración o porque una ley lo pida.
+Lo que se queda sin tu nombre al borrar tu cuenta (sección 8) lo guardamos mientras sirva para cobrarle al restaurante, para su resumen del mes y, juntos y sin nombres, para nuestras estadísticas, para atender una aclaración o porque una ley lo pida.
 
 Las fallas de la app se borran a los 30 días.
 
@@ -327,14 +335,15 @@ Los pasos también están en pasenle.com/borrar-cuenta.html.
 - Se borran tus avisos y lo que escribiste y tus fotos en tus casos.
 - Se borran tus reportes de reseñas de otras personas y, si tu cuenta no publicaba reseñas, ese bloqueo.
 - Tus mesas apartadas que aún no empiezan se cancelan solas. Si a alguna le faltan menos de 30 minutos, cuenta como falta.
-- Tus reservas y tus casos se quedan sin tu nombre y sin tu cuenta.
+- Tus reservas y tus casos se quedan sin tu nombre y sin tu cuenta, también la cuenta de tu mesa.
 
 ### Qué se queda
 
 - **La huella de tu celular en tus reservas.** Sirve para seguir contando faltas si ese número vuelve a abrir una cuenta. Se borra sola a los 30 días. En las reservas que contaron como falta se queda 12 meses desde esa falta, sin tu nombre ni tu celular, para que borrar la cuenta no borre las faltas. Si tu cuenta estaba en pausa, se queda hasta que una persona de nuestro equipo la revise.
 - **El registro de cambios.** Se quedan los hechos (qué pasó, a qué reserva y cuándo), sin tu identificador ni tus textos. La base de datos no permite editarlo ni borrarlo.
+- **Si estabas en el equipo de un restaurante,** tu celular y tu nombre siguen en su Tu equipo hasta que te quiten, y el registro de cambios guarda tu nombre y los últimos 4 números de tu celular de cuando te agregaron, te cambiaron el papel o te quitaron. Si abres otra cuenta con ese celular, vuelves a entrar a ese local.
 
-Lo que se queda solo lo usamos para lo que dice esta lista, para atender aclaraciones o cuando una ley lo exija.
+Lo que se queda solo lo usamos para lo que dice esta lista, para el resumen del restaurante y, juntos y sin nombres, para nuestras estadísticas, para atender aclaraciones o cuando una ley lo exija.
 
 Para borrar lo que la app guarda en tu teléfono, borra la app.
 
@@ -387,6 +396,8 @@ Si no estás de acuerdo con nuestra respuesta, puedes acudir a la Secretaría An
 
 - Las reglas para restaurantes (planes, cobro, faltas graves y qué puedes hacer con los datos de los comensales) están en los términos para restaurantes, que te damos y aceptas al darte de alta.
 - Tu cuenta de dueño usa tu celular, igual que la de un comensal.
+- **Tu equipo.** El dueño, quien lleva el local o nuestro equipo agregan a la gente del restaurante con su celular y su nombre (hasta 40 letras), y eligen qué hace: llevar el local, con o sin ver el dinero, o recibir y cobrar. Guardamos el celular, el nombre, ese papel, quién lo agregó y cuándo, y lo ligamos a su cuenta de Pásenle: al momento si ese celular ya tiene una, y si no, cuando entre con él. Quien lo agrega ve si ya tenía Pásenle, y en Tu equipo se ve quién ya entró. Sirve para que cada quien entre con su propio celular y vea solo lo que le toca. Lo ven el dueño y quien lleva el local, en Tu equipo, donde también sale el nombre del dueño. Si quitan a alguien, deja de ver el local, y el registro de cambios guarda su nombre y los últimos 4 números de su celular. Si alguien del equipo borra su cuenta, sigue en Tu equipo hasta que lo quiten.
+- Si cobras desde la app, guardamos la cuenta de cada mesa (comida, bebidas, el descuento, el total y, si los eliges de tu carta, los platillos), con su reserva; el registro de cambios anota quién la guardó. Con eso y tu ticket promedio armamos tu resumen del mes.
 - Si cancelas una reserva o cierras un día por un imprevisto, guardamos el motivo que escribes (hasta 200 letras). Los comensales afectados lo ven. En los cierres también guardamos cuántas mesas se cancelaron y tu identificador.
 - Las fotos de tu local, las subas tú o nuestro equipo, son públicas: salen en la app y cualquiera con su liga las puede abrir.
 - Si usas el menú con foto, la foto de tu carta se manda a un servicio de inteligencia artificial (Anthropic, en Estados Unidos) que lee tus platillos y precios. No guardamos la foto: solo los platillos que revisas y guardas.
@@ -411,7 +422,7 @@ Si algún día agregamos una de estas herramientas, primero actualizaremos este 
 ## 14. Seguridad
 
 - Cada persona solo puede consultar sus propios datos. El restaurante solo ve lo de su local.
-- Solo puedes subir fotos a tu propia carpeta, hasta 30 al día.
+- Las fotos que subes son de tu cuenta: nadie más las puede usar ni borrar. Puedes subir hasta 30 al día.
 - El registro de cambios no se puede alterar.
 - Tu celular se confirma con un código.
 
