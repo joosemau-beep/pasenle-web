@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "mx.pasenle.app",
+      "sha256_cert_fingerprints": [
+        "20:A5:BC:36:09:C6:79:AC:87:47:C7:71:FD:EA:CE:67:12:48:AB:57:F0:08:92:A6:C3:22:4F:36:75:73:90:B6",
+        "69:25:C8:8B:1E:AD:E2:DA:2B:31:42:4F:C3:0F:35:1C:02:25:1F:B5:07:00:C6:9C:71:61:2F:C3:C4:5A:09:05"
+      ]
+    }
+  }
+]

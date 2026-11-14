@@ -1,0 +1,24 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "7J28R38AZF.mx.mochate.app"
+        ],
+        "components": [
+          {
+            "/": "/m/*",
+            "comment": "QR del boleto: la mesa en Hoy"
+          },
+          {
+            "/": "/*",
+            "?": {
+              "de": "?*"
+            },
+            "comment": "liga de un foodie"
+          }
+        ]
+      }
+    ]
+  }
+}
