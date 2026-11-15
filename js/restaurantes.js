@@ -12,7 +12,7 @@
     const t0 = performance.now();
     const paso = (t) => {
       const p = Math.min(1, (t - t0) / 1100);
-      el.textContent = Math.round(fin * (1 - (1 - p) ** 3));
+      el.textContent = Math.round(fin * (1 - (1 - p) ** 3)).toLocaleString('es-MX');
       if (p < 1) requestAnimationFrame(paso);
     };
     requestAnimationFrame(paso);

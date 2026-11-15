@@ -55,7 +55,7 @@
 .r-logo { display: inline-flex; align-items: center; gap: 10px; margin: 0; text-decoration: none; color: var(--hondo); }
 .r-logo img { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 0 0 .5px rgba(6, 40, 48, .25), 0 1px 2px rgba(6, 40, 48, .18); }
 .r-logo > span { display: flex; flex-direction: column; }
-.r-logo b { font: 800 21px/1 Playfair, Georgia, serif; letter-spacing: -.2px; }
+.r-logo b { font: 400 21px/1 TitanOne, "Arial Rounded MT Bold", system-ui, sans-serif; letter-spacing: 0; }
 .r-logo small { margin-top: 4px; font: 800 8.5px/1 Figtree, system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--petroleo); white-space: nowrap; }
 .r-barra__ligas { display: flex; align-items: center; gap: 24px; }
 .r-barra__texto { display: none; align-items: center; min-height: 44px; font: 700 15px/1 Figtree, system-ui, sans-serif; color: var(--petroleo); text-decoration: none; }
@@ -103,41 +103,14 @@
 
 /* ───────── el teléfono: marco oficial de Apple (iPhone 18 Pro, Glacier), de frente, quieto y sin nada encima ───────── */
 /* el marco mide 1350x2760 px (450 pt a 3x). La pantalla (402x874 pt) va debajo, en el hueco; se pasa 2 pt por lado bajo
-   el bisel negro para que al escalar no quede una raya de papel: 406x878 pt. Todo lo de adentro se diseña en esos pt
-   y se escala con zoom (--z = ancho del teléfono / 450). */
+   el bisel negro para que al escalar no quede una raya de papel: 406x878 pt. Lo de adentro se escala con zoom
+   (--z = ancho del teléfono / 450). */
 .tel-r { position: relative; flex: none; width: calc(450px * var(--z, .62)); aspect-ratio: 1350 / 2760; }
 .tel-r__marco { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; }
-.pantalla-r { position: absolute; left: 4.8889%; top: 2.2826%; width: 90.2222%; height: 95.4348%; overflow: hidden; border-radius: 10.345% / 4.784%; background: #FAFAF8; }
+.pantalla-r { position: absolute; left: 4.8889%; top: 2.2826%; width: 90.2222%; height: 95.4348%; overflow: hidden; border-radius: 10.345% / 4.784%; background: #EFF4F5; }
 
-/* ───────── pantallas de la app, en pt de diseño ───────── */
-.rt { position: absolute; left: 0; top: 0; width: 406px; height: 878px; zoom: var(--z, .62); overflow: hidden; background: #FAFAF8;
-  color: var(--tinta); font-family: Figtree, system-ui, sans-serif; line-height: 1.25; text-align: left; }
-.rt p { margin: 0; }
-.rt svg { display: block; }
-/* barra de estado a la altura de la isla del marco: la hora en la oreja izquierda, los íconos en la derecha */
-.rt-sis { position: absolute; z-index: 9; top: 16.3px; left: 2px; right: 2px; height: 36px; display: grid; grid-template-columns: 1fr 94px 1fr; align-items: center; justify-items: center;
-  color: #fff; font: 600 17px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
-.rt-sis__ic { grid-column: 3; display: flex; align-items: center; gap: 6px; }
-.rt-sis .s1 { width: 17px; height: 11px; } .rt-sis .s2 { width: 15.5px; height: 11px; } .rt-sis .s3 { width: 25px; height: 12px; }
-/* el toldo de la app: la lona y el faldón del teléfono. El título en crudo, sin la sombra dura de la app */
-.rt-toldo { position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 172px; pointer-events: none; }
-.rt-toldo::before { content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: 134px;
-  background: radial-gradient(80% 70% at 30% 70%, rgba(6, 40, 48, .34), rgba(6, 40, 48, 0)), linear-gradient(rgba(6, 40, 48, .3), rgba(6, 40, 48, .18)); }
-.rt-toldo__lona { position: absolute; left: 0; top: 0; width: 100%; height: 134px; max-width: none; }
-.rt-toldo__faldon { position: absolute; z-index: 2; left: 0; top: 133px; width: 100%; height: 38px; max-width: none; }
-.rt-toldo__t { position: absolute; z-index: 3; left: 20px; right: 110px; top: 66px; color: #fff; }
-.rt-toldo__t b { display: block; font: 400 31px/1.02 Anton, Impact, sans-serif; letter-spacing: .01em; color: var(--crudo); }
-.rt-toldo__t small { display: block; margin-top: 5px; font-size: 12px; font-weight: 700; line-height: 1.25; color: rgba(255, 255, 255, .92); white-space: nowrap; }
-.rt-toldo .ejemplo { position: absolute; z-index: 3; right: 16px; top: 72px; font-size: 10px; }
-.rt-cuerpo { position: absolute; left: 0; right: 0; top: 184px; bottom: 0; padding: 0 16px; overflow: hidden; }
-.rt-caja { background: #fff; border-radius: 16px; box-shadow: 0 0 0 1px rgba(23, 24, 28, .06), 0 1px 2px rgba(23, 24, 28, .04), 0 8px 18px -12px rgba(6, 40, 48, .22); }
-.rt-et { font: 800 10px/1 Figtree, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #868A91; }
-.rt .sello { font-size: 14px; padding: .36em .52em .3em; border-radius: .62em; white-space: nowrap; }
-.rt-tabs { position: absolute; z-index: 6; left: 0; right: 0; bottom: 0; display: flex; padding: 8px 2px 34px; background: #fff; border-top: 1px solid rgba(23, 24, 28, .08); }
-.rt-tabs span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 700; color: #A2A5AB; }
-.rt-tabs svg { width: 24px; height: 24px; stroke-width: 1.8; }
-.rt-tabs .si { color: var(--hondo); }
-.rt-home { position: absolute; z-index: 10; bottom: 9px; left: 50%; width: 139px; height: 5px; margin-left: -69.5px; border-radius: 99px; background: var(--tinta); }
+/* ───────── pantallas de la app (css/app.css), diseñadas a 390 de ancho: 406 × 878 pt = 393.9 × 851.8 px de diseño ───────── */
+.rt { inset: auto; left: 0; top: 0; width: 393.9px; height: 851.8px; zoom: calc(var(--z, .62) * 402 / 390); }
 
 /* rodillo: dos valores apilados; sin JS o sin movimiento se ve el segundo (el final) */
 .rod { display: inline-grid; vertical-align: bottom; overflow: hidden; }
@@ -149,146 +122,30 @@
 [data-cuenta] { transition: opacity .25s; }
 .recorre [data-anima]:not(.listo) [data-cuenta] { opacity: 0; }
 
-/* E · tu restaurante como lo ve el comensal (ficha.dart) */
-.e-foto { position: absolute; left: 0; right: 0; top: 0; height: 282px; overflow: hidden; }
-.e-foto img { width: 100%; height: 100%; object-fit: cover; }
-.e-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, .66) 100%); }
-.e-redondo { position: absolute; z-index: 2; top: 58px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, .96); color: var(--tinta);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .18); }
-.e-redondo--izq { left: 14px; } .e-redondo--der { right: 14px; }
-.e-redondo svg { width: 21px; height: 21px; stroke-width: 2; }
-.e-nom { position: absolute; z-index: 2; left: 18px; right: 104px; bottom: 16px; color: #fff; }
-.e-puntos { display: flex; gap: 5px; margin-bottom: 11px !important; }
-.e-puntos i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .55); }
-.e-puntos i.si { width: 18px; background: #fff; }
-.e-nom b { display: block; font-size: 25px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; }
-.e-nom small { display: block; margin-top: 4px; font-size: 12.5px; font-weight: 700; color: rgba(255, 255, 255, .86); white-space: nowrap; }
-.e-ejemplo { position: absolute; z-index: 2; right: 16px; bottom: 18px; font-size: 10px; }
-.e-cuerpo { position: absolute; left: 0; right: 0; top: 282px; bottom: 0; padding: 18px 18px 0; }
-.e-horas { display: flex; gap: 7px; margin: 10px 0 18px; }
-.e-cuantos { display: flex; align-items: center; justify-content: space-between; margin: 10px 0 18px; padding: 10px 12px 10px 16px; font-size: 14.5px; font-weight: 700; }
-.e-cont { display: flex; align-items: center; }
-.e-cont i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(23, 24, 28, .16); background: #FAFAF8; font-style: normal; font-size: 17px; font-weight: 700; line-height: 1; }
-.e-cont b { width: 36px; text-align: center; font-size: 16px; font-weight: 800; }
-.e-hora { flex: none; width: 66px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 0 9px; border-radius: 14px;
-  background: #fff; border: 1.5px solid rgba(23, 24, 28, .12); transition: background-color .45s var(--muelle), border-color .45s, color .45s; }
-.e-hora b { font-size: 13.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.e-hora .sello { font-size: 11.5px; }
-.e-hora--5, .recorre .rt-e:not(.listo) .e-hora--4 { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
-.recorre .rt-e:not(.listo) .e-hora--5 { background: #fff; border-color: rgba(23, 24, 28, .12); color: var(--tinta); }
-.e-plato { display: flex; align-items: baseline; gap: 8px; padding: 11px 0; border-bottom: 1px solid rgba(23, 24, 28, .08); font-size: 14px; }
-.e-et-carta + .e-plato { margin-top: 5px !important; }
-.e-plato > span:first-child { flex: 1; }
-.e-plato s { font-size: 12.5px; color: #9A9DA3; }
-.e-plato b { font-size: 15px; font-weight: 800; color: var(--petroleo); font-variant-numeric: tabular-nums; }
-.e-plato--normal small { font-size: 11px; font-weight: 700; color: #9A9DA3; }
-.e-plato--normal b { color: var(--tinta); font-weight: 700; }
-.e-nota { margin-top: 14px !important; padding: 12px 14px; border-radius: 14px; background: var(--crudo); font-size: 12px; line-height: 1.45; color: #465559; }
-.e-pie { position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; padding: 14px 18px 36px; background: linear-gradient(rgba(250, 250, 248, 0), #FAFAF8 24%); }
-.e-apartar { display: flex; align-items: center; justify-content: center; gap: .28em; height: 54px; border-radius: 16px; background: var(--petroleo); color: #fff; font-size: 16px; font-weight: 800; }
+/* ── lo que se mueve una sola vez en cada pantalla (las pantallas están en css/app.css; aquí, su primer estado) ── */
+/* la ficha: de las 4 a las 5. La hora elegida va en petróleo; antes de moverse, la elegida es la de las 4 */
+.ap-fichas .a { background: var(--petroleo); color: #fff; box-shadow: none; }
+.ap-fichas .a .sello { background: none; color: #fff; text-shadow: none; box-shadow: inset 0 0 0 1px #fff; }
+.recorre [data-anima]:not(.listo) .ap-fichas .a { background: none; color: inherit; box-shadow: inset 0 0 0 1.5px var(--ap-borde); }
+.recorre [data-anima]:not(.listo) .ap-fichas .a .sello { background: var(--guajillo); color: var(--crudo); text-shadow: .085em .085em 0 var(--sombra-ardiendo); box-shadow: none; }
+.recorre [data-anima]:not(.listo) .ap-fichas .de { background: var(--petroleo); color: #fff; box-shadow: none; }
+.recorre [data-anima]:not(.listo) .ap-fichas .de .sello { background: none; color: #fff; text-shadow: none; box-shadow: inset 0 0 0 1px #fff; }
+.ap-hora .rod { padding-right: 4px; }
+.ap-boton .rod { align-items: center; }
+/* Tus horas: de "Recomendado" a "Más gente"; cada hora cambia de descuento y de color */
+.ap-niveles .a { box-shadow: inset 0 0 0 2px var(--ap-tinta); }
+.recorre [data-anima]:not(.listo) .ap-niveles .a { box-shadow: none; }
+.recorre [data-anima]:not(.listo) .ap-niveles .de { box-shadow: inset 0 0 0 2px var(--ap-tinta); }
+.recorre [data-anima]:not(.listo) .ap-cols .de-petroleo { background: var(--petroleo); color: var(--crudo); }
+.recorre [data-anima]:not(.listo) .ap-cols .de-mango { background: var(--mango); color: var(--petroleo); }
+/* Hoy: tocas "Llegaron" y la mesa se va a "En el local" */
+.ap-ida { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .6s var(--muelle), opacity .35s; }
+.ap-ida > div { overflow: hidden; min-height: 0; }
+.recorre [data-anima]:not(.listo) .ap-ida { grid-template-rows: 1fr; opacity: 1; }
+/* No llegó: el aviso sube al final */
+.ap-velo.on { opacity: 1; }
+.recorre [data-anima]:not(.listo) .ap-aviso { transform: translateY(40%); opacity: 0; }
 
-/* A · Tus horas (horas.dart) */
-.a-dias { display: flex; gap: 6px; }
-.a-dias span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0 7px; border-radius: 14px; background: #fff;
-  border: 1px solid rgba(23, 24, 28, .12); font-size: 13px; font-weight: 800; }
-.a-dias span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--laguna); }
-.a-dias .cerrado::after { background: transparent; }
-.a-dias .sin::after { background: #C3C6CB; }
-.a-dias .si { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
-.a-dias .si::after { background: var(--agua); }
-.a-res { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 13px 14px 13px 16px; }
-.a-res p { flex: 1; }
-.a-res b { display: block; font-size: 15.5px; font-weight: 800; }
-.a-res small { display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.4; color: var(--gris-app); }
-.a-abierto { flex: none; padding: 7px 12px; border-radius: 999px; background: #E3EEEF; border: 1px solid #BFD5D8; color: var(--petroleo); font-size: 11.5px; font-weight: 800; }
-.a-imprevisto { display: flex; align-items: center; gap: 7px; padding: 11px 4px 10px; font-size: 12.5px; font-weight: 700; color: var(--petroleo); }
-.a-imprevisto svg { width: 17px; height: 17px; stroke-width: 1.9; }
-.a-mapa { padding: 12px 14px 14px; }
-.a-mapa__calle { position: relative; display: grid; place-items: center; height: 64px; margin-top: 10px; border-radius: 12px; background: #F1EFE9; overflow: hidden; }
-.a-mapa__calle::before { content: ""; position: absolute; left: 0; right: 0; top: 29px; height: 7px; background: #E2DFD6; }
-.a-mapa__calle::after { content: ""; position: absolute; top: 0; bottom: 0; left: 84px; width: 6px; background: #E2DFD6; }
-.a-pin { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 9px; padding: 3px 11px 3px 3px; border-radius: 11px; background: #FFFDF8;
-  box-shadow: 0 3px 8px rgba(23, 24, 28, .2); }
-.a-pin .sello { font-size: 13px; }
-.a-pin b { font-size: 11.5px; font-weight: 700; }
-.a-fila { margin-top: 8px; padding: 12px 12px 12px 14px; }
-.a-mapa + .a-fila { margin-top: 12px; }
-.a-fila__top { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: center; }
-.a-h { font-size: 13.5px; font-weight: 800; white-space: nowrap; }
-.a-oc i { display: block; height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--laguna) 0 var(--o), #ECEBE6 var(--o)); }
-.a-oc i.lleno { background: linear-gradient(90deg, var(--agua) 0 var(--o), #ECEBE6 var(--o)); }
-.a-oc p { margin-top: 5px; font-size: 10.5px; line-height: 1.35; color: var(--gris-app); }
-.a-oc b { font-weight: 800; color: var(--tinta); }
-.a-sueltas { white-space: nowrap; }
-.a-bajar { display: inline-block; padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(23, 24, 28, .2); background: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
-.a-bajar--sin { color: #A2A5AB; border-color: rgba(23, 24, 28, .1); }
-.a-cambia { display: grid; justify-items: end; align-items: center; }
-.a-cambia > * { grid-area: 1 / 1; transition: opacity .3s, transform .5s var(--muelle-chico); }
-.a-cambia .a-bajar { opacity: 0; transform: scale(.85); }
-.recorre [data-anima]:not(.listo) .a-cambia .a-bajar { opacity: 1; transform: none; }
-.recorre [data-anima]:not(.listo) .a-cambia .sello { opacity: 0; transform: scale(.5); }
-.a-mas { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .6s var(--muelle) .12s; }
-.a-mas > div { min-height: 0; overflow: hidden; }
-.recorre [data-anima]:not(.listo) .a-mas { grid-template-rows: 0fr; }
-.a-pasos { display: flex; gap: 24px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(23, 24, 28, .07); }
-.a-pasos small { display: block; font-size: 8.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #868A91; }
-.a-pasos span { display: flex; align-items: center; margin-top: 5px; }
-.a-pasos i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(23, 24, 28, .16); background: #FAFAF8; font-style: normal; font-size: 15px; font-weight: 700; line-height: 1; }
-.a-pasos b { width: 44px; text-align: center; font-size: 14px; font-weight: 800; }
-
-/* B y C · Hoy (hoy.dart). "Primera vez aquí" en agua (la app lo trae en mango) */
-.b-cont { display: grid; grid-template-columns: repeat(3, 1fr); padding: 16px 4px; text-align: center; }
-.b-cont p { font-size: 11.5px; line-height: 1.3; color: var(--gris-app); }
-.b-cont p + p { border-left: 1px solid #EEEEEC; }
-.b-cont b { display: block; margin-bottom: 6px; font-size: 28px; font-weight: 800; line-height: 1; color: var(--tinta); }
-.b-cont .nuevo b { color: var(--petroleo); }
-.b-sub { display: flex; justify-content: space-between; align-items: baseline; margin: 18px 2px 10px !important; }
-.b-sub b { font-size: 16.5px; font-weight: 800; }
-.b-sub span { font-size: 13px; font-weight: 800; color: var(--petroleo); }
-.b-mesa { display: grid; grid-template-columns: 54px 1fr auto; gap: 12px; align-items: center; margin-bottom: 8px; padding: 12px 14px 12px 12px; }
-.b-reloj { display: grid; place-content: center; height: 54px; border-radius: 13px; border: 1px solid rgba(23, 24, 28, .14); background: #FAFAF8; text-align: center; line-height: 1.1; }
-.b-reloj b { font-size: 14.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.b-reloj small { font-size: 9px; font-weight: 800; color: #9A9DA3; }
-.b-mesa--ya .b-reloj { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
-.b-mesa--ya .b-reloj small { color: var(--agua); }
-.b-quien { min-width: 0; }
-.b-quien b { display: block; font-size: 14.5px; font-weight: 800; }
-.b-quien small { display: block; margin-top: 2px; font-size: 12px; color: var(--gris-app); white-space: nowrap; }
-.b-mesa--ya .b-quien small { color: var(--petroleo); font-weight: 700; }
-.b-quien em { display: inline-block; margin-top: 7px; padding: 4px 7px 3px; border-radius: 6px; background: #DCE8EA; color: var(--petroleo); font-style: normal; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.b-der { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.b-der small { font-size: 10.5px; color: var(--gris-app); }
-.b-ok { display: inline-flex; align-items: center; gap: 4px; margin-top: 2px; padding: 7px 10px 7px 8px; border-radius: 10px; background: #E6EFF0; color: var(--petroleo); font-size: 12px; font-weight: 800; white-space: nowrap; }
-.b-ok svg { width: 14px; height: 14px; stroke-width: 2.4; }
-.b-llegaron { display: inline-block; margin-top: 2px; padding: 8px 12px; border-radius: 10px; background: var(--hondo); color: #fff; font-size: 12px; font-weight: 800; }
-.b-cambia { display: grid; justify-items: end; }
-.b-cambia > * { grid-area: 1 / 1; transition: opacity .3s, transform .5s var(--muelle-chico); }
-.b-cambia .b-llegaron { opacity: 0; transform: scale(.9); }
-.recorre [data-anima]:not(.listo) .b-cambia .b-llegaron { opacity: 1; transform: none; }
-.recorre [data-anima]:not(.listo) .b-cambia .b-ok { opacity: 0; transform: scale(.7); }
-.b-dos { display: flex; gap: 6px; }
-.b-nollego { display: inline-block; margin-top: 2px; padding: 7px 9px; border-radius: 10px; border: 1px solid rgba(23, 24, 28, .16); color: var(--gris-app); font-size: 11px; font-weight: 800; }
-.c-velo { position: absolute; z-index: 7; inset: 0; background: rgba(8, 14, 16, .46); transition: opacity .45s; }
-.c-aviso { position: absolute; z-index: 8; left: 30px; right: 30px; top: 318px; padding: 24px 24px 12px; border-radius: 28px; background: #FAFAF8;
-  box-shadow: 0 24px 60px -14px rgba(0, 0, 0, .5); transition: opacity .3s .1s, transform .55s var(--muelle-chico) .1s; }
-.c-aviso b { display: block; font-size: 18px; font-weight: 800; }
-.c-aviso p { margin-top: 12px; font-size: 14px; line-height: 1.45; color: #4B4F56; }
-.c-aviso .c-aviso__botones { display: flex; justify-content: flex-end; gap: 4px; margin-top: 14px; }
-.c-aviso__botones span { padding: 10px 14px; border-radius: 20px; color: var(--tinta); font-weight: 700; }
-.c-aviso__botones .no { color: var(--petroleo); font-weight: 800; }
-.recorre .rt-c:not(.listo) .c-velo { opacity: 0; }
-.recorre .rt-c:not(.listo) .c-aviso { opacity: 0; transform: translateY(12px) scale(.94); }
-
-/* D · Tus números, sin dinero */
-.d-total { padding: 44px 26px 40px; border-radius: 20px; background: var(--hondo); color: #fff; box-shadow: 0 10px 24px -14px rgba(6, 40, 48, .6); }
-.d-total b { display: block; font-size: 104px; font-weight: 800; line-height: .92; letter-spacing: -.025em; font-variant-numeric: tabular-nums; }
-.d-total p { margin-top: 16px; font-size: 16px; line-height: 1.35; color: rgba(246, 239, 221, .86); }
-.d-par { display: grid; gap: 10px; margin-top: 12px; }
-.d-par p { display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 14px; padding: 32px 20px; border-radius: 18px; font-size: 14.5px; line-height: 1.38; color: var(--gris-app); }
-.d-par b { font-size: 60px; font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--tinta); font-variant-numeric: tabular-nums; }
-.d-par .nuevo { background: #E3EDEE; box-shadow: 0 0 0 1px rgba(14, 69, 82, .08); color: #3F5459; }
-.d-par .nuevo b { color: var(--petroleo); }
-.d-nota { margin-top: 12px !important; padding: 15px 16px; border-radius: 14px; background: var(--crudo); font-size: 12.5px; line-height: 1.45; color: #465559; }
 
 /* ───────── 1 · la renta no baja: el primer bloque de contraste, hondo ───────── */
 .r-renta { padding: 12px 10px 0; }

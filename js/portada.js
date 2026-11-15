@@ -21,7 +21,7 @@ const unaVez = (el, fn, umbral = .5) => { const o = new IntersectionObserver((es
   const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
   // ── 0. Portada (primera pantalla): la tarde da una vuelta corta (5 → 6 → 4 → 5) y se queda a las 5:00 ──
-  // Se mueven la hora de la app, su riel, las dos tarjetas, el vidrio y la sombra del toldo; el teléfono no (reglas de Apple). Solo por horas
+  // Se mueven la hora de la app, su riel, el sello de la tarjeta, el vidrio y la sombra del toldo; el teléfono no (reglas de Apple). Solo por horas
   // con descuento: la app titula "Con descuento a las X" y en esa lista no enseña restaurantes sin descuento.
   // Sin JS o con movimiento reducido todo queda a las 5:00, como viene en el HTML.
   (() => {
@@ -55,14 +55,11 @@ const unaVez = (el, fn, umbral = .5) => { const o = new IntersectionObserver((es
       const sube = h > hora, i = h - 13;
       hora = h;
       ['hApp', 'tApp', 'hVid'].forEach((id) => rueda($(id), h12(h), sube));
-      $('eApp').textContent = ESTADO[h];
       portada.style.setProperty('--sol', h - 17); // a las 6 la sombra del toldo se inclina más, a las 4 menos
       $('aRiel').style.setProperty('--p', ((i + .5) / 11).toFixed(4));
-      escena.querySelectorAll('.a-tarjeta').forEach((c) => {
-        const d = +c.dataset.desc.split(' ')[i];
-        rueda(c.querySelector('.precio'), `$${Math.round(c.dataset.antes * (1 - d / 100))}`, !sube);
-        ponSello(c.querySelector('.sello'), d, sube);
-      });
+      // el "Hasta" del riel y el sello de la tarjeta: en la demo, el descuento más alto de esa hora es el de Sal de Mar
+      ponSello($('sApp'), DESC[h], sube);
+      escena.querySelectorAll('.ap-tarjeta').forEach((c) => ponSello(c.querySelector('.sello'), +c.dataset.desc.split(' ')[i], sube));
       rueda($('pVid'), `$${precio(DESC[h])}`, !sube);
       ponSello($('sVid'), DESC[h], sube);
     };
@@ -245,12 +242,10 @@ const unaVez = (el, fn, umbral = .5) => { const o = new IntersectionObserver((es
     [...pasos, ...$$('.apartas__hitos i')].forEach((el) => vigia.observe(el));
   })();
 
-  // ── 5. Fecha: "Hoy, vie 25 de septiembre" en la hoja de confirmar ──
+  // ── 5. Fecha: "Hoy · viernes 25 de septiembre" en los boletos (el de confirmar y el de las 5) ──
   (() => {
-    const dia = $('telDia');
-    if (!dia) return;
-    const f = new Intl.DateTimeFormat('es-MX', { weekday: 'short', day: 'numeric', month: 'long' }).format(new Date());
-    dia.textContent = `Hoy, ${f.replace(/[.,]/g, '')}`;
+    const f = new Intl.DateTimeFormat('es-MX', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date());
+    $$('.boleto__dia').forEach((dia) => (dia.textContent = `Hoy · ${f.replace(/[.,]/g, '')}`));
   })();
 
   // ── 6. Mapa (escena 7): tocar un punto enseña su platillo a las 5, solo en pesos ──
@@ -296,10 +291,9 @@ const unaVez = (el, fn, umbral = .5) => { const o = new IntersectionObserver((es
     const reloj = $('reloj');
     if (!reloj) return;
     const horaEl = $('relojHora'), estadoEl = $('relojEstado'), aguja = $('relojAguja');
-    // aparece cuando "Pruébalo" ya salió por arriba (antes están la insignia de la primera pantalla
-    // y la de Pruébalo); se va cuando llega el cierre, que trae la suya. Se mide en cada scroll y no
+    // aparece cuando la mesa de "Pruébalo" ya salió por arriba (antes está la insignia de la primera pantalla); se va cuando llega el cierre, que trae la suya. Se mide en cada scroll y no
     // con IntersectionObserver: un salto (#donde, la barra de scroll) no cruza nada y no avisaría.
-    const prueba = document.querySelector('.prueba'), cierre = $('cierre');
+    const prueba = $('mesa'), cierre = $('cierre');
     let antes;
     const mide = () => {
       const fuera = !prueba || prueba.getBoundingClientRect().bottom >= 0 || (!!cierre && cierre.getBoundingClientRect().top < innerHeight);
