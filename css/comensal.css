@@ -219,7 +219,7 @@ html:not(.js) .solo-js { display: none; } /* "Arrastra la hora", "Toca un punto"
    línea del lema, que abajo de 390 de ancho puede cortar en tres). Con menos alto (Safari con sus barras) no cabría ni a 200 px:
    se queda a 64vw y se ve al bajar */
 @media (max-width: 959px) and (min-height: 790px) {
-  .escena { --w: clamp(205px, min(64vw, (100svh - 256px - min(26.86vw, 121.4px) - var(--lema3, 0px) - var(--aviso, 0px)) / 2.0444), 290px); }
+  .escena { --w: clamp(var(--piso, 205px), min(64vw, (100svh - 256px - min(26.86vw, 121.4px) - var(--lema3, 0px) - var(--aviso, 0px)) / 2.0444), 290px); }
 }
 @media (max-width: 389px) { .escena { --lema3: 24.7px; } }
 
@@ -721,4 +721,4 @@ footer.pie { padding-top: 0; padding-bottom: calc(40px + env(safe-area-inset-bot
   font: 800 16px/1 Figtree, system-ui, sans-serif; text-decoration: none; white-space: nowrap; }
 [data-fondo="oscuro"] .avisame { background: var(--crudo); color: var(--hondo); }
 .recorre .portada__tiendas .avisame { animation: p-sube .45s var(--muelle) .4s both; }
-@media (max-width: 959px) { .con-aviso .escena { --aviso: 60px; } }
+@media (max-width: 959px) { .con-aviso .escena { --aviso: 60px; --piso: 170px; } }

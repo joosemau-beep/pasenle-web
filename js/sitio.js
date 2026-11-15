@@ -13,7 +13,7 @@ const SITIO = {
   // "Avísame cuando salga": mientras no hay ligas de tiendas, un botón junto a "Muy pronto" que abre WhatsApp con el
   // mensaje listo (aquí no se guarda nada). APAGADO de fábrica: Mau quitó uno parecido el 26-sep para que la primera
   // pantalla fuera solo de descarga. Para verlo sin prenderlo: abrir la página con ?avisame al final.
-  avisame: false,
+  avisame: true,
   // data-wa="…" en el enlace elige el mensaje; sin valor, el de restaurante.
   mensajes: {
     aviso: 'Hola, avísame cuando salga Pásenle.',
